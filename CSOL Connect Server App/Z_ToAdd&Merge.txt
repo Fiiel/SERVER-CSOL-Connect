@@ -1,0 +1,14 @@
+﻿To Add & Merge:
+- *IMPORTANT* Working DataGridView on SuperAdmin_Dashboard & Admin_Dashboard
+- Working DataGridView & Search Filter on SuperAdmin_ExtendedDashboard & Admin_ExtendedDashboard
+- Working "Prone-Issue PC" module on SuperAdmin_Dashboard & Admin_Dashboard
+- *IMPORTANT* Changing of Colors of PC due to Port Monitoring
+- *IMPORTANT* Keyboard Monitoring
+- Computer Labs Icon & Panel
+
+
+░░▄▀▀▀▄░▄▄░░░░░░╠▓░░░░
+░░░▄▀▀▄█▄░▀▄░░░▓╬▓▓▓░░
+░░▀░░░░█░▀▄░░░▓▓╬▓▓▓▓░
+░░░░░░▐▌░░░░▀▀███████▀
+▒▒▄██████▄▒▒▒▒▒▒▒▒▒▒▒▒

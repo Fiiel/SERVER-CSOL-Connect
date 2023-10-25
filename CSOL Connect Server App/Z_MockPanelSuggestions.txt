@@ -1,0 +1,22 @@
+﻿[𝗘𝗣. 𝗠𝗢𝗖𝗞 𝗗𝗘𝗙𝗘𝗡𝗦𝗘] 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗙𝗼𝗿𝗺𝘀 𝗦𝘂𝗴𝗴𝗲𝘀𝘁𝗶𝗼𝗻.
+
+- Captcha should be replaced with something like an OTP.
+- Raise the location of Accounts button in Side-Nav Bar.
+- On Accounts_Form.cs, the "Email Address" should be in an asterisk* format.
+
+- On Scheduler_Form.cs, remove "Schedule ID".
+- On Scheduler_Form.cs of Admin, change "Scheduler" to "Schedule" 
+- On Scheduler_Form.cs, there should be a "Search Filter"
+
+- On Mapping_Form.cs, the Computers should already be displayed on the Panel.
+- On Mapping_Form.cs, the Computers icons should change screen colors if there is a problem or not, instead of the small circle.
+
+- Improve the design of the DataGridView of Scheduler & Accounts Form?
+
+- Change and use the word "PC/s" -> "Computer/s" or "Unit/s".
+
+- When the app is freshly installed, there should be a way for the Super Admin to get his/her account without us knowing his/her credentials.
+- How do we detect if the mouse/keyboard/LAN cable of a Computer is disconnected if it wasn't turned on at the first place? They suggest something here.
+
+- The forms should be resizable.
+- There should be a user timeout session, if Super Admin/Admin left the PC for too long (eg. 15 minutes).

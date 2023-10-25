@@ -1,0 +1,45 @@
+﻿##TO CHECK & CORRECT##
+========================================
+1. PC_Add.cs [Code] does not have further database table validation.
+- Like, if this entry from the database already exist... It should reject if the entry to be added has the same credentials as that entry from the database
+
+2. In Mapping.cs, the PC Labels are not directly under the middle of the PC Icons.
+- My OCD hurts.
+
+5. There is a white space at the right side of the PC Icons added in the Mapping Panel
+- This results to a space in the right side of the Mapping Panel, when moving the PC Icon there
+
+6. Sometimes to access the PC_Info.cs Form of the PCs in the panel, I need to click 2-3 times.
+- This hurts the user experience.
+
+7. Login Form automatically chooses the Password Textbox for some reason.
+
+8. Some Forms can be resizable by hovering mouse pointer to the edge of the form
+
+9. Some Forms do not start at the Center Screen 
+
+10. Remove unnecessary reference or directives or namespaces.
+
+11. Some forms do not have logo in the title of their window form.
+
+
+##DONE##
+3. Moving the PC in the panel, count as a 'click'.
+- Therefore, this opens their PC_Info.cs form.
+
+4. After newly adding PC in the panel, clicking it does not open its PC_Info.cs form
+- I need to exit and open the app again to access it.
+
+
+**NOTES**
+*The LAN port script should be in the Server Side
+
+
+───▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄─── 
+───█▒▒░░░░░░░░░▒▒█───
+────█░░█░░░░░█░░█────
+─▄▄──█░░░▀█▀░░░█──▄▄─
+█░░█─▀▄░░░░░░░▄▀─█░░█
+
+
+	

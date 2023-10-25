@@ -1,0 +1,67 @@
+﻿using System.Data.SqlClient;
+
+namespace CSOL_Connect_Server_App
+{
+    public partial class SuperAdmin_PCInfo : Form
+    {
+        private string pcName;
+
+        public string PCName
+        {
+            get { return pcName; }
+            set { pcName = value; }
+        }
+
+        public bool PCDeletedSuccessfully { get; private set; }
+
+        SQL_Connection sql_Connection = new SQL_Connection();
+
+        public SuperAdmin_PCInfo(string pcName)
+        {
+            InitializeComponent();
+            this.PCName = pcName; // Store the PC name for later use
+            this.Text = pcName; // Set the form's title to the PC name
+        }
+
+        private void PictureBox_DeletePC_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(this.PCName))
+            {
+                try
+                {
+                    // Delete the PC from the database using the stored PCName
+                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                    connection.Open();
+
+                    string query = "DELETE FROM PCMap WHERE PCName = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", this.PCName);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("PC Deleted Successfully!", "Delete Result");
+                        this.PCDeletedSuccessfully = true; // Set the flag to indicate successful deletion
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("PC Deletion Failed.", "Delete Result");
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Delete Error");
+                }
+            }
+        }
+
+        private void Button_Back_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+    }
+}

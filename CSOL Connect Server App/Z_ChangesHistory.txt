@@ -1,0 +1,28 @@
+﻿[OCT 10]
+
+Changes:
+*Remove old Mapping code and replaced it with better
+- Now, PC can be added and will stay on the main Panel even if the app was closed and re-opened.
+- This is applied to both
+- Added a delete PC feature only in SuperAdmin_PCInfo.
+- Added "Z_ToCheck&Correct.txt" in Solution Explorer for bug recording and fixing. 
+- Added "Z_ChangesHistory.txt" in Solution Explorer for tracking of changes.
+- Added "Z_ToAdd&Merge.txt" in Solution Explorer for tracking which to add & merge. 
+
+[OCT 11]
+
+Changes:
+- Fix the opening of _PCIcon.cs Form if user moves the icon by holding left-mouse button.
+- Changed the Data Source in SQL_Connection.cs to '.' ('localhost' can be used as well)
+
+[OCT 20]
+
+Changes:
+- Last known Icon picture will be saved from the Database
+
+
+▐▓█▀▀▀▀▀▀▀▀▀█▓▌░▄▄▄▄▄░
+▐▓█░░▀░░▀▄░░█▓▌░█▄▄▄█░
+▐▓█░░▄░░▄▀░░█▓▌░█▄▄▄█░
+▐▓█▄▄▄▄▄▄▄▄▄█▓▌░█████░
+░░░░▄▄███▄▄░░░░░█████░
