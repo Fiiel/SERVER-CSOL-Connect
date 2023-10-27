@@ -22,6 +22,8 @@
 
 11. Some forms do not have logo in the title of their window form.
 
+GG
+
 
 ##DONE##
 3. Moving the PC in the panel, count as a 'click'.
