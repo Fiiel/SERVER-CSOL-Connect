@@ -14,10 +14,12 @@ namespace CSOL_Connect_Server_App
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            SQL_Connection sql_Connection = new SQL_Connection();
+
             try
             {
                 // Establish a database connection
-                using (SqlConnection connection = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Initial Catalog=CSOLconnect;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
                 {
                     connection.Open();
 
