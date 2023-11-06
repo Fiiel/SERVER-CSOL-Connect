@@ -35,40 +35,39 @@ namespace CSOL_Connect_Server_App
             {
                 try
                 {
-                    // Display the captcha form for verification
-                    CaptchaForm captchaForm = new CaptchaForm();
-                    DialogResult captchaResult = captchaForm.ShowDialog();
+                    string uid = TextBox_UserID.Text;
+                    string pw = TextBox_Password.Text;
+                    string hashedPassword = string.Empty;
 
-                    if (captchaResult == DialogResult.OK)
+                    byte[] passwordBytes = Encoding.UTF8.GetBytes(pw);
+                    using (SHA256 sha256 = SHA256.Create())
                     {
-                        // Captcha verification succeeded, proceed with login
-                        string uid = TextBox_UserID.Text;
-                        string pw = TextBox_Password.Text;
-                        string hashedPassword = string.Empty;
+                        byte[] hashedPasswordBytes = sha256.ComputeHash(passwordBytes);
+                        hashedPassword = BitConverter.ToString(hashedPasswordBytes).Replace("-", "").ToLower();
+                    }
 
-                        byte[] passwordBytes = Encoding.UTF8.GetBytes(pw);
-                        using (SHA256 sha256 = SHA256.Create())
+                    string connectionString = sql_Connection.SQLConnection();
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "SELECT COUNT(*) FROM Users WHERE [User ID] = @UserID AND [Password] = @Password";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            byte[] hashedPasswordBytes = sha256.ComputeHash(passwordBytes);
-                            hashedPassword = BitConverter.ToString(hashedPasswordBytes).Replace("-", "").ToLower();
-                        }
+                            command.Parameters.AddWithValue("@UserID", uid);
+                            command.Parameters.AddWithValue("@Password", hashedPassword);
 
-                        string connectionString = sql_Connection.SQLConnection();
-                        using (SqlConnection connection = new SqlConnection(connectionString))
-                        {
-                            string query = "SELECT COUNT(*) FROM Users WHERE [User ID] = @UserID AND [Password] = @Password";
+                            connection.Open();
+                            int result = (int)command.ExecuteScalar();
 
-                            using (SqlCommand command = new SqlCommand(query, connection))
+                            if (result > 0)
                             {
-                                command.Parameters.AddWithValue("@UserID", uid);
-                                command.Parameters.AddWithValue("@Password", hashedPassword);
+                                // Password is correct, now display the CAPTCHA form for verification
+                                CaptchaForm captchaForm = new CaptchaForm();
+                                DialogResult captchaResult = captchaForm.ShowDialog();
 
-                                connection.Open();
-                                int result = (int)command.ExecuteScalar();
-
-                                if (result > 0)
+                                if (captchaResult == DialogResult.OK)
                                 {
-                                    // Credentials are valid
+                                    // CAPTCHA verification succeeded, proceed with login
                                     MessageBox.Show("Login successful!");
 
                                     string userLevelQuery = "SELECT [User Level] FROM Users WHERE [User ID] = @UserID";
@@ -94,21 +93,20 @@ namespace CSOL_Connect_Server_App
                                             MessageBox.Show("Something went wrong.");
                                         }
                                     }
-
                                 }
                                 else
                                 {
-                                    // Credentials are invalid
-                                    MessageBox.Show("Invalid username or password.");
+                                    // CAPTCHA verification failed, display an error message or take appropriate action
+                                    MessageBox.Show("Captcha verification failed. Please try again.");
                                 }
-                                connection.Close();
                             }
+                            else
+                            {
+                                // Password is incorrect
+                                MessageBox.Show("Invalid username or password.");
+                            }
+                            connection.Close();
                         }
-                    }
-                    else
-                    {
-                        // Captcha verification failed, display an error message or take appropriate action
-                        MessageBox.Show("Captcha verification failed. Please try again.");
                     }
                 }
                 catch (Exception ex)
@@ -120,6 +118,7 @@ namespace CSOL_Connect_Server_App
                 }
             }
         }
+
 
         private void UserIDTextBox_TextChanged(object sender, EventArgs e)
         {
