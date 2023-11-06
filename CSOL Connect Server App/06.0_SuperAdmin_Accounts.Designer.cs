@@ -185,7 +185,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AllowUserToResizeColumns = false;
             dataGridView.AllowUserToResizeRows = false;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.BackgroundColor = SystemColors.ActiveCaption;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Cursor = Cursors.Hand;
