@@ -33,7 +33,6 @@
             SubmitButton = new Button();
             label8 = new Label();
             label7 = new Label();
-            instructortxt = new TextBox();
             label6 = new Label();
             gnstxtbox = new TextBox();
             label5 = new Label();
@@ -46,6 +45,7 @@
             label1 = new Label();
             toolTip1 = new ToolTip(components);
             clncbox = new ComboBox();
+            Instructor_Combobox = new ComboBox();
             Button_GoBack = new Button();
             SuspendLayout();
             // 
@@ -82,16 +82,6 @@
             label7.Size = new Size(96, 25);
             label7.TabIndex = 46;
             label7.Text = "Instructor";
-            // 
-            // instructortxt
-            // 
-            instructortxt.Cursor = Cursors.IBeam;
-            instructortxt.Location = new Point(32, 286);
-            instructortxt.MaxLength = 200;
-            instructortxt.Name = "instructortxt";
-            instructortxt.Size = new Size(576, 23);
-            instructortxt.TabIndex = 45;
-            toolTip1.SetToolTip(instructortxt, "Input who's the one in charge of the class.");
             // 
             // label6
             // 
@@ -213,6 +203,17 @@
             clncbox.TabIndex = 51;
             toolTip1.SetToolTip(clncbox, "Pick the day");
             // 
+            // Instructor_Combobox
+            // 
+            Instructor_Combobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            Instructor_Combobox.FormattingEnabled = true;
+            Instructor_Combobox.Location = new Point(32, 286);
+            Instructor_Combobox.MaxLength = 50;
+            Instructor_Combobox.Name = "Instructor_Combobox";
+            Instructor_Combobox.Size = new Size(246, 23);
+            Instructor_Combobox.TabIndex = 53;
+            toolTip1.SetToolTip(Instructor_Combobox, "Pick the day");
+            // 
             // Button_GoBack
             // 
             Button_GoBack.BackColor = Color.FromArgb(7, 25, 82);
@@ -234,12 +235,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(638, 507);
+            Controls.Add(Instructor_Combobox);
             Controls.Add(clncbox);
             Controls.Add(Button_GoBack);
             Controls.Add(SubmitButton);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(instructortxt);
             Controls.Add(label6);
             Controls.Add(gnstxtbox);
             Controls.Add(label5);
@@ -266,7 +267,6 @@
         private TextBox clntxt;
         private ToolTip toolTip1;
         private Label label7;
-        private TextBox instructortxt;
         private Label label6;
         private TextBox gnstxtbox;
         private Label label5;
@@ -279,5 +279,6 @@
         private Label label1;
         private Button Button_GoBack;
         private ComboBox clncbox;
+        private ComboBox Instructor_Combobox;
     }
 }

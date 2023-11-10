@@ -231,5 +231,11 @@ namespace CSOL_Connect_Server_App
                 PerformSearch();
             }
         }
+
+        private void instructorbtn_Click(object sender, EventArgs e)
+        {
+            Instructors page = new Instructors();
+            page.Show();
+        }
     }
 }

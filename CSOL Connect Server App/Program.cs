@@ -35,7 +35,7 @@ namespace CSOL_Connect_Server_App
                     }
                     else
                     {
-                        Application.Run(new LoginForm());
+                        Application.Run(new SuperAdmin_Scheduler());
                     }
                 }
             }
