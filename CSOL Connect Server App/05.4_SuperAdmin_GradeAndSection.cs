@@ -11,50 +11,50 @@ using System.Windows.Forms;
 
 namespace CSOL_Connect_Server_App
 {
-    public partial class Instructors : Form
+    public partial class GradeAndSection : Form
     {
         SQL_Connection sql_Connection = new SQL_Connection();
 
-        public Instructors()
+        public GradeAndSection()
         {
             InitializeComponent();
         }
 
-        private void Add_Instructor_Click(object sender, EventArgs e)
+        private void Add_GraSec_Click(object sender, EventArgs e)
         {
             try
             {
-                string instructorName = Instructor_Name.Text; // Get the instructor name from the textbox
+                string GradeSection = GraSec_Name.Text; // Get the grade se name from the textbox
 
                 // Ensure the name is not empty before attempting to insert
-                if (!string.IsNullOrWhiteSpace(instructorName))
+                if (!string.IsNullOrWhiteSpace(GradeSection))
                 {
                     SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
 
                     connection.Open();
 
                     // Check if the instructor already exists in the "Instructors" table
-                    string checkQuery = "SELECT COUNT(*) FROM Instructors WHERE Name = @Name";
+                    string checkQuery = "SELECT COUNT(*) FROM Classes WHERE GraSec = @Name";
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, connection))
                     {
-                        checkCmd.Parameters.AddWithValue("@Name", instructorName);
+                        checkCmd.Parameters.AddWithValue("@Name", GradeSection);
                         int existingCount = (int)checkCmd.ExecuteScalar();
 
                         if (existingCount == 0)
                         {
                             // The instructor doesn't exist, so we can proceed with the insertion
-                            string insertQuery = "INSERT INTO Instructors (Name) VALUES (@Name)";
+                            string insertQuery = "INSERT INTO Classes (GraSec) VALUES (@Name)";
                             using (SqlCommand cmd = new SqlCommand(insertQuery, connection))
                             {
-                                cmd.Parameters.AddWithValue("@Name", instructorName);
+                                cmd.Parameters.AddWithValue("@Name", GradeSection);
                                 int rowsAffected = cmd.ExecuteNonQuery();
 
                                 if (rowsAffected > 0)
                                 {
-                                    MessageBox.Show("Instructor added successfully!");
+                                    MessageBox.Show("Class added successfully!");
                                     // Clear the textbox after successful insertion
                                     this.Hide();
-                                    Instructors page = new Instructors();
+                                    GradeAndSection page = new GradeAndSection();
                                     page.Show();
                                 }
                                 else
@@ -65,28 +65,22 @@ namespace CSOL_Connect_Server_App
                         }
                         else
                         {
-                            MessageBox.Show("Instructor already exists.");
+                            MessageBox.Show("Class already exists.");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please enter an instructor name.");
+                    MessageBox.Show("Please enter Grade and Section.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
-
         }
 
-        private void Instructor_Combobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Instructors_Load(object sender, EventArgs e)
+        private void GradeAndSection_Load(object sender, EventArgs e)
         {
             try
             {
@@ -97,7 +91,7 @@ namespace CSOL_Connect_Server_App
                     connection.Open();
 
                     // SQL query to select all instructor names from the "Instructors" table
-                    string selectQuery = "SELECT Name FROM Instructors";
+                    string selectQuery = "SELECT GraSec FROM Classes";
 
                     using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
                     {
@@ -106,7 +100,7 @@ namespace CSOL_Connect_Server_App
                             while (reader.Read())
                             {
                                 // Add each instructor name to the ComboBox
-                                Instructor_Combobox.Items.Add(reader["Name"].ToString());
+                                Classes_Combobox.Items.Add(reader["GraSec"].ToString());
                             }
                         }
                     }
@@ -118,14 +112,14 @@ namespace CSOL_Connect_Server_App
             }
         }
 
-        private void Delete_Instructor_Click(object sender, EventArgs e)
+        private void Delete_GraSec_Click(object sender, EventArgs e)
         {
             // Check if an item is selected in the ComboBox
-            if (Instructor_Combobox.SelectedIndex != -1)
+            if (Classes_Combobox.SelectedIndex != -1)
             {
                 try
                 {
-                    string selectedInstructor = Instructor_Combobox.SelectedItem.ToString();
+                    string selectedGraSec = Classes_Combobox.SelectedItem.ToString();
 
                     string connectionString = sql_Connection.SQLConnection();
 
@@ -134,34 +128,34 @@ namespace CSOL_Connect_Server_App
                         connection.Open();
 
                         // Check if the selected instructor is being used in the "Schedules" table
-                        string checkUsageQuery = "SELECT COUNT(*) FROM Schedules WHERE Instructor = @Instructor";
+                        string checkUsageQuery = "SELECT COUNT(*) FROM Schedules WHERE [Grade and Section] = @GraSec";
                         using (SqlCommand checkUsageCmd = new SqlCommand(checkUsageQuery, connection))
                         {
-                            checkUsageCmd.Parameters.AddWithValue("@Instructor", selectedInstructor);
+                            checkUsageCmd.Parameters.AddWithValue("@GraSec", selectedGraSec);
                             int usageCount = (int)checkUsageCmd.ExecuteScalar();
-
+                           
                             if (usageCount > 0)
                             {
-                                // The instructor is being used in schedules, so prevent deletion
-                                MessageBox.Show("Cannot delete instructor because they have a schedule.");
+                                // The class is being used in schedules, so prevent deletion
+                                MessageBox.Show("Cannot delete class because they have a schedule.");
                             }
                             else
                             {
-                                // The instructor is not being used, proceed with deletion
-                                string deleteQuery = "DELETE FROM Instructors WHERE Name = @Name";
+                                // The class is not being used, proceed with deletion
+                                string deleteQuery = "DELETE FROM Classes WHERE GraSec = @GraSec";
 
                                 using (SqlCommand cmd = new SqlCommand(deleteQuery, connection))
                                 {
-                                    cmd.Parameters.AddWithValue("@Name", selectedInstructor);
+                                    cmd.Parameters.AddWithValue("@GraSec", selectedGraSec);
                                     int rowsAffected = cmd.ExecuteNonQuery();
 
                                     if (rowsAffected > 0)
                                     {
-                                        MessageBox.Show("Instructor deleted successfully!");
-                                        Instructor_Combobox.Items.RemoveAt(Instructor_Combobox.SelectedIndex);
+                                        MessageBox.Show("Class deleted successfully!");
+                                        Classes_Combobox.Items.RemoveAt(Classes_Combobox.SelectedIndex);
                                         // Clear the ComboBox selection
                                         this.Hide();
-                                        Instructors page = new Instructors();
+                                        GradeAndSection page = new GradeAndSection();
                                         page.Show();
                                     }
                                     else
@@ -183,7 +177,6 @@ namespace CSOL_Connect_Server_App
                 MessageBox.Show("Please select an instructor to delete.");
             }
         }
-
-
     }
 }
+

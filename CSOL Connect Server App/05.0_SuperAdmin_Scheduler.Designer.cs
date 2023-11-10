@@ -43,6 +43,7 @@
             Searchbar = new TextBox();
             OngoingLabs = new Label();
             instructorbtn = new Button();
+            GraSec_button = new Button();
             Panel_SideNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -260,6 +261,22 @@
             instructorbtn.UseVisualStyleBackColor = false;
             instructorbtn.Click += instructorbtn_Click;
             // 
+            // GraSec_button
+            // 
+            GraSec_button.BackColor = Color.LimeGreen;
+            GraSec_button.Cursor = Cursors.Hand;
+            GraSec_button.FlatStyle = FlatStyle.Popup;
+            GraSec_button.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            GraSec_button.ForeColor = SystemColors.Control;
+            GraSec_button.ImageAlign = ContentAlignment.MiddleRight;
+            GraSec_button.Location = new Point(448, 626);
+            GraSec_button.Name = "GraSec_button";
+            GraSec_button.Size = new Size(104, 39);
+            GraSec_button.TabIndex = 21;
+            GraSec_button.Text = "Classes";
+            GraSec_button.UseVisualStyleBackColor = false;
+            GraSec_button.Click += GraSec_button_Click;
+            // 
             // SuperAdmin_Scheduler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -267,6 +284,7 @@
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
             ControlBox = false;
+            Controls.Add(GraSec_button);
             Controls.Add(instructorbtn);
             Controls.Add(SearchBtn);
             Controls.Add(Searchbar);
@@ -305,5 +323,6 @@
         private TextBox Searchbar;
         private Label OngoingLabs;
         private Button instructorbtn;
+        private Button GraSec_button;
     }
 }

@@ -43,7 +43,16 @@ namespace CSOL_Connect_Server_App
             dateTimePicker1.Value = DateTime.Today.Add(start);
             dateTimePicker2.Value = DateTime.Today.Add(end);
 
-            gnstxtbox.Text = grns;
+            // Attach an event handler to the Load event
+            this.Load += (sender, e) =>
+            {
+                // Set the selected index in the Instructor_Combobox
+                int index = GraSec_Combobox.FindString(grns);
+                if (index != -1)
+                {
+                    GraSec_Combobox.SelectedIndex = index;
+                }
+            };
 
             // Attach an event handler to the Load event
             this.Load += (sender, e) =>
@@ -63,7 +72,7 @@ namespace CSOL_Connect_Server_App
         private void SuperAdmin_EditSchedule_Load(object sender, EventArgs e)
         {
 
-            
+
             // Set the format and limits for dateTimePicker1
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "HH:mm";
@@ -77,6 +86,35 @@ namespace CSOL_Connect_Server_App
             dateTimePicker2.ShowUpDown = true;
             dateTimePicker2.MinDate = DateTime.Today.AddHours(8); // Set the minimum time to 8:00 AM
             dateTimePicker2.MaxDate = DateTime.Today.AddHours(17); // Set the maximum time to 5:00 PM
+
+            try
+            {
+                string connectionString = sql_Connection.SQLConnection();
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL query to select all calss names from the "Classes" table
+                    string selectQuery = "SELECT GraSec FROM Classes";
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Add each instructor name to the ComboBox
+                                GraSec_Combobox.Items.Add(reader["GraSec"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
 
             try
             {
@@ -110,7 +148,7 @@ namespace CSOL_Connect_Server_App
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            if (dayComboBox.SelectedIndex == -1 || gnstxtbox.Text.Length == 0 || Instructor_Combobox.Text.Length == -1 || clncbox.SelectedIndex == -1)
+            if (dayComboBox.SelectedIndex == -1 || GraSec_Combobox.Text.Length == -1 || Instructor_Combobox.Text.Length == -1 || clncbox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please make sure to complete the form before submitting.");
             }
@@ -148,7 +186,7 @@ namespace CSOL_Connect_Server_App
                             command.Parameters.AddWithValue("@val1", dayComboBox.Text);
                             command.Parameters.AddWithValue("@val2", newScheduleStart);
                             command.Parameters.AddWithValue("@val3", newScheduleEnd);
-                            command.Parameters.AddWithValue("@val4", gnstxtbox.Text);
+                            command.Parameters.AddWithValue("@val4", GraSec_Combobox.Text);
                             command.Parameters.AddWithValue("@val5", Instructor_Combobox.Text);
                             command.Parameters.AddWithValue("@val6", clncbox.Text);
                             command.Parameters.AddWithValue("@schedID", SCHEDID);

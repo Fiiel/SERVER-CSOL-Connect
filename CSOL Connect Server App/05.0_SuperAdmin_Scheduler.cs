@@ -237,5 +237,11 @@ namespace CSOL_Connect_Server_App
             Instructors page = new Instructors();
             page.Show();
         }
+
+        private void GraSec_button_Click(object sender, EventArgs e)
+        {
+            GradeAndSection page = new GradeAndSection();
+            page.Show();
+        }
     }
 }

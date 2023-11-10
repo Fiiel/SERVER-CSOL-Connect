@@ -66,6 +66,37 @@ namespace CSOL_Connect_Server_App
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+
+
+            try
+            {
+                string connectionString = sql_Connection.SQLConnection();
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL query to select all classes names from the "Classes" table
+                    string selectQuery = "SELECT GraSec FROM Classes";
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Add each instructor name to the ComboBox
+                                GraSec_Combobox.Items.Add(reader["GraSec"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -84,7 +115,7 @@ namespace CSOL_Connect_Server_App
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            if (dayComboBox.SelectedIndex == -1 || gnstxtbox.Text.Length == 0 || Instructor_Combobox.SelectedIndex == -1 || clncbox.SelectedIndex == -1)
+            if (dayComboBox.SelectedIndex == -1 || GraSec_Combobox.SelectedIndex == -1 || Instructor_Combobox.SelectedIndex == -1 || clncbox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please make sure to complete the form before submitting.");
             }
@@ -102,7 +133,7 @@ namespace CSOL_Connect_Server_App
                 else
                 {
                     // Insert the new schedule into the database
-                    DialogResult result = MessageBox.Show("Are you sure you want to create this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Are you sure you want to create this schedule?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -119,7 +150,7 @@ namespace CSOL_Connect_Server_App
                             command.Parameters.AddWithValue("@val1", dayComboBox.Text);
                             command.Parameters.AddWithValue("@val2", newScheduleStart);
                             command.Parameters.AddWithValue("@val3", newScheduleEnd);
-                            command.Parameters.AddWithValue("@val4", gnstxtbox.Text);
+                            command.Parameters.AddWithValue("@val4", GraSec_Combobox.Text);
                             command.Parameters.AddWithValue("@val5", Instructor_Combobox.Text);
                             command.Parameters.AddWithValue("@val6", clncbox.Text);
 
