@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Data.SqlClient;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace CSOL_Connect_Server_App
 {
@@ -67,38 +68,73 @@ namespace CSOL_Connect_Server_App
 
                                 if (captchaResult == DialogResult.OK)
                                 {
-                                    // CAPTCHA verification succeeded, proceed with login
-                                    MessageBox.Show("Login successful!");
 
-                                    string userLevelQuery = "SELECT [User Level] FROM Users WHERE [User ID] = @UserID";
-                                    using (SqlCommand userLevelCommand = new SqlCommand(userLevelQuery, connection))
+                                    if (pw!="CSOL-connect2023!") {
+                                        // CAPTCHA verification succeeded, proceed with login
+                                        MessageBox.Show("Login successful!");
+
+                                        string userLevelQuery = "SELECT [User Level] FROM Users WHERE [User ID] = @UserID";
+                                        using (SqlCommand userLevelCommand = new SqlCommand(userLevelQuery, connection))
+                                        {
+                                            userLevelCommand.Parameters.AddWithValue("@UserID", uid);
+                                            string userLevel = userLevelCommand.ExecuteScalar()?.ToString();
+
+                                            if (userLevel == "Admin")
+                                            {
+                                                this.Hide();
+                                                Admin_Dashboard page = new Admin_Dashboard();
+                                                page.Show();
+                                            }
+                                            else if (userLevel == "Super Admin")
+                                            {
+                                                this.Hide();
+                                                SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
+                                                page.Show();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Something went wrong.");
+                                            }
+                                        }
+                                    }
+                                    else
                                     {
-                                        userLevelCommand.Parameters.AddWithValue("@UserID", uid);
-                                        string userLevel = userLevelCommand.ExecuteScalar()?.ToString();
+                                        // CAPTCHA verification succeeded, proceed with login
+                                        MessageBox.Show("Login successful!");
 
-                                        if (userLevel == "Admin")
+                                        string userLevelQuery = "SELECT [User Level] FROM Users WHERE [User ID] = @UserID";
+                                        using (SqlCommand userLevelCommand = new SqlCommand(userLevelQuery, connection))
                                         {
-                                            this.Hide();
-                                            Admin_Dashboard page = new Admin_Dashboard();
-                                            page.Show();
-                                        }
-                                        else if (userLevel == "Super Admin")
-                                        {
-                                            this.Hide();
-                                            SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
-                                            page.Show();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Something went wrong.");
+                                            userLevelCommand.Parameters.AddWithValue("@UserID", uid);
+                                            string userLevel = userLevelCommand.ExecuteScalar()?.ToString();
+
+                                            if (userLevel == "Admin")
+                                            {
+                                                int userId = int.Parse(uid);
+                                                this.Hide();
+                                                forAdmin_ChangePW_Required page = new forAdmin_ChangePW_Required(userId);
+                                                page.Show();
+                                            }
+                                            else if (userLevel == "Super Admin")
+                                            {
+                                                int userId = int.Parse(uid);
+                                                this.Hide();
+                                                ChangePW_Required page = new ChangePW_Required(userId);
+                                                page.Show();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Something went wrong.");
+                                            }
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    // CAPTCHA verification failed, display an error message or take appropriate action
-                                    MessageBox.Show("Captcha verification failed. Please try again.");
+
+                                else {                                
+                                // CAPTCHA verification failed, display an error message or take appropriate action
+                                MessageBox.Show("Captcha verification failed. Please try again.");
                                 }
+                                
                             }
                             else
                             {
@@ -168,21 +204,15 @@ namespace CSOL_Connect_Server_App
         private void Button_ForgotPassword_Click(object sender, EventArgs e)
         {
             string userID = TextBox_UserID.Text;
-
-            // Check if the user exists in the Users table
             bool userExists = CheckIfUserExists(userID);
+
 
             if (userExists)
             {
-                // Confirm with the user
-                DialogResult result = MessageBox.Show("Request for a Password Reset? You will have to contact the Super Admin directly before they can reset your password.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    // Insert the user ID into the ResetPW table
-                    InsertUserIDAndEmailIntoResetPW(userID);
-
-                }
+                int Userid = int.Parse(TextBox_UserID.Text);
+                SecurityQuestions page = new SecurityQuestions(Userid);
+                this.Hide();
+                page.Show();
             }
             else
             {
@@ -221,56 +251,6 @@ namespace CSOL_Connect_Server_App
             }
 
             return userExists;
-        }
-
-        private void InsertUserIDAndEmailIntoResetPW(string userID)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
-                {
-                    connection.Open();
-
-                    // Check if the [User ID] already exists in ResetPW table
-                    string checkQuery = "SELECT COUNT(*) FROM ResetPW WHERE [User ID] = @UserID";
-                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
-                    {
-                        checkCommand.Parameters.AddWithValue("@UserID", userID);
-                        int count = (int)checkCommand.ExecuteScalar();
-
-                        if (count == 0)
-                        {
-                            // [User ID] doesn't exist in ResetPW table, so insert it along with [Email Address]
-                            string insertQuery = "INSERT INTO ResetPW ([User ID], [Email Address]) " +
-                                                 "SELECT [User ID], [Email Address] FROM Users WHERE [User ID] = @UserID";
-                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
-                            {
-                                insertCommand.Parameters.AddWithValue("@UserID", userID);
-                                int rowsAffected = insertCommand.ExecuteNonQuery();
-
-                                if (rowsAffected > 0)
-                                {
-                                    MessageBox.Show("Request Sent");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("User ID not found in Users table.");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("The password reset is already existing. Please contact the Super Admin directly to confirm your request.");
-                        }
-                    }
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)

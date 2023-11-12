@@ -13,12 +13,19 @@ namespace CSOL_Connect_Server_App
         public string Email { get; set; }
         public string Pass { get; set; }
         public string UserLevel { get; set; }
+        //
+        public string atSQ1 { get; set; }
+        public string atSQ2 { get; set; }
+        public string atSQ3 { get; set; }
+        public string atSQ1_ans { get; set; }
+        public string atSQ2_ans { get; set; }
+        public string atSQ3_ans { get; set; }
 
         //OBJECT
         SQL_Connection sql_Connection = new SQL_Connection();
 
 
-        public SuperAdmin_EditUsers(int Userid, string FirstName, string LastName, string Email, string password, string UserLevel)
+        public SuperAdmin_EditUsers(int Userid, string FirstName, string LastName, string Email, string Pass, string UserLevel, string sq1, string sq2, string sq3, string sq1_ans, string sq2_ans, string sq3_ans)
         {
             InitializeComponent();
 
@@ -27,10 +34,18 @@ namespace CSOL_Connect_Server_App
             ln.Text = LastName;
             email.Text = Email;
             userlevelComboBox.SelectedItem = UserLevel;
+            //
+            Q1_txtbox.Text = sq1;   
+            Q2_txtbox.Text = sq2;
+            Q3_txtbox.Text = sq3;
         }
 
         private void SuperAdmin_EditUsers_Load(object sender, EventArgs e)
         {
+            //try         
+            SQ_grpbox.Enabled = false;
+            //
+
             if (userlevelComboBox.Text == "Super Admin")
             {
                 if (IsLastSuperAdmin())
@@ -42,52 +57,141 @@ namespace CSOL_Connect_Server_App
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Pword.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please make sure to complete the form before submitting.");
-            }
-            else if (!Regex.IsMatch(email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                MessageBox.Show("Please enter a valid email address.");
-                email.ResetText();
-            }
-            else if (pwReq1.ForeColor == Color.Red || pwReq2.ForeColor == Color.Red || pwReq3.ForeColor == Color.Red || pwReq4.ForeColor == Color.Red || pwReq5.ForeColor == Color.Red)
-            {
-                MessageBox.Show("Please ensure that your password meets all the necessary requirements.");
-                Pword.ResetText();
-                ConfirmPass.ResetText();
-            }
-            else if (Pword.Text != ConfirmPass.Text)
-            {
-                MessageBox.Show("Password doesn't match.");
-                Pword.ResetText();
-                ConfirmPass.ResetText();
-            }
+            if(SQ_grpbox.Enabled == false){
 
-            else if (EmailExists(email.Text, UserID))
-            {
-                MessageBox.Show("An account with this email address already exists.");
-                email.ResetText();
-            }
-
-            else
-            {
-                //Get new values
-                FirstName = fn.Text;
-                LastName = ln.Text;
-                Email = email.Text;
-
-                // Encrypt the password using SHA-256
-                using (SHA256 sha256 = SHA256.Create())
+                if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Pword.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1)
                 {
-                    byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Pword.Text));
-                    Pass = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    MessageBox.Show("Please make sure to complete the form before submitting.");
+                }
+                else if (!Regex.IsMatch(email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show("Please enter a valid email address.");
+                    email.ResetText();
+                }
+                else if (pwReq1.ForeColor == Color.Red || pwReq2.ForeColor == Color.Red || pwReq3.ForeColor == Color.Red || pwReq4.ForeColor == Color.Red || pwReq5.ForeColor == Color.Red)
+                {
+                    MessageBox.Show("Please ensure that your password meets all the necessary requirements.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (Pword.Text != ConfirmPass.Text)
+                {
+                    MessageBox.Show("Password doesn't match.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (Pword.Text == "CSOL-connect2023!")
+                {
+                    MessageBox.Show("Password can't be set to defaut password. Please choose a differennt password.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (EmailExists(email.Text, UserID))
+                {
+                    MessageBox.Show("An account with this email address already exists.");
+                    email.ResetText();
                 }
 
-                UserLevel = userlevelComboBox.Text;
+                else
+                {
+                    //Get new values
+                    FirstName = fn.Text;
+                    LastName = ln.Text;
+                    Email = email.Text;
 
-                DialogResult = DialogResult.OK;
-                Close();
+                    // Encrypt the password using SHA-256
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Pword.Text));
+                        Pass = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    }
+
+                    UserLevel = userlevelComboBox.Text;
+                   
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+            else
+            {
+                if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Pword.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1 || Q1_txtbox.TextLength == 0 || Q1ans_txtbox.TextLength == 0 || Q2_txtbox.TextLength == 0 || Q2ans_txtbox.TextLength == 0 || Q3_txtbox.TextLength == 0 || Q3ans_txtbox.TextLength == 0)
+                {
+                    MessageBox.Show("Please make sure to complete the form before submitting.");
+                }
+                else if (!Regex.IsMatch(email.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show("Please enter a valid email address.");
+                    email.ResetText();
+                }
+                else if (pwReq1.ForeColor == Color.Red || pwReq2.ForeColor == Color.Red || pwReq3.ForeColor == Color.Red || pwReq4.ForeColor == Color.Red || pwReq5.ForeColor == Color.Red)
+                {
+                    MessageBox.Show("Please ensure that your password meets all the necessary requirements.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (Pword.Text != ConfirmPass.Text)
+                {
+                    MessageBox.Show("Password doesn't match.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (Pword.Text == "CSOL-connect2023!")
+                {
+                    MessageBox.Show("Password can't be set to defaut password. Please choose a differennt password.");
+                    Pword.ResetText();
+                    ConfirmPass.ResetText();
+                }
+                else if (EmailExists(email.Text, UserID))
+                {
+                    MessageBox.Show("An account with this email address already exists.");
+                    email.ResetText();
+                }
+
+                else
+                {
+                    //Get new values
+                    FirstName = fn.Text;
+                    LastName = ln.Text;
+                    Email = email.Text;
+
+                    // Encrypt the password using SHA-256
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Pword.Text));
+                        Pass = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    }
+
+                    UserLevel = userlevelComboBox.Text;
+
+                    atSQ1 = Q1_txtbox.Text;
+                    atSQ2 = Q2_txtbox.Text;
+                    atSQ3 = Q3_txtbox.Text;
+
+                    // Encrypt the sq1_ans using SHA-256
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Q1ans_txtbox.Text));
+                        atSQ1_ans = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    }
+
+                    // Encrypt the sq1_ans using SHA-256
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Q2ans_txtbox.Text));
+                        atSQ2_ans = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    }
+
+                    // Encrypt the sq2_ans using SHA-256
+                    using (SHA256 sha256 = SHA256.Create())
+                    {
+                        byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(Q3ans_txtbox.Text));
+                        atSQ3_ans = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+                    }
+
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+
             }
         }
 
@@ -313,6 +417,78 @@ namespace CSOL_Connect_Server_App
                 // If there's only one super admin, return true
                 return superAdminCount == 1;
             }
+        }
+
+        private void EnableDisable_btn_Click(object sender, EventArgs e)
+        {
+            string action = SQ_grpbox.Enabled ? "disable" : "enable";
+            DialogResult result = MessageBox.Show($"Are you sure you want to {action} Security Questions Editor?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                if (SQ_grpbox.Enabled == false)
+                {
+                    SQ_grpbox.Enabled = true;
+                    EnableDisable_btn.Text = "Disable";
+                    EnableDisable_btn.BackColor = System.Drawing.Color.FromArgb(192, 0, 0);
+                }
+                else
+                {
+                    SQ_grpbox.Enabled = false;
+                    EnableDisable_btn.Text = "Enable";
+                    EnableDisable_btn.BackColor = Color.Lime;
+                }
+            }
+        }
+
+        private void help_btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("These security questions would be asked if you forget your password. Set them up carefully, this is case sensitive and make sure that the questions you provide are not easily attainable data.");
+        }
+
+        private void Q1_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q1ans_txtbox.ResetText();
+        }
+
+        private void Q2_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q2ans_txtbox.ResetText();
+        }
+
+        private void Q3_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q3ans_txtbox.ResetText();
+        }
+
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+            Q1ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q1ans_txtbox.PasswordChar = '●';
+        }
+
+        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            Q2ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox3_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q2ans_txtbox.PasswordChar = '●';
+        }
+
+        private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
+        {
+            Q3ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox5_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q3ans_txtbox.PasswordChar = '●';
         }
     }
 }

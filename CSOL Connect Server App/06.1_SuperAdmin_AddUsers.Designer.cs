@@ -38,6 +38,9 @@
             email = new TextBox();
             ln = new TextBox();
             fn = new TextBox();
+            Q1ans_txtbox = new TextBox();
+            Q3ans_txtbox = new TextBox();
+            Q2ans_txtbox = new TextBox();
             timer1 = new System.Windows.Forms.Timer(components);
             pwReq4 = new Label();
             pwReq3 = new Label();
@@ -57,8 +60,28 @@
             BackButton = new Button();
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
+            label9 = new Label();
+            bg = new Label();
+            Q1_txtbox = new TextBox();
+            Q3_txtbox = new TextBox();
+            Q2_txtbox = new TextBox();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            help_btn = new Label();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            groupBox1 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // pwReq5
@@ -147,6 +170,39 @@
             PWtooltip.SetToolTip(fn, "Please input letters only in this field.");
             fn.TextChanged += fn_TextChanged;
             // 
+            // Q1ans_txtbox
+            // 
+            Q1ans_txtbox.Cursor = Cursors.IBeam;
+            Q1ans_txtbox.Location = new Point(137, 124);
+            Q1ans_txtbox.MaxLength = 100;
+            Q1ans_txtbox.Name = "Q1ans_txtbox";
+            Q1ans_txtbox.PasswordChar = '●';
+            Q1ans_txtbox.Size = new Size(198, 23);
+            Q1ans_txtbox.TabIndex = 51;
+            PWtooltip.SetToolTip(Q1ans_txtbox, "Please input letters only in this field.");
+            // 
+            // Q3ans_txtbox
+            // 
+            Q3ans_txtbox.Cursor = Cursors.IBeam;
+            Q3ans_txtbox.Location = new Point(137, 352);
+            Q3ans_txtbox.MaxLength = 100;
+            Q3ans_txtbox.Name = "Q3ans_txtbox";
+            Q3ans_txtbox.PasswordChar = '●';
+            Q3ans_txtbox.Size = new Size(198, 23);
+            Q3ans_txtbox.TabIndex = 53;
+            PWtooltip.SetToolTip(Q3ans_txtbox, "Please input letters only in this field.");
+            // 
+            // Q2ans_txtbox
+            // 
+            Q2ans_txtbox.Cursor = Cursors.IBeam;
+            Q2ans_txtbox.Location = new Point(137, 239);
+            Q2ans_txtbox.MaxLength = 100;
+            Q2ans_txtbox.Name = "Q2ans_txtbox";
+            Q2ans_txtbox.PasswordChar = '●';
+            Q2ans_txtbox.Size = new Size(198, 23);
+            Q2ans_txtbox.TabIndex = 55;
+            PWtooltip.SetToolTip(Q2ans_txtbox, "Please input letters only in this field.");
+            // 
             // timer1
             // 
             timer1.Enabled = true;
@@ -203,7 +259,7 @@
             Submit.FlatStyle = FlatStyle.Popup;
             Submit.Font = new Font("Rockwell", 18F, FontStyle.Bold, GraphicsUnit.Point);
             Submit.ForeColor = Color.Snow;
-            Submit.Location = new Point(505, 564);
+            Submit.Location = new Point(909, 564);
             Submit.Name = "Submit";
             Submit.Size = new Size(111, 45);
             Submit.TabIndex = 40;
@@ -217,7 +273,7 @@
             ClearButton.FlatStyle = FlatStyle.Popup;
             ClearButton.Font = new Font("Rockwell", 18F, FontStyle.Bold, GraphicsUnit.Point);
             ClearButton.ForeColor = Color.Snow;
-            ClearButton.Location = new Point(370, 564);
+            ClearButton.Location = new Point(774, 564);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new Size(111, 45);
             ClearButton.TabIndex = 39;
@@ -354,12 +410,215 @@
             pictureBox4.TabStop = false;
             pictureBox4.Click += pictureBox4_Click;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(97, -5);
+            label9.Name = "label9";
+            label9.Size = new Size(196, 30);
+            label9.TabIndex = 49;
+            label9.Text = "Security Questions";
+            // 
+            // bg
+            // 
+            bg.BackColor = Color.LightGreen;
+            bg.BorderStyle = BorderStyle.Fixed3D;
+            bg.FlatStyle = FlatStyle.Popup;
+            bg.Location = new Point(13, 34);
+            bg.Name = "bg";
+            bg.Size = new Size(361, 364);
+            bg.TabIndex = 48;
+            // 
+            // Q1_txtbox
+            // 
+            Q1_txtbox.Cursor = Cursors.IBeam;
+            Q1_txtbox.Location = new Point(54, 79);
+            Q1_txtbox.MaxLength = 255;
+            Q1_txtbox.Name = "Q1_txtbox";
+            Q1_txtbox.Size = new Size(281, 23);
+            Q1_txtbox.TabIndex = 50;
+            Q1_txtbox.TextChanged += Q1_txtbox_TextChanged;
+            // 
+            // Q3_txtbox
+            // 
+            Q3_txtbox.Cursor = Cursors.IBeam;
+            Q3_txtbox.Location = new Point(54, 307);
+            Q3_txtbox.MaxLength = 255;
+            Q3_txtbox.Name = "Q3_txtbox";
+            Q3_txtbox.Size = new Size(281, 23);
+            Q3_txtbox.TabIndex = 52;
+            Q3_txtbox.TextChanged += Q3_txtbox_TextChanged;
+            // 
+            // Q2_txtbox
+            // 
+            Q2_txtbox.Cursor = Cursors.IBeam;
+            Q2_txtbox.Location = new Point(54, 194);
+            Q2_txtbox.MaxLength = 255;
+            Q2_txtbox.Name = "Q2_txtbox";
+            Q2_txtbox.Size = new Size(281, 23);
+            Q2_txtbox.TabIndex = 54;
+            Q2_txtbox.TextChanged += Q2_txtbox_TextChanged;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.LightGreen;
+            label10.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(54, 51);
+            label10.Name = "label10";
+            label10.Size = new Size(107, 25);
+            label10.TabIndex = 56;
+            label10.Text = "Question 1:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.LightGreen;
+            label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Location = new Point(54, 166);
+            label11.Name = "label11";
+            label11.Size = new Size(110, 25);
+            label11.TabIndex = 57;
+            label11.Text = "Question 2:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.LightGreen;
+            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(57, 279);
+            label12.Name = "label12";
+            label12.Size = new Size(105, 25);
+            label12.TabIndex = 58;
+            label12.Text = "Question3:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.LightGreen;
+            label13.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = Color.DimGray;
+            label13.Location = new Point(54, 122);
+            label13.Name = "label13";
+            label13.Size = new Size(81, 25);
+            label13.TabIndex = 59;
+            label13.Text = "Answer:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BackColor = Color.LightGreen;
+            label14.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.DimGray;
+            label14.Location = new Point(54, 237);
+            label14.Name = "label14";
+            label14.Size = new Size(81, 25);
+            label14.TabIndex = 60;
+            label14.Text = "Answer:";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.LightGreen;
+            label15.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = Color.DimGray;
+            label15.Location = new Point(54, 350);
+            label15.Name = "label15";
+            label15.Size = new Size(81, 25);
+            label15.TabIndex = 61;
+            label15.Text = "Answer:";
+            // 
+            // help_btn
+            // 
+            help_btn.AutoSize = true;
+            help_btn.BackColor = Color.LightGreen;
+            help_btn.Cursor = Cursors.Hand;
+            help_btn.Font = new Font("Rockwell", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            help_btn.ForeColor = Color.Red;
+            help_btn.Location = new Point(348, 39);
+            help_btn.Name = "help_btn";
+            help_btn.Size = new Size(21, 23);
+            help_btn.TabIndex = 62;
+            help_btn.Text = "?";
+            help_btn.Click += help_btn_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.White;
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = Properties.Resources.eyeSymbol2;
+            pictureBox2.Location = new Point(299, 126);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(34, 19);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 63;
+            pictureBox2.TabStop = false;
+            pictureBox2.MouseDown += pictureBox2_MouseDown_1;
+            pictureBox2.MouseUp += pictureBox2_MouseUp;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.White;
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.Image = Properties.Resources.eyeSymbol2;
+            pictureBox3.Location = new Point(299, 241);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(34, 19);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 64;
+            pictureBox3.TabStop = false;
+            pictureBox3.MouseDown += pictureBox3_MouseDown;
+            pictureBox3.MouseUp += pictureBox3_MouseUp;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.White;
+            pictureBox5.Cursor = Cursors.Hand;
+            pictureBox5.Image = Properties.Resources.eyeSymbol2;
+            pictureBox5.Location = new Point(299, 354);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(34, 19);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 65;
+            pictureBox5.TabStop = false;
+            pictureBox5.MouseDown += pictureBox5_MouseDown;
+            pictureBox5.MouseUp += pictureBox5_MouseUp;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(pictureBox5);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(pictureBox3);
+            groupBox1.Controls.Add(pictureBox2);
+            groupBox1.Controls.Add(help_btn);
+            groupBox1.Controls.Add(label15);
+            groupBox1.Controls.Add(label14);
+            groupBox1.Controls.Add(label13);
+            groupBox1.Controls.Add(label12);
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(Q2ans_txtbox);
+            groupBox1.Controls.Add(Q2_txtbox);
+            groupBox1.Controls.Add(Q3ans_txtbox);
+            groupBox1.Controls.Add(Q3_txtbox);
+            groupBox1.Controls.Add(Q1ans_txtbox);
+            groupBox1.Controls.Add(Q1_txtbox);
+            groupBox1.Controls.Add(bg);
+            groupBox1.Location = new Point(647, 123);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(385, 413);
+            groupBox1.TabIndex = 66;
+            groupBox1.TabStop = false;
+            // 
             // SuperAdmin_AddUsers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
-            ClientSize = new Size(638, 630);
+            ClientSize = new Size(1062, 630);
+            ControlBox = false;
+            Controls.Add(groupBox1);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
             Controls.Add(pwReq5);
@@ -385,12 +644,19 @@
             Controls.Add(label1);
             Controls.Add(BackButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SuperAdmin_AddUsers";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SuperAdmin - Add Users";
+            Text = "Super Admin - Add Account";
             Load += addUsers_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -424,5 +690,24 @@
         private Button BackButton;
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
+        private Label label9;
+        private Label bg;
+        private TextBox Q1_txtbox;
+        private TextBox Q1ans_txtbox;
+        private TextBox Q3_txtbox;
+        private TextBox Q3ans_txtbox;
+        private TextBox Q2_txtbox;
+        private TextBox Q2ans_txtbox;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label help_btn;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox5;
+        private GroupBox groupBox1;
     }
 }

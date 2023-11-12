@@ -36,9 +36,9 @@ namespace CSOL_Connect_Server_App
             RetypeLabel.ForeColor = Color.Red;
             RetypeLabel.Location = new Point(17, 26);
             RetypeLabel.Name = "RetypeLabel";
-            RetypeLabel.Size = new Size(284, 20);
+            RetypeLabel.Size = new Size(268, 20);
             RetypeLabel.TabIndex = 0;
-            RetypeLabel.Text = "Retype the characters from the picture:";
+            RetypeLabel.Text = "Type the characters from the picture:";
             // 
             // captchalbl
             // 
