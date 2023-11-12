@@ -195,7 +195,7 @@ namespace CSOL_Connect_Server_App
                 {
                     connection.Open();
 
-                    string query = "SELECT * FROM HistoryLog"; // Adjust the query as needed
+                    string query = "SELECT * FROM HistoryLog ORDER BY [Date] DESC, [Time] DESC";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
