@@ -1,0 +1,20 @@
+USE [CSOLconnect]
+GO
+
+/****** Object:  Table [dbo].[Classes]    Script Date: 11/15/2023 9:10:41 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Classes](
+	[GraSec ID] [int] IDENTITY(1,1) NOT NULL,
+	[GraSec] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Classes] PRIMARY KEY CLUSTERED 
+(
+	[GraSec ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
