@@ -28,36 +28,7 @@ namespace CSOL_Connect_Server_App
             LoadLastKnownKeyboardImageFromDatabase(); // Load the keyboard image separately
         }
 
-        private void LoadLastKnownMouseImageFromDatabase()
-        {
-            if (!string.IsNullOrWhiteSpace(this.PCName))
-            {
-                try
-                {
-                    // Retrieve the last known image path for the mouse from the database
-                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
-                    connection.Open();
 
-                    string query = "SELECT MouseIconPath FROM PCMap WHERE PCName = @name";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@name", this.PCName);
-
-                    mouseIconPath = command.ExecuteScalar() as string; // Store in mouseIconPath
-
-                    if (!string.IsNullOrEmpty(mouseIconPath))
-                    {
-                        // Set the PictureBox_MouseRead's image to the last known image path
-                        PictureBox_MouseRead.Image = Image.FromFile(mouseIconPath);
-                    }
-
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while loading last known mouse image: " + ex.Message, "Load Error");
-                }
-            }
-        }
 
         public void UpdateMouseStatusImage(bool isMouseConnected)
         {
@@ -115,37 +86,6 @@ namespace CSOL_Connect_Server_App
 
             // Update the database with the new image path for the keyboard
             UpdateKeyboardImage(keyboardImagePath);
-        }
-
-        private void LoadLastKnownKeyboardImageFromDatabase()
-        {
-            if (!string.IsNullOrWhiteSpace(this.PCName))
-            {
-                try
-                {
-                    // Retrieve the last known image path for the keyboard from the database
-                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
-                    connection.Open();
-
-                    string query = "SELECT KeyboardIconPath FROM PCMap WHERE PCName = @name";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@name", this.PCName);
-
-                    keyboardIconPath = command.ExecuteScalar() as string; // Store in keyboardIconPath
-
-                    if (!string.IsNullOrEmpty(keyboardIconPath))
-                    {
-                        // Set the PictureBox_KeyboardRead's image to the last known image path
-                        PictureBox_KeyboardRead.Image = Image.FromFile(keyboardIconPath);
-                    }
-
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while loading last known keyboard image: " + ex.Message, "Load Error");
-                }
-            }
         }
 
         private void UpdateKeyboardImage(string keyboardIconPath)
@@ -214,6 +154,68 @@ namespace CSOL_Connect_Server_App
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred: " + ex.Message, "Delete Error");
+                }
+            }
+        }
+
+        private void LoadLastKnownMouseImageFromDatabase()
+        {
+            if (!string.IsNullOrWhiteSpace(this.PCName))
+            {
+                try
+                {
+                    // Retrieve the last known image path for the mouse from the database
+                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                    connection.Open();
+
+                    string query = "SELECT MouseIconPath FROM PCMap WHERE PCName = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", this.PCName);
+
+                    mouseIconPath = command.ExecuteScalar() as string; // Store in mouseIconPath
+
+                    if (!string.IsNullOrEmpty(mouseIconPath))
+                    {
+                        // Set the PictureBox_MouseRead's image to the last known image path
+                        PictureBox_MouseRead.Image = Image.FromFile(mouseIconPath);
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while loading last known mouse image: " + ex.Message, "Load Error");
+                }
+            }
+        }
+
+        private void LoadLastKnownKeyboardImageFromDatabase()
+        {
+            if (!string.IsNullOrWhiteSpace(this.PCName))
+            {
+                try
+                {
+                    // Retrieve the last known image path for the keyboard from the database
+                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                    connection.Open();
+
+                    string query = "SELECT KeyboardIconPath FROM PCMap WHERE PCName = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", this.PCName);
+
+                    keyboardIconPath = command.ExecuteScalar() as string; // Store in keyboardIconPath
+
+                    if (!string.IsNullOrEmpty(keyboardIconPath))
+                    {
+                        // Set the PictureBox_KeyboardRead's image to the last known image path
+                        PictureBox_KeyboardRead.Image = Image.FromFile(keyboardIconPath);
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while loading last known keyboard image: " + ex.Message, "Load Error");
                 }
             }
         }
