@@ -89,6 +89,12 @@ namespace CSOL_Connect_Server_App
                         {
                             // Log the mouse disconnection in the HistoryLog table
                             LogMouseDisconnection(pcName);
+
+                            if (pcInfoForm != null)
+                            {
+                                // Update the keyboard image status on the PC info form
+                                pcInfoForm.UpdateKeyboardStatusImage(true);
+                            }
                         }
 
                         if (clientMessage.Contains("Keyboard is connected"))
