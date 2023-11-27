@@ -52,7 +52,7 @@
             DataGridView_PasswordRequest.AllowUserToDeleteRows = false;
             DataGridView_PasswordRequest.AllowUserToResizeColumns = false;
             DataGridView_PasswordRequest.AllowUserToResizeRows = false;
-            DataGridView_PasswordRequest.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            DataGridView_PasswordRequest.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridView_PasswordRequest.BackgroundColor = SystemColors.ActiveCaption;
             DataGridView_PasswordRequest.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridView_PasswordRequest.Cursor = Cursors.Hand;

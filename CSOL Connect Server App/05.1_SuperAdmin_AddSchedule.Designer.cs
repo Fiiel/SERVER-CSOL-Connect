@@ -31,12 +31,11 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuperAdmin_AddSchedule));
             toolTip1 = new ToolTip(components);
-            instructortxt = new TextBox();
-            gnstxtbox = new TextBox();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             dayComboBox = new ComboBox();
             clncbox = new ComboBox();
+            Instructor_Combobox = new ComboBox();
             Submit = new Button();
             Clear = new Button();
             label8 = new Label();
@@ -49,32 +48,13 @@
             label1 = new Label();
             BackButton = new Button();
             schedtimer = new System.Windows.Forms.Timer(components);
+            GraSec_Combobox = new ComboBox();
             SuspendLayout();
             // 
             // toolTip1
             // 
             toolTip1.IsBalloon = true;
             toolTip1.ToolTipTitle = "Hint";
-            // 
-            // instructortxt
-            // 
-            instructortxt.Cursor = Cursors.IBeam;
-            instructortxt.Location = new Point(41, 303);
-            instructortxt.MaxLength = 200;
-            instructortxt.Name = "instructortxt";
-            instructortxt.Size = new Size(576, 23);
-            instructortxt.TabIndex = 40;
-            toolTip1.SetToolTip(instructortxt, "Input who's the one in charge of the class.");
-            // 
-            // gnstxtbox
-            // 
-            gnstxtbox.Cursor = Cursors.IBeam;
-            gnstxtbox.Location = new Point(40, 228);
-            gnstxtbox.MaxLength = 100;
-            gnstxtbox.Name = "gnstxtbox";
-            gnstxtbox.Size = new Size(576, 23);
-            gnstxtbox.TabIndex = 38;
-            toolTip1.SetToolTip(gnstxtbox, "Input here the grade and section of the class who will use the lab.");
             // 
             // dateTimePicker2
             // 
@@ -123,6 +103,16 @@
             clncbox.Size = new Size(97, 23);
             clncbox.TabIndex = 46;
             toolTip1.SetToolTip(clncbox, "Pick the day");
+            // 
+            // Instructor_Combobox
+            // 
+            Instructor_Combobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            Instructor_Combobox.FormattingEnabled = true;
+            Instructor_Combobox.Location = new Point(40, 303);
+            Instructor_Combobox.MaxLength = 50;
+            Instructor_Combobox.Name = "Instructor_Combobox";
+            Instructor_Combobox.Size = new Size(246, 23);
+            Instructor_Combobox.TabIndex = 52;
             // 
             // Submit
             // 
@@ -253,20 +243,30 @@
             // 
             schedtimer.Tick += schedtimer_Tick_1;
             // 
+            // GraSec_Combobox
+            // 
+            GraSec_Combobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            GraSec_Combobox.FormattingEnabled = true;
+            GraSec_Combobox.Location = new Point(40, 228);
+            GraSec_Combobox.MaxLength = 50;
+            GraSec_Combobox.Name = "GraSec_Combobox";
+            GraSec_Combobox.Size = new Size(246, 23);
+            GraSec_Combobox.TabIndex = 53;
+            // 
             // SuperAdmin_AddSchedule
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(638, 507);
+            Controls.Add(GraSec_Combobox);
+            Controls.Add(Instructor_Combobox);
             Controls.Add(clncbox);
             Controls.Add(Submit);
             Controls.Add(Clear);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(instructortxt);
             Controls.Add(label6);
-            Controls.Add(gnstxtbox);
             Controls.Add(label5);
             Controls.Add(dateTimePicker2);
             Controls.Add(label4);
@@ -291,8 +291,6 @@
         #endregion
 
         private ToolTip toolTip1;
-        private TextBox instructortxt;
-        private TextBox gnstxtbox;
         private DateTimePicker dateTimePicker2;
         private DateTimePicker dateTimePicker1;
         private ComboBox dayComboBox;
@@ -309,5 +307,7 @@
         private Button BackButton;
         private System.Windows.Forms.Timer schedtimer;
         private ComboBox clncbox;
+        private ComboBox Instructor_Combobox;
+        private ComboBox GraSec_Combobox;
     }
 }

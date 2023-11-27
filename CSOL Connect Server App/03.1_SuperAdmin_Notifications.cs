@@ -30,6 +30,7 @@ namespace CSOL_Connect_Server_App
             // SQL query to select all records from ResetPW table
             string query = "SELECT * FROM ResetPW";
 
+
             using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
             {
                 // Create a SqlDataAdapter to fetch the data
@@ -57,6 +58,8 @@ namespace CSOL_Connect_Server_App
                 deleteButtonColumn.ImageLayout = DataGridViewImageCellLayout.Zoom;
                 deleteButtonColumn.Image = Properties.Resources.delete_icon; // Replace with your delete button image
                 DataGridView_PasswordRequest.Columns.Add(deleteButtonColumn);
+
+                DataGridView_PasswordRequest.Columns["RequestID"].Visible = false;
             }
         }
 

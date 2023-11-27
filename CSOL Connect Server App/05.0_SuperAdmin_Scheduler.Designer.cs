@@ -42,6 +42,8 @@
             SearchBtn = new PictureBox();
             Searchbar = new TextBox();
             OngoingLabs = new Label();
+            instructorbtn = new Button();
+            GraSec_button = new Button();
             Panel_SideNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -169,7 +171,7 @@
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AllowUserToResizeColumns = false;
             dataGridView.AllowUserToResizeRows = false;
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.BackgroundColor = SystemColors.ActiveCaption;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Cursor = Cursors.Hand;
@@ -179,7 +181,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowTemplate.Height = 25;
             dataGridView.ShowCellToolTips = false;
-            dataGridView.Size = new Size(951, 540);
+            dataGridView.Size = new Size(951, 475);
             dataGridView.TabIndex = 12;
             dataGridView.CellContentClick += dataGridView_CellContentClick;
             // 
@@ -243,6 +245,38 @@
             OngoingLabs.Size = new Size(299, 39);
             OngoingLabs.TabIndex = 17;
             // 
+            // instructorbtn
+            // 
+            instructorbtn.BackColor = Color.LimeGreen;
+            instructorbtn.Cursor = Cursors.Hand;
+            instructorbtn.FlatStyle = FlatStyle.Popup;
+            instructorbtn.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            instructorbtn.ForeColor = SystemColors.Control;
+            instructorbtn.ImageAlign = ContentAlignment.MiddleRight;
+            instructorbtn.Location = new Point(283, 626);
+            instructorbtn.Name = "instructorbtn";
+            instructorbtn.Size = new Size(134, 39);
+            instructorbtn.TabIndex = 20;
+            instructorbtn.Text = "Instructors";
+            instructorbtn.UseVisualStyleBackColor = false;
+            instructorbtn.Click += instructorbtn_Click;
+            // 
+            // GraSec_button
+            // 
+            GraSec_button.BackColor = Color.LimeGreen;
+            GraSec_button.Cursor = Cursors.Hand;
+            GraSec_button.FlatStyle = FlatStyle.Popup;
+            GraSec_button.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            GraSec_button.ForeColor = SystemColors.Control;
+            GraSec_button.ImageAlign = ContentAlignment.MiddleRight;
+            GraSec_button.Location = new Point(448, 626);
+            GraSec_button.Name = "GraSec_button";
+            GraSec_button.Size = new Size(104, 39);
+            GraSec_button.TabIndex = 21;
+            GraSec_button.Text = "Classes";
+            GraSec_button.UseVisualStyleBackColor = false;
+            GraSec_button.Click += GraSec_button_Click;
+            // 
             // SuperAdmin_Scheduler
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -250,6 +284,8 @@
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
             ControlBox = false;
+            Controls.Add(GraSec_button);
+            Controls.Add(instructorbtn);
             Controls.Add(SearchBtn);
             Controls.Add(Searchbar);
             Controls.Add(OngoingLabs);
@@ -286,5 +322,7 @@
         private PictureBox SearchBtn;
         private TextBox Searchbar;
         private Label OngoingLabs;
+        private Button instructorbtn;
+        private Button GraSec_button;
     }
 }

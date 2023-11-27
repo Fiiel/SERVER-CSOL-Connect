@@ -55,8 +55,32 @@
             pictureBox1 = new PictureBox();
             pictureBox4 = new PictureBox();
             BackButton = new Button();
+            SQ_grpbox = new GroupBox();
+            pictureBox5 = new PictureBox();
+            label9 = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            help_btn = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            Q2ans_txtbox = new TextBox();
+            Q2_txtbox = new TextBox();
+            Q3ans_txtbox = new TextBox();
+            Q3_txtbox = new TextBox();
+            Q1ans_txtbox = new TextBox();
+            Q1_txtbox = new TextBox();
+            bg = new Label();
+            EnableDisable_btn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            SQ_grpbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // toolTip1
@@ -227,11 +251,180 @@
             BackButton.UseVisualStyleBackColor = false;
             BackButton.Click += BackButton_Click;
             // 
+            // SQ_grpbox
+            // 
+            SQ_grpbox.Controls.Add(pictureBox5);
+            SQ_grpbox.Controls.Add(label9);
+            SQ_grpbox.Controls.Add(pictureBox3);
+            SQ_grpbox.Controls.Add(pictureBox2);
+            SQ_grpbox.Controls.Add(help_btn);
+            SQ_grpbox.Controls.Add(label15);
+            SQ_grpbox.Controls.Add(label14);
+            SQ_grpbox.Controls.Add(label13);
+            SQ_grpbox.Controls.Add(label12);
+            SQ_grpbox.Controls.Add(label11);
+            SQ_grpbox.Controls.Add(label10);
+            SQ_grpbox.Controls.Add(Q2ans_txtbox);
+            SQ_grpbox.Controls.Add(Q2_txtbox);
+            SQ_grpbox.Controls.Add(Q3ans_txtbox);
+            SQ_grpbox.Controls.Add(Q3_txtbox);
+            SQ_grpbox.Controls.Add(Q1ans_txtbox);
+            SQ_grpbox.Controls.Add(Q1_txtbox);
+            SQ_grpbox.Controls.Add(bg);
+            resources.ApplyResources(SQ_grpbox, "SQ_grpbox");
+            SQ_grpbox.Name = "SQ_grpbox";
+            SQ_grpbox.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.White;
+            pictureBox5.Cursor = Cursors.Hand;
+            pictureBox5.Image = Properties.Resources.eyeSymbol2;
+            resources.ApplyResources(pictureBox5, "pictureBox5");
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.TabStop = false;
+            pictureBox5.MouseDown += pictureBox5_MouseDown;
+            pictureBox5.MouseUp += pictureBox5_MouseUp;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(label9, "label9");
+            label9.Name = "label9";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.White;
+            pictureBox3.Cursor = Cursors.Hand;
+            pictureBox3.Image = Properties.Resources.eyeSymbol2;
+            resources.ApplyResources(pictureBox3, "pictureBox3");
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.TabStop = false;
+            pictureBox3.MouseDown += pictureBox3_MouseDown;
+            pictureBox3.MouseUp += pictureBox3_MouseUp;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = Color.White;
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = Properties.Resources.eyeSymbol2;
+            resources.ApplyResources(pictureBox2, "pictureBox2");
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.TabStop = false;
+            pictureBox2.MouseDown += pictureBox2_MouseDown;
+            pictureBox2.MouseUp += pictureBox2_MouseUp;
+            // 
+            // help_btn
+            // 
+            resources.ApplyResources(help_btn, "help_btn");
+            help_btn.BackColor = Color.LightGreen;
+            help_btn.Cursor = Cursors.Hand;
+            help_btn.ForeColor = Color.Red;
+            help_btn.Name = "help_btn";
+            help_btn.Click += help_btn_Click;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(label15, "label15");
+            label15.BackColor = Color.LightGreen;
+            label15.ForeColor = Color.DimGray;
+            label15.Name = "label15";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(label14, "label14");
+            label14.BackColor = Color.LightGreen;
+            label14.ForeColor = Color.DimGray;
+            label14.Name = "label14";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(label13, "label13");
+            label13.BackColor = Color.LightGreen;
+            label13.ForeColor = Color.DimGray;
+            label13.Name = "label13";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(label12, "label12");
+            label12.BackColor = Color.LightGreen;
+            label12.Name = "label12";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(label11, "label11");
+            label11.BackColor = Color.LightGreen;
+            label11.Name = "label11";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(label10, "label10");
+            label10.BackColor = Color.LightGreen;
+            label10.Name = "label10";
+            // 
+            // Q2ans_txtbox
+            // 
+            Q2ans_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q2ans_txtbox, "Q2ans_txtbox");
+            Q2ans_txtbox.Name = "Q2ans_txtbox";
+            // 
+            // Q2_txtbox
+            // 
+            Q2_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q2_txtbox, "Q2_txtbox");
+            Q2_txtbox.Name = "Q2_txtbox";
+            Q2_txtbox.TextChanged += Q2_txtbox_TextChanged;
+            // 
+            // Q3ans_txtbox
+            // 
+            Q3ans_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q3ans_txtbox, "Q3ans_txtbox");
+            Q3ans_txtbox.Name = "Q3ans_txtbox";
+            // 
+            // Q3_txtbox
+            // 
+            Q3_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q3_txtbox, "Q3_txtbox");
+            Q3_txtbox.Name = "Q3_txtbox";
+            Q3_txtbox.TextChanged += Q3_txtbox_TextChanged;
+            // 
+            // Q1ans_txtbox
+            // 
+            Q1ans_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q1ans_txtbox, "Q1ans_txtbox");
+            Q1ans_txtbox.Name = "Q1ans_txtbox";
+            // 
+            // Q1_txtbox
+            // 
+            Q1_txtbox.Cursor = Cursors.IBeam;
+            resources.ApplyResources(Q1_txtbox, "Q1_txtbox");
+            Q1_txtbox.Name = "Q1_txtbox";
+            Q1_txtbox.TextChanged += Q1_txtbox_TextChanged;
+            // 
+            // bg
+            // 
+            bg.BackColor = Color.LightGreen;
+            bg.BorderStyle = BorderStyle.Fixed3D;
+            bg.FlatStyle = FlatStyle.Popup;
+            resources.ApplyResources(bg, "bg");
+            bg.Name = "bg";
+            // 
+            // EnableDisable_btn
+            // 
+            EnableDisable_btn.BackColor = Color.Lime;
+            EnableDisable_btn.Cursor = Cursors.Hand;
+            resources.ApplyResources(EnableDisable_btn, "EnableDisable_btn");
+            EnableDisable_btn.ForeColor = Color.Snow;
+            EnableDisable_btn.Name = "EnableDisable_btn";
+            EnableDisable_btn.UseVisualStyleBackColor = false;
+            EnableDisable_btn.Click += EnableDisable_btn_Click;
+            // 
             // SuperAdmin_EditUsers
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
+            Controls.Add(EnableDisable_btn);
+            Controls.Add(SQ_grpbox);
             Controls.Add(BackButton);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
@@ -259,6 +452,11 @@
             Load += SuperAdmin_EditUsers_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            SQ_grpbox.ResumeLayout(false);
+            SQ_grpbox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,5 +488,25 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox4;
         private Button BackButton;
+        private GroupBox SQ_grpbox;
+        private PictureBox pictureBox5;
+        private Label label9;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private Label help_btn;
+        private Label label15;
+        private Label label14;
+        private Label label13;
+        private Label label12;
+        private Label label11;
+        private Label label10;
+        private TextBox Q2ans_txtbox;
+        private TextBox Q2_txtbox;
+        private TextBox Q3ans_txtbox;
+        private TextBox Q3_txtbox;
+        private TextBox Q1ans_txtbox;
+        private TextBox Q1_txtbox;
+        private Label bg;
+        private Button EnableDisable_btn;
     }
 }

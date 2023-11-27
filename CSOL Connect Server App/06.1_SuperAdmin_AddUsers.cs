@@ -31,12 +31,9 @@ namespace CSOL_Connect_Server_App
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            fn.ResetText();
-            ln.ResetText();
-            email.ResetText();
-            Password.ResetText();
-            ConfirmPass.ResetText();
-            userlevelComboBox.SelectedIndex = -1;
+            this.Hide();
+            SuperAdmin_AddUsers page = new SuperAdmin_AddUsers();
+            page.ShowDialog();
         }
 
         private void pwReq1_Click(object sender, EventArgs e)
@@ -173,7 +170,7 @@ namespace CSOL_Connect_Server_App
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Password.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1)
+            if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Password.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1 || Q1_txtbox.TextLength == 0 || Q1ans_txtbox.TextLength == 0 || Q2_txtbox.TextLength == 0 || Q2ans_txtbox.TextLength == 0 || Q3_txtbox.TextLength == 0 || Q3ans_txtbox.TextLength == 0)
             {
                 MessageBox.Show("Please make sure to complete the form before submitting.");
             }
@@ -194,6 +191,12 @@ namespace CSOL_Connect_Server_App
                 Password.ResetText();
                 ConfirmPass.ResetText();
             }
+            else if (Password.Text == "CSOL-connect2023!")
+            {
+                MessageBox.Show("Password can't be set to defaut password. Please choose a differennt password.");
+                Password.ResetText();
+                ConfirmPass.ResetText();
+            }
             else if (EmailExists(email.Text))
             {
                 MessageBox.Show("An account with this email address already exists.");
@@ -209,7 +212,6 @@ namespace CSOL_Connect_Server_App
                     try
                     {
                         SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
-
                         connection.Open();
 
                         // Hash the password using SHA256
@@ -217,7 +219,23 @@ namespace CSOL_Connect_Server_App
                         byte[] hashedPasswordBytes = SHA256.HashData(passwordBytes);
                         string hashedPassword = BitConverter.ToString(hashedPasswordBytes).Replace("-", "").ToLower();
 
-                        string query = "INSERT INTO Users ([First Name], [Last Name], [Email Address], Password, [User Level]) VALUES (@val1, @val2, @val3, @val4, @val5)";
+                        // Hash the Q1_ans using SHA256
+                        byte[] Q1ansBytes = Encoding.UTF8.GetBytes(Q1ans_txtbox.Text);
+                        byte[] hashedQ1ansBytes = SHA256.HashData(Q1ansBytes);
+                        string hashedQ1ans = BitConverter.ToString(hashedQ1ansBytes).Replace("-", "").ToLower();
+
+                        // Hash the Q2_ans using SHA256
+                        byte[] Q2ansBytes = Encoding.UTF8.GetBytes(Q2ans_txtbox.Text);
+                        byte[] hashedQ2ansBytes = SHA256.HashData(Q2ansBytes);
+                        string hashedQ2ans = BitConverter.ToString(hashedQ2ansBytes).Replace("-", "").ToLower();
+
+                        // Hash the Q3_ans using SHA256
+                        byte[] Q3ansBytes = Encoding.UTF8.GetBytes(Q3ans_txtbox.Text);
+                        byte[] hashedQ3ansBytes = SHA256.HashData(Q3ansBytes);
+                        string hashedQ3ans = BitConverter.ToString(hashedQ3ansBytes).Replace("-", "").ToLower();
+
+
+                        string query = "INSERT INTO Users ([First Name], [Last Name], [Email Address], Password, [User Level], SQ1, SQ2, SQ3, SQ1_ans, SQ2_ans, SQ3_ans) VALUES (@val1, @val2, @val3, @val4, @val5, @val6, @val7, @val8, @val9, @val10, @val11)";
                         SqlCommand command = new SqlCommand(query, connection);
 
                         // Set the parameter values
@@ -226,6 +244,12 @@ namespace CSOL_Connect_Server_App
                         command.Parameters.AddWithValue("@val3", email.Text);
                         command.Parameters.AddWithValue("@val4", hashedPassword);
                         command.Parameters.AddWithValue("@val5", userlevelComboBox.Text);
+                        command.Parameters.AddWithValue("@val6", Q1_txtbox.Text);
+                        command.Parameters.AddWithValue("@val7", Q2_txtbox.Text);
+                        command.Parameters.AddWithValue("@val8", Q3_txtbox.Text);
+                        command.Parameters.AddWithValue("@val9", hashedQ1ans);
+                        command.Parameters.AddWithValue("@val10", hashedQ2ans);
+                        command.Parameters.AddWithValue("@val11", hashedQ3ans);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -250,12 +274,9 @@ namespace CSOL_Connect_Server_App
                 }
                 else
                 {
-                    fn.ResetText();
-                    ln.ResetText();
-                    email.ResetText();
-                    Password.ResetText();
-                    ConfirmPass.ResetText();
-                    userlevelComboBox.SelectedIndex = -1;
+                    this.Hide();
+                    SuperAdmin_AddUsers page = new SuperAdmin_AddUsers();
+                    page.ShowDialog();
                 }
             }
         }
@@ -300,7 +321,33 @@ namespace CSOL_Connect_Server_App
 
         private void addUsers_Load(object sender, EventArgs e)
         {
+            try
+            {
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                connection.Open();
 
+                // Create a SQL command to count the number of super admin users
+                string query = "SELECT COUNT(*) FROM Users WHERE [User Level] = 'Super Admin'";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                int superAdminCount = Convert.ToInt32(command.ExecuteScalar());
+
+                if (superAdminCount <= 0)
+                {
+                    userlevelComboBox.SelectedIndex = 1;
+                    userlevelComboBox.Enabled = false;
+
+                    BackButton.Visible = false;
+                    BackButton.Enabled = false;
+
+                    this.Text = "CSOL Connect - Root Account Set up";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log, show an error message, etc.)
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Password_TextChanged(object sender, EventArgs e)
@@ -366,6 +413,59 @@ namespace CSOL_Connect_Server_App
             }
         }
 
+        private void help_btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("These security questions would be asked if you forget your password. Set them up carefully, this is case sensitive and make sure that the questions you provide are not easily attainable data.");
+        }
 
+        private void Q1_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q1ans_txtbox.ResetText();
+        }
+
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            Q1ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q1ans_txtbox.PasswordChar = '●';
+        }
+
+        private void pictureBox3_MouseDown(object sender, MouseEventArgs e)
+        {
+            Q2ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox3_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q2ans_txtbox.PasswordChar = '●';
+        }
+
+        private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
+        {
+            Q3ans_txtbox.PasswordChar = '\0';
+        }
+
+        private void pictureBox5_MouseUp(object sender, MouseEventArgs e)
+        {
+            Q3ans_txtbox.PasswordChar = '●';
+        }
+
+        private void Q2_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q2ans_txtbox.ResetText();
+        }
+
+        private void Q3_txtbox_TextChanged(object sender, EventArgs e)
+        {
+            Q3ans_txtbox.ResetText();
+        }
     }
 }

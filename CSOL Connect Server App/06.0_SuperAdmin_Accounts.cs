@@ -55,17 +55,6 @@ namespace CSOL_Connect_Server_App
             addUsers.ShowDialog();
         }
 
-        private void RefreshGrid()
-        {
-            // Get the data from the database and bind it to the DataGridView
-            SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
-            string query = "SELECT * FROM Users";
-            SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            dataGridView.DataSource = dataTable;
-        }
-
         private void SuperAdmin_Accounts_Load(object sender, EventArgs e)
         {
             try
@@ -76,6 +65,14 @@ namespace CSOL_Connect_Server_App
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
                 dataGridView.DataSource = dataTable;
+                //HIDE unecessary columns
+                dataGridView.Columns["Password"].Visible = false;
+                dataGridView.Columns["SQ1"].Visible = false;
+                dataGridView.Columns["SQ2"].Visible = false;
+                dataGridView.Columns["SQ3"].Visible = false;
+                dataGridView.Columns["SQ1_ans"].Visible = false;
+                dataGridView.Columns["SQ2_ans"].Visible = false;
+                dataGridView.Columns["SQ3_ans"].Visible = false;
 
                 //EDIT AND DELETE BUTTONS
 
@@ -116,9 +113,17 @@ namespace CSOL_Connect_Server_App
                     string email = (string)row.Cells["Email Address"].Value;
                     string password = (string)row.Cells["Password"].Value;
                     string Userlevel = (string)row.Cells["User Level"].Value;
+                    //
+                    string sq1 = (string)row.Cells["SQ1"].Value;
+                    string sq2 = (string)row.Cells["SQ2"].Value;
+                    string sq3 = (string)row.Cells["SQ3"].Value;
+                    string sq1_ans = (string)row.Cells["SQ1_ans"].Value;
+                    string sq2_ans = (string)row.Cells["SQ2_ans"].Value;
+                    string sq3_ans = (string)row.Cells["SQ3_ans"].Value;
+
 
                     // Open the edit form and pass the data as parameters
-                    SuperAdmin_EditUsers editForm = new SuperAdmin_EditUsers(Userid, Firstname, Lastname, email, password, Userlevel);
+                    SuperAdmin_EditUsers editForm = new SuperAdmin_EditUsers(Userid, Firstname, Lastname, email, password, Userlevel, sq1, sq2, sq3, sq1_ans, sq2_ans, sq3_ans);
                     this.Hide();
                     DialogResult result = editForm.ShowDialog();
 
@@ -126,6 +131,38 @@ namespace CSOL_Connect_Server_App
                     if (result == DialogResult.OK)
                     {
                         try
+                        {
+                            SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                            connection.Open();
+
+                            SqlCommand command = new SqlCommand("UPDATE Users SET [First Name] = @FirstName, [Last Name] = @LastName, [Email Address] = @Email, [Password] = @Password, [User Level] = @UserLevel, SQ1 = @atSQ1, SQ2 = @atSQ2, SQ3 = @atSQ3, SQ1_ans = @atSQ1_ans, SQ2_ans = @atSQ2_ans, SQ3_ans = @atSQ3_ans WHERE [User ID] = @UserID", connection);
+                            command.Parameters.AddWithValue("@UserID", editForm.UserID);
+                            command.Parameters.AddWithValue("@FirstName", editForm.FirstName);
+                            command.Parameters.AddWithValue("@LastName", editForm.LastName);
+                            command.Parameters.AddWithValue("@Email", editForm.Email);
+                            command.Parameters.AddWithValue("@Password", editForm.Pass);
+                            command.Parameters.AddWithValue("@UserLevel", editForm.UserLevel);
+                            //
+                            command.Parameters.AddWithValue("@atSQ1", editForm.atSQ1);
+                            command.Parameters.AddWithValue("@atSQ2", editForm.atSQ2);
+                            command.Parameters.AddWithValue("@atSQ3", editForm.atSQ3);
+                            command.Parameters.AddWithValue("@atSQ1_ans", editForm.atSQ1_ans);
+                            command.Parameters.AddWithValue("@atSQ2_ans", editForm.atSQ2_ans);
+                            command.Parameters.AddWithValue("@atSQ3_ans", editForm.atSQ3_ans);
+
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("User updated successfully.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No rows were affected.");
+                            }
+                            connection.Close();
+                        }
+                        catch (Exception ex)
                         {
                             SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
                             connection.Open();
@@ -149,11 +186,8 @@ namespace CSOL_Connect_Server_App
                                 MessageBox.Show("No rows were affected.");
                             }
                             connection.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("An Error occurred: " + ex.Message);
-                        }
+
+                        }                       
 
                         this.Hide();
                         SuperAdmin_Accounts page = new SuperAdmin_Accounts();
@@ -216,6 +250,15 @@ namespace CSOL_Connect_Server_App
                                     MessageBox.Show("User Deletion Failed.");
                                 }
                             }
+
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show("The user has a reset password request. Resolve it first before deleting the user.");
+                                this.Hide();
+                                SuperAdmin_Accounts page = new SuperAdmin_Accounts();
+                                page.Show();
+                            }
+
                             catch (Exception ex)
                             {
                                 MessageBox.Show("An error occurred: " + ex.Message);

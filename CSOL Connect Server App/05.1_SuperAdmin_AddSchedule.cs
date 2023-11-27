@@ -37,6 +37,66 @@ namespace CSOL_Connect_Server_App
             dateTimePicker2.MinDate = DateTime.Today.AddHours(8); // Set the minimum time to 8:00 AM
             dateTimePicker2.MaxDate = DateTime.Today.AddHours(17); // Set the maximum time to 5:00 PM
             dateTimePicker2.Value = DateTime.Today.AddHours(8); // Set the default value to 8:00 AM
+
+            try
+            {
+                string connectionString = sql_Connection.SQLConnection();
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL query to select all instructor names from the "Instructors" table
+                    string selectQuery = "SELECT Name FROM Instructors";
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Add each instructor name to the ComboBox
+                                Instructor_Combobox.Items.Add(reader["Name"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+
+
+            try
+            {
+                string connectionString = sql_Connection.SQLConnection();
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // SQL query to select all classes names from the "Classes" table
+                    string selectQuery = "SELECT GraSec FROM Classes";
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Add each instructor name to the ComboBox
+                                GraSec_Combobox.Items.Add(reader["GraSec"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -55,7 +115,7 @@ namespace CSOL_Connect_Server_App
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            if (dayComboBox.SelectedIndex == -1 || gnstxtbox.Text.Length == 0 || instructortxt.Text.Length == 0 || clncbox.SelectedIndex == -1)
+            if (dayComboBox.SelectedIndex == -1 || GraSec_Combobox.SelectedIndex == -1 || Instructor_Combobox.SelectedIndex == -1 || clncbox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please make sure to complete the form before submitting.");
             }
@@ -73,7 +133,7 @@ namespace CSOL_Connect_Server_App
                 else
                 {
                     // Insert the new schedule into the database
-                    DialogResult result = MessageBox.Show("Are you sure you want to create this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Are you sure you want to create this schedule?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -90,8 +150,8 @@ namespace CSOL_Connect_Server_App
                             command.Parameters.AddWithValue("@val1", dayComboBox.Text);
                             command.Parameters.AddWithValue("@val2", newScheduleStart);
                             command.Parameters.AddWithValue("@val3", newScheduleEnd);
-                            command.Parameters.AddWithValue("@val4", gnstxtbox.Text);
-                            command.Parameters.AddWithValue("@val5", instructortxt.Text);
+                            command.Parameters.AddWithValue("@val4", GraSec_Combobox.Text);
+                            command.Parameters.AddWithValue("@val5", Instructor_Combobox.Text);
                             command.Parameters.AddWithValue("@val6", clncbox.Text);
 
                             int rowsAffected = command.ExecuteNonQuery();

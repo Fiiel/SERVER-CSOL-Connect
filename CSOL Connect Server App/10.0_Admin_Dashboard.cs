@@ -18,10 +18,8 @@ namespace CSOL_Connect_Server_App
         public Admin_Dashboard()
         {
             InitializeComponent();
-
-            OngoingLabsTrackbar.Value = 0; // Set an initial value for the trackbar
-            OngoingLabsTrackbar_ValueChanged(this, EventArgs.Empty); // Call the event handler to load initial data
             LoadHistoryLogData();
+            LoadOngoingLabsData();
         }
 
         private void Button_Dashboard_Click(object sender, EventArgs e)
@@ -52,101 +50,6 @@ namespace CSOL_Connect_Server_App
             page.Show();
         }
 
-        private void PrevSched_Click(object sender, EventArgs e)
-        {
-            if (OngoingLabsTrackbar.Value > OngoingLabsTrackbar.Minimum)
-            {
-                OngoingLabsTrackbar.Value--;
-            }
-            else
-            {
-                // Loop back to the maximum value when clicking "Previous" from the minimum value
-                OngoingLabsTrackbar.Value = OngoingLabsTrackbar.Maximum;
-            }
-        }
-
-        private void NextSched_Click(object sender, EventArgs e)
-        {
-            if (OngoingLabsTrackbar.Value < OngoingLabsTrackbar.Maximum)
-            {
-                OngoingLabsTrackbar.Value++;
-            }
-            else
-            {
-                // Loop back to the minimum value when clicking "Next" from the maximum value
-                OngoingLabsTrackbar.Value = OngoingLabsTrackbar.Minimum;
-            }
-        }
-
-        private void OngoingLabsTrackbar_ValueChanged(object sender, EventArgs e)
-        {
-            string currentDay = DateTime.Now.ToString("dddd");
-            string currentTime = DateTime.Now.ToString("HH:mm");
-            int rowCount = 0;
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
-                {
-                    connection.Open();
-
-                    // Modify your SQL query to filter by day and time
-                    string query = "SELECT * FROM Schedules WHERE [Day] = @currentDay " +
-                                   "AND @currentTime >= [Sched Start] AND @currentTime <= [Sched End]";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@currentDay", currentDay);
-                        command.Parameters.AddWithValue("@currentTime", currentTime);
-
-                        // Execute the query and fetch the results
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        // Create a list to store the concatenated data
-                        List<string> concatenatedDataList = new List<string>();
-
-                        // Process the query results as needed
-                        while (reader.Read())
-                        {
-                            // Access the columns of the selected rows
-                            string clNumber = reader["CL Number"].ToString();
-                            string gradeAndSection = reader["Grade and Section"].ToString();
-                            string instructor = reader["Instructor"].ToString();
-
-                            // Concatenate the data and add it to the list
-                            string concatenatedData = $"CL {clNumber} : {gradeAndSection} : {instructor}";
-                            concatenatedDataList.Add(concatenatedData);
-                        }
-                        reader.Close();
-
-                        // Set the maximum value of the trackbar to the row count
-                        rowCount = concatenatedDataList.Count;
-                        OngoingLabsTrackbar.Maximum = rowCount - 1;
-
-                        // Get the current value of the trackbar
-                        int currentValue = OngoingLabsTrackbar.Value;
-
-                        // Check if the current value is a valid index in your list
-                        if (currentValue >= 0 && currentValue < concatenatedDataList.Count)
-                        {
-                            // Display the concatenated data in your label
-                            OngoingLabsLabel.Text = concatenatedDataList[currentValue];
-                        }
-                        else
-                        {
-                            OngoingLabsLabel.Text = "No ongoing labs.";
-                        }
-                    }
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
-        }
-
         private void LoadHistoryLogData()
         {
             try
@@ -167,6 +70,44 @@ namespace CSOL_Connect_Server_App
                         dataGridView1.DataSource = dataTable;
 
                         dataGridView1.Columns["IssueID"].Visible = false;
+                    }
+
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void LoadOngoingLabsData()
+        {
+            string currentDay = DateTime.Now.ToString("dddd");
+            string currentTime = DateTime.Now.ToString("HH:mm");
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                {
+                    connection.Open();
+
+                    string query = "SELECT [CL Number], [Grade and Section], [Instructor] " +
+                           "FROM Schedules " +
+                           "WHERE [Day] = @currentDay " +
+                           "AND [Sched Start] <= @currentTime AND [Sched End] >= @currentTime";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@currentDay", currentDay);
+                        command.Parameters.AddWithValue("@currentTime", currentTime);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        // Bind the data to the DataGridView
+                        OngoingLabsTable.DataSource = dataTable;
                     }
 
                     connection.Close();
@@ -279,5 +220,9 @@ namespace CSOL_Connect_Server_App
             }
         }
 
+        private void Admin_Dashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

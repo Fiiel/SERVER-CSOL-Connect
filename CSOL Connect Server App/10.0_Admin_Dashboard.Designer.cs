@@ -35,25 +35,20 @@
             Button_Dashboard = new Button();
             PicBox_SuperAdmin_CSOLLogo = new PictureBox();
             Panel_SideNav = new Panel();
-            OngoingLabsLabel = new Label();
-            PrevSched = new PictureBox();
-            NextSched = new PictureBox();
-            OngoingLabsTrackbar = new TrackBar();
-            OngoingLabs = new Label();
             SearchBtn = new PictureBox();
             Searchbar = new TextBox();
             label1 = new Label();
             Label_HistoryLog = new Label();
             dataGridView1 = new DataGridView();
             PictureBox_ExportCSV = new PictureBox();
+            label2 = new Label();
+            OngoingLabsTable = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).BeginInit();
             Panel_SideNav.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PrevSched).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)NextSched).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)OngoingLabsTrackbar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SearchBtn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_ExportCSV).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OngoingLabsTable).BeginInit();
             SuspendLayout();
             // 
             // Button_Logout
@@ -152,64 +147,6 @@
             Panel_SideNav.Size = new Size(249, 681);
             Panel_SideNav.TabIndex = 2;
             // 
-            // OngoingLabsLabel
-            // 
-            OngoingLabsLabel.BackColor = Color.White;
-            OngoingLabsLabel.BorderStyle = BorderStyle.Fixed3D;
-            OngoingLabsLabel.Font = new Font("Trebuchet MS", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            OngoingLabsLabel.Location = new Point(1016, 149);
-            OngoingLabsLabel.Name = "OngoingLabsLabel";
-            OngoingLabsLabel.Size = new Size(191, 29);
-            OngoingLabsLabel.TabIndex = 24;
-            OngoingLabsLabel.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // PrevSched
-            // 
-            PrevSched.BackColor = Color.SpringGreen;
-            PrevSched.Cursor = Cursors.Hand;
-            PrevSched.Image = Properties.Resources.previous_icon;
-            PrevSched.Location = new Point(979, 149);
-            PrevSched.Name = "PrevSched";
-            PrevSched.Size = new Size(31, 29);
-            PrevSched.SizeMode = PictureBoxSizeMode.StretchImage;
-            PrevSched.TabIndex = 23;
-            PrevSched.TabStop = false;
-            PrevSched.Click += PrevSched_Click;
-            // 
-            // NextSched
-            // 
-            NextSched.BackColor = Color.SpringGreen;
-            NextSched.Cursor = Cursors.Hand;
-            NextSched.Image = Properties.Resources.next_icon;
-            NextSched.Location = new Point(1213, 149);
-            NextSched.Name = "NextSched";
-            NextSched.Size = new Size(31, 29);
-            NextSched.SizeMode = PictureBoxSizeMode.StretchImage;
-            NextSched.TabIndex = 22;
-            NextSched.TabStop = false;
-            NextSched.Click += NextSched_Click;
-            // 
-            // OngoingLabsTrackbar
-            // 
-            OngoingLabsTrackbar.Location = new Point(1012, 181);
-            OngoingLabsTrackbar.Name = "OngoingLabsTrackbar";
-            OngoingLabsTrackbar.Size = new Size(200, 45);
-            OngoingLabsTrackbar.TabIndex = 21;
-            OngoingLabsTrackbar.Visible = false;
-            OngoingLabsTrackbar.ValueChanged += OngoingLabsTrackbar_ValueChanged;
-            // 
-            // OngoingLabs
-            // 
-            OngoingLabs.BackColor = Color.SpringGreen;
-            OngoingLabs.BorderStyle = BorderStyle.FixedSingle;
-            OngoingLabs.Font = new Font("Rockwell", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OngoingLabs.ForeColor = Color.White;
-            OngoingLabs.Location = new Point(973, 110);
-            OngoingLabs.Name = "OngoingLabs";
-            OngoingLabs.Size = new Size(277, 95);
-            OngoingLabs.TabIndex = 25;
-            OngoingLabs.Text = "Ongoing Labs";
-            // 
             // SearchBtn
             // 
             SearchBtn.BackColor = Color.FromArgb(192, 0, 0);
@@ -279,6 +216,32 @@
             PictureBox_ExportCSV.TabStop = false;
             PictureBox_ExportCSV.Click += PictureBox_ExportCSV_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(7, 25, 82);
+            label2.Location = new Point(979, 310);
+            label2.Name = "label2";
+            label2.Size = new Size(227, 45);
+            label2.TabIndex = 35;
+            label2.Text = "Ongoing Labs";
+            // 
+            // OngoingLabsTable
+            // 
+            OngoingLabsTable.AllowUserToResizeColumns = false;
+            OngoingLabsTable.AllowUserToResizeRows = false;
+            OngoingLabsTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            OngoingLabsTable.BackgroundColor = Color.SpringGreen;
+            OngoingLabsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            OngoingLabsTable.Cursor = Cursors.Hand;
+            OngoingLabsTable.Location = new Point(979, 363);
+            OngoingLabsTable.Name = "OngoingLabsTable";
+            OngoingLabsTable.RowHeadersVisible = false;
+            OngoingLabsTable.RowTemplate.Height = 25;
+            OngoingLabsTable.Size = new Size(277, 128);
+            OngoingLabsTable.TabIndex = 34;
+            // 
             // Admin_Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -286,17 +249,14 @@
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
             ControlBox = false;
+            Controls.Add(label2);
+            Controls.Add(OngoingLabsTable);
             Controls.Add(PictureBox_ExportCSV);
             Controls.Add(SearchBtn);
             Controls.Add(Searchbar);
             Controls.Add(label1);
             Controls.Add(Label_HistoryLog);
             Controls.Add(dataGridView1);
-            Controls.Add(OngoingLabsLabel);
-            Controls.Add(PrevSched);
-            Controls.Add(NextSched);
-            Controls.Add(OngoingLabsTrackbar);
-            Controls.Add(OngoingLabs);
             Controls.Add(Panel_SideNav);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -304,14 +264,13 @@
             Name = "Admin_Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin - Dashboard";
+            Load += Admin_Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();
             Panel_SideNav.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)PrevSched).EndInit();
-            ((System.ComponentModel.ISupportInitialize)NextSched).EndInit();
-            ((System.ComponentModel.ISupportInitialize)OngoingLabsTrackbar).EndInit();
             ((System.ComponentModel.ISupportInitialize)SearchBtn).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_ExportCSV).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OngoingLabsTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -324,16 +283,13 @@
         private Button Button_Dashboard;
         private PictureBox PicBox_SuperAdmin_CSOLLogo;
         private Panel Panel_SideNav;
-        private Label OngoingLabsLabel;
-        private PictureBox PrevSched;
-        private PictureBox NextSched;
-        private TrackBar OngoingLabsTrackbar;
-        private Label OngoingLabs;
         private PictureBox SearchBtn;
         private TextBox Searchbar;
         private Label label1;
         private Label Label_HistoryLog;
         private DataGridView dataGridView1;
         private PictureBox PictureBox_ExportCSV;
+        private Label label2;
+        private DataGridView OngoingLabsTable;
     }
 }

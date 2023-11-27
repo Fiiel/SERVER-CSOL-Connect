@@ -33,9 +33,7 @@
             SubmitButton = new Button();
             label8 = new Label();
             label7 = new Label();
-            instructortxt = new TextBox();
             label6 = new Label();
-            gnstxtbox = new TextBox();
             label5 = new Label();
             dateTimePicker2 = new DateTimePicker();
             label4 = new Label();
@@ -46,7 +44,9 @@
             label1 = new Label();
             toolTip1 = new ToolTip(components);
             clncbox = new ComboBox();
+            Instructor_Combobox = new ComboBox();
             Button_GoBack = new Button();
+            GraSec_Combobox = new ComboBox();
             SuspendLayout();
             // 
             // SubmitButton
@@ -83,16 +83,6 @@
             label7.TabIndex = 46;
             label7.Text = "Instructor";
             // 
-            // instructortxt
-            // 
-            instructortxt.Cursor = Cursors.IBeam;
-            instructortxt.Location = new Point(32, 286);
-            instructortxt.MaxLength = 200;
-            instructortxt.Name = "instructortxt";
-            instructortxt.Size = new Size(576, 23);
-            instructortxt.TabIndex = 45;
-            toolTip1.SetToolTip(instructortxt, "Input who's the one in charge of the class.");
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -102,16 +92,6 @@
             label6.Size = new Size(168, 25);
             label6.TabIndex = 44;
             label6.Text = "Grade and Section";
-            // 
-            // gnstxtbox
-            // 
-            gnstxtbox.Cursor = Cursors.IBeam;
-            gnstxtbox.Location = new Point(31, 211);
-            gnstxtbox.MaxLength = 100;
-            gnstxtbox.Name = "gnstxtbox";
-            gnstxtbox.Size = new Size(576, 23);
-            gnstxtbox.TabIndex = 43;
-            toolTip1.SetToolTip(gnstxtbox, "Input here the grade and section of the class who will use the lab.");
             // 
             // label5
             // 
@@ -213,6 +193,17 @@
             clncbox.TabIndex = 51;
             toolTip1.SetToolTip(clncbox, "Pick the day");
             // 
+            // Instructor_Combobox
+            // 
+            Instructor_Combobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            Instructor_Combobox.FormattingEnabled = true;
+            Instructor_Combobox.Location = new Point(32, 286);
+            Instructor_Combobox.MaxLength = 50;
+            Instructor_Combobox.Name = "Instructor_Combobox";
+            Instructor_Combobox.Size = new Size(246, 23);
+            Instructor_Combobox.TabIndex = 53;
+            toolTip1.SetToolTip(Instructor_Combobox, "Pick the day");
+            // 
             // Button_GoBack
             // 
             Button_GoBack.BackColor = Color.FromArgb(7, 25, 82);
@@ -228,20 +219,30 @@
             Button_GoBack.UseVisualStyleBackColor = false;
             Button_GoBack.Click += Button_GoBack_Click;
             // 
+            // GraSec_Combobox
+            // 
+            GraSec_Combobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            GraSec_Combobox.FormattingEnabled = true;
+            GraSec_Combobox.Location = new Point(32, 211);
+            GraSec_Combobox.MaxLength = 50;
+            GraSec_Combobox.Name = "GraSec_Combobox";
+            GraSec_Combobox.Size = new Size(246, 23);
+            GraSec_Combobox.TabIndex = 54;
+            // 
             // SuperAdmin_EditSchedule
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(638, 507);
+            Controls.Add(GraSec_Combobox);
+            Controls.Add(Instructor_Combobox);
             Controls.Add(clncbox);
             Controls.Add(Button_GoBack);
             Controls.Add(SubmitButton);
             Controls.Add(label8);
             Controls.Add(label7);
-            Controls.Add(instructortxt);
             Controls.Add(label6);
-            Controls.Add(gnstxtbox);
             Controls.Add(label5);
             Controls.Add(dateTimePicker2);
             Controls.Add(label4);
@@ -266,9 +267,7 @@
         private TextBox clntxt;
         private ToolTip toolTip1;
         private Label label7;
-        private TextBox instructortxt;
         private Label label6;
-        private TextBox gnstxtbox;
         private Label label5;
         private DateTimePicker dateTimePicker2;
         private Label label4;
@@ -279,5 +278,7 @@
         private Label label1;
         private Button Button_GoBack;
         private ComboBox clncbox;
+        private ComboBox Instructor_Combobox;
+        private ComboBox GraSec_Combobox;
     }
 }
