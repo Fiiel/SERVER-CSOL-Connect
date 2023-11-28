@@ -79,10 +79,16 @@ namespace CSOL_Connect_Server_App
 
                         SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
-                        if (pcInfoForm != null)
+                        if (clientMessage.Contains("Mouse is connected"))
                         {
-                            bool isMouseConnected = clientMessage.Contains("Mouse is connected");
-                            pcInfoForm.UpdateMouseStatusImage(isMouseConnected);
+                            // Log the mouse disconnection in the HistoryLog table
+                            LogMouseDisconnection(pcName);
+
+                            if (pcInfoForm != null)
+                            {
+                                // Update the keyboard image status on the PC info form
+                                pcInfoForm.UpdateMouseStatusImage(true);
+                            }
                         }
 
                         if (clientMessage.Contains("Mouse is disconnected"))
