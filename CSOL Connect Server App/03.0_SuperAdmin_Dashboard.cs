@@ -274,7 +274,7 @@ namespace CSOL_Connect_Server_App
                 // Get the selected values from combo boxes and date time picker
                 string pcNameFilter = PCName_Filter_ComboBox.SelectedItem?.ToString();
                 string clFilter = CL_Filter_ComboBox.SelectedItem?.ToString();
-                DateTime selectedDate = DateTimePicker.Value;
+                string selectedDate = DateTimePicker.Text;
                 string timeFilter = Time_Filter_TextBox.Text;
                 string deviceFilter = Device_Filter_ComboBox.SelectedItem?.ToString();
 
@@ -282,7 +282,7 @@ namespace CSOL_Connect_Server_App
                 string query = $"SELECT * FROM HistoryLog " +
                                $"WHERE ([PCName] LIKE '%{pcNameFilter}%' OR '{pcNameFilter}' IS NULL) AND " +
                                $"([CLno] LIKE '%{clFilter}%' OR '{clFilter}' IS NULL) AND " +
-                               $"([Date] = '{selectedDate.ToString("yyyy-MM-dd")}' OR '{selectedDate.ToString("yyyy-MM-dd")}' IS NULL) AND " +
+                               $"([Date] = '{selectedDate}' OR '{selectedDate}' IS NULL) AND " +
                                $"([Time] LIKE '%{timeFilter}%' OR '{timeFilter}' IS NULL) AND " +
                                $"([Issue_Desc] LIKE '%{deviceFilter}%' OR '{deviceFilter}' IS NULL)";
 
@@ -306,15 +306,22 @@ namespace CSOL_Connect_Server_App
             PerformSearchFilter();
         }
 
+        private void Button_ClearFilter_Click(object sender, EventArgs e)
+        {
+            // Clear the text box
+            Time_Filter_TextBox.Text = string.Empty;
+
+            // Clear the combo boxes
+            PCName_Filter_ComboBox.SelectedItem = null;
+            CL_Filter_ComboBox.SelectedItem = null;
+            Device_Filter_ComboBox.SelectedItem = null;
+
+            LoadHistoryLogData();
+        }
 
         private void Button_Refresh_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Button_ClearFilter_Click(object sender, EventArgs e)
-        {
-
+            LoadHistoryLogData();
         }
     }
 }
