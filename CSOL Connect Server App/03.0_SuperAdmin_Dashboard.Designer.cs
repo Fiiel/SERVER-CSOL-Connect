@@ -272,7 +272,7 @@
             PictureBox_ExportCSV.BackColor = Color.FromArgb(192, 255, 192);
             PictureBox_ExportCSV.Cursor = Cursors.Hand;
             PictureBox_ExportCSV.Image = Properties.Resources.icon_csv;
-            PictureBox_ExportCSV.Location = new Point(985, 611);
+            PictureBox_ExportCSV.Location = new Point(985, 601);
             PictureBox_ExportCSV.Name = "PictureBox_ExportCSV";
             PictureBox_ExportCSV.Size = new Size(56, 58);
             PictureBox_ExportCSV.SizeMode = PictureBoxSizeMode.Zoom;
@@ -288,7 +288,7 @@
             OngoingLabsTable.BackgroundColor = Color.SpringGreen;
             OngoingLabsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OngoingLabsTable.Cursor = Cursors.Hand;
-            OngoingLabsTable.Location = new Point(979, 430);
+            OngoingLabsTable.Location = new Point(979, 420);
             OngoingLabsTable.Name = "OngoingLabsTable";
             OngoingLabsTable.RowHeadersVisible = false;
             OngoingLabsTable.RowTemplate.Height = 25;
@@ -300,7 +300,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(7, 25, 82);
-            label2.Location = new Point(978, 397);
+            label2.Location = new Point(978, 387);
             label2.Name = "label2";
             label2.Size = new Size(150, 30);
             label2.TabIndex = 26;
@@ -312,7 +312,7 @@
             label3.BorderStyle = BorderStyle.FixedSingle;
             label3.Font = new Font("Rockwell", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(979, 133);
+            label3.Location = new Point(979, 123);
             label3.Name = "label3";
             label3.Size = new Size(277, 250);
             label3.TabIndex = 27;
@@ -322,7 +322,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(7, 25, 82);
-            label4.Location = new Point(979, 94);
+            label4.Location = new Point(979, 84);
             label4.Name = "label4";
             label4.Size = new Size(63, 30);
             label4.TabIndex = 28;
@@ -333,7 +333,7 @@
             PCName_Filter_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             PCName_Filter_ComboBox.FormattingEnabled = true;
             PCName_Filter_ComboBox.Items.AddRange(new object[] { "Elem1", "Elem2", "Elem3", "Elem4", "Elem5", "Elem6", "HS1", "HS2", "HS3", "HS4", "SHS1", "SHS2" });
-            PCName_Filter_ComboBox.Location = new Point(996, 175);
+            PCName_Filter_ComboBox.Location = new Point(996, 165);
             PCName_Filter_ComboBox.MaxLength = 50;
             PCName_Filter_ComboBox.Name = "PCName_Filter_ComboBox";
             PCName_Filter_ComboBox.Size = new Size(102, 23);
@@ -344,7 +344,7 @@
             CL_Filter_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CL_Filter_ComboBox.FormattingEnabled = true;
             CL_Filter_ComboBox.Items.AddRange(new object[] { "1", "2", "3" });
-            CL_Filter_ComboBox.Location = new Point(996, 233);
+            CL_Filter_ComboBox.Location = new Point(996, 223);
             CL_Filter_ComboBox.MaxLength = 50;
             CL_Filter_ComboBox.Name = "CL_Filter_ComboBox";
             CL_Filter_ComboBox.Size = new Size(102, 23);
@@ -355,7 +355,7 @@
             Device_Filter_ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             Device_Filter_ComboBox.FormattingEnabled = true;
             Device_Filter_ComboBox.Items.AddRange(new object[] { "Mouse", "Keyboard", "LAN" });
-            Device_Filter_ComboBox.Location = new Point(1119, 175);
+            Device_Filter_ComboBox.Location = new Point(1119, 165);
             Device_Filter_ComboBox.MaxLength = 50;
             Device_Filter_ComboBox.Name = "Device_Filter_ComboBox";
             Device_Filter_ComboBox.Size = new Size(117, 23);
@@ -368,7 +368,7 @@
             Button_Refresh.FlatStyle = FlatStyle.Popup;
             Button_Refresh.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             Button_Refresh.ForeColor = SystemColors.Control;
-            Button_Refresh.Location = new Point(1086, 347);
+            Button_Refresh.Location = new Point(1086, 337);
             Button_Refresh.Name = "Button_Refresh";
             Button_Refresh.Size = new Size(75, 23);
             Button_Refresh.TabIndex = 58;
@@ -380,7 +380,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(7, 25, 82);
-            label5.Location = new Point(978, 574);
+            label5.Location = new Point(978, 564);
             label5.Name = "label5";
             label5.Size = new Size(151, 30);
             label5.TabIndex = 59;
@@ -393,7 +393,7 @@
             Label_CL.FlatStyle = FlatStyle.Flat;
             Label_CL.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Label_CL.ForeColor = Color.Transparent;
-            Label_CL.Location = new Point(991, 209);
+            Label_CL.Location = new Point(991, 199);
             Label_CL.Name = "Label_CL";
             Label_CL.Size = new Size(41, 21);
             Label_CL.TabIndex = 60;
@@ -406,7 +406,7 @@
             Label_PCName.FlatStyle = FlatStyle.Flat;
             Label_PCName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Label_PCName.ForeColor = Color.Transparent;
-            Label_PCName.Location = new Point(991, 151);
+            Label_PCName.Location = new Point(991, 141);
             Label_PCName.Name = "Label_PCName";
             Label_PCName.Size = new Size(80, 21);
             Label_PCName.TabIndex = 61;
@@ -419,7 +419,7 @@
             Label_Device.FlatStyle = FlatStyle.Flat;
             Label_Device.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Label_Device.ForeColor = Color.Transparent;
-            Label_Device.Location = new Point(1114, 151);
+            Label_Device.Location = new Point(1114, 141);
             Label_Device.Name = "Label_Device";
             Label_Device.Size = new Size(62, 21);
             Label_Device.TabIndex = 62;
@@ -429,7 +429,7 @@
             // 
             DateTimePicker.CustomFormat = "";
             DateTimePicker.Format = DateTimePickerFormat.Short;
-            DateTimePicker.Location = new Point(996, 290);
+            DateTimePicker.Location = new Point(996, 280);
             DateTimePicker.Name = "DateTimePicker";
             DateTimePicker.Size = new Size(102, 23);
             DateTimePicker.TabIndex = 63;
@@ -442,7 +442,7 @@
             label7.FlatStyle = FlatStyle.Flat;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label7.ForeColor = Color.Transparent;
-            label7.Location = new Point(991, 266);
+            label7.Location = new Point(991, 256);
             label7.Name = "label7";
             label7.Size = new Size(46, 21);
             label7.TabIndex = 64;
@@ -455,7 +455,7 @@
             Button_Search.FlatStyle = FlatStyle.Popup;
             Button_Search.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             Button_Search.ForeColor = SystemColors.Control;
-            Button_Search.Location = new Point(1172, 347);
+            Button_Search.Location = new Point(1172, 337);
             Button_Search.Name = "Button_Search";
             Button_Search.Size = new Size(75, 23);
             Button_Search.TabIndex = 65;
@@ -464,7 +464,7 @@
             // 
             // Time_Filter_TextBox
             // 
-            Time_Filter_TextBox.Location = new Point(1119, 290);
+            Time_Filter_TextBox.Location = new Point(1119, 280);
             Time_Filter_TextBox.Name = "Time_Filter_TextBox";
             Time_Filter_TextBox.PlaceholderText = "Type here the Time";
             Time_Filter_TextBox.Size = new Size(117, 23);
@@ -477,7 +477,7 @@
             Label_Time.FlatStyle = FlatStyle.Flat;
             Label_Time.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Label_Time.ForeColor = Color.Transparent;
-            Label_Time.Location = new Point(1114, 265);
+            Label_Time.Location = new Point(1114, 255);
             Label_Time.Name = "Label_Time";
             Label_Time.Size = new Size(48, 21);
             Label_Time.TabIndex = 68;
@@ -490,7 +490,7 @@
             Button_Clear.FlatStyle = FlatStyle.Popup;
             Button_Clear.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             Button_Clear.ForeColor = SystemColors.Control;
-            Button_Clear.Location = new Point(996, 347);
+            Button_Clear.Location = new Point(996, 337);
             Button_Clear.Name = "Button_Clear";
             Button_Clear.Size = new Size(75, 23);
             Button_Clear.TabIndex = 69;
@@ -503,7 +503,7 @@
             label6.BorderStyle = BorderStyle.FixedSingle;
             label6.Font = new Font("Rockwell", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(979, 607);
+            label6.Location = new Point(979, 597);
             label6.Name = "label6";
             label6.Size = new Size(68, 68);
             label6.TabIndex = 70;
