@@ -6,7 +6,7 @@ namespace CSOL_Connect_Server_App
 {
     public partial class SuperAdmin_Dashboard : Form
     {
-       
+
 
         SQL_Connection sql_Connection = new SQL_Connection();
 
