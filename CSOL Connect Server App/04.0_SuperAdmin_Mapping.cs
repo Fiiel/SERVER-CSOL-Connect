@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using static CSOL_Connect_Server_App.Server_Handler;
 
 namespace CSOL_Connect_Server_App
 {
@@ -402,13 +403,6 @@ namespace CSOL_Connect_Server_App
             {
                 // Either mouse or keyboard is disconnected
                 UpdateIcon(pcName, "img\\computer_red.png");
-            }
-
-            SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
-            if (pcInfoForm != null)
-            {
-                pcInfoForm.UpdateMouseStatusImage(pcStates[pcName][0]);
-                pcInfoForm.UpdateKeyboardStatusImage(pcStates[pcName][1]);
             }
         }
 
