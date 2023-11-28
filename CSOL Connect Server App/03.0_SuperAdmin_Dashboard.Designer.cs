@@ -272,9 +272,9 @@
             PictureBox_ExportCSV.BackColor = Color.FromArgb(192, 255, 192);
             PictureBox_ExportCSV.Cursor = Cursors.Hand;
             PictureBox_ExportCSV.Image = Properties.Resources.icon_csv;
-            PictureBox_ExportCSV.Location = new Point(979, 611);
+            PictureBox_ExportCSV.Location = new Point(985, 611);
             PictureBox_ExportCSV.Name = "PictureBox_ExportCSV";
-            PictureBox_ExportCSV.Size = new Size(68, 58);
+            PictureBox_ExportCSV.Size = new Size(56, 58);
             PictureBox_ExportCSV.SizeMode = PictureBoxSizeMode.Zoom;
             PictureBox_ExportCSV.TabIndex = 24;
             PictureBox_ExportCSV.TabStop = false;
