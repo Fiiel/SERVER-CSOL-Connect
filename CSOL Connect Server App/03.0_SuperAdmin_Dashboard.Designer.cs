@@ -427,8 +427,8 @@
             // 
             // DateTimePicker
             // 
-            DateTimePicker.CustomFormat = "";
-            DateTimePicker.Format = DateTimePickerFormat.Short;
+            DateTimePicker.CustomFormat = "MMM dd yyyy";
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.Location = new Point(991, 280);
             DateTimePicker.Name = "DateTimePicker";
             DateTimePicker.Size = new Size(102, 23);
