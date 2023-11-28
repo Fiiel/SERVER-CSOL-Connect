@@ -224,5 +224,62 @@ namespace CSOL_Connect_Server_App
         {
 
         }
+
+        private void PerformSearchFilter()
+        {
+            try
+            {
+                // Get the selected values from combo boxes and date time picker
+                string pcNameFilter = PCName_Filter_ComboBox.SelectedItem?.ToString();
+                string clFilter = CL_Filter_ComboBox.SelectedItem?.ToString();
+                string selectedDate = DateTimePicker.Text;
+                string timeFilter = Time_Filter_TextBox.Text;
+                string deviceFilter = Device_Filter_ComboBox.SelectedItem?.ToString();
+
+                // Construct the SQL query for searching in the "HistoryLogs" table
+                string query = $"SELECT * FROM HistoryLog " +
+                               $"WHERE ([PCName] LIKE '%{pcNameFilter}%' OR '{pcNameFilter}' IS NULL) AND " +
+                               $"([CLno] LIKE '%{clFilter}%' OR '{clFilter}' IS NULL) AND " +
+                               $"([Date] = '{selectedDate}' OR '{selectedDate}' IS NULL) AND " +
+                               $"([Time] LIKE '%{timeFilter}%' OR '{timeFilter}' IS NULL) AND " +
+                               $"([Issue_Desc] LIKE '%{deviceFilter}%' OR '{deviceFilter}' IS NULL)";
+
+                // Execute the SQL query
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                // Bind the filtered data to the DataGridView
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void Button_SearchFilter_Click(object sender, EventArgs e)
+        {
+            PerformSearchFilter();
+        }
+
+        private void Button_ClearFilter_Click(object sender, EventArgs e)
+        {
+            // Clear the text box
+            Time_Filter_TextBox.Text = string.Empty;
+
+            // Clear the combo boxes
+            PCName_Filter_ComboBox.SelectedItem = null;
+            CL_Filter_ComboBox.SelectedItem = null;
+            Device_Filter_ComboBox.SelectedItem = null;
+
+            LoadHistoryLogData();
+        }
+
+        private void Button_Refresh_Click(object sender, EventArgs e)
+        {
+            LoadHistoryLogData();
+        }
     }
 }
