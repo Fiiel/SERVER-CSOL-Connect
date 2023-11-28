@@ -266,5 +266,55 @@ namespace CSOL_Connect_Server_App
                 MessageBox.Show("An error occurred while exporting to CSV: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void PerformSearchFilter()
+        {
+            try
+            {
+                // Get the selected values from combo boxes and date time picker
+                string pcNameFilter = PCName_Filter_ComboBox.SelectedItem?.ToString();
+                string clFilter = CL_Filter_ComboBox.SelectedItem?.ToString();
+                DateTime selectedDate = DateTimePicker.Value;
+                string timeFilter = Time_Filter_TextBox.Text;
+                string deviceFilter = Device_Filter_ComboBox.SelectedItem?.ToString();
+
+                // Construct the SQL query for searching in the "HistoryLogs" table
+                string query = $"SELECT * FROM HistoryLog " +
+                               $"WHERE ([PCName] LIKE '%{pcNameFilter}%' OR '{pcNameFilter}' IS NULL) AND " +
+                               $"([CLno] LIKE '%{clFilter}%' OR '{clFilter}' IS NULL) AND " +
+                               $"([Date] = '{selectedDate.ToString("yyyy-MM-dd")}' OR '{selectedDate.ToString("yyyy-MM-dd")}' IS NULL) AND " +
+                               $"([Time] LIKE '%{timeFilter}%' OR '{timeFilter}' IS NULL) AND " +
+                               $"([Issue_Desc] LIKE '%{deviceFilter}%' OR '{deviceFilter}' IS NULL)";
+
+                // Execute the SQL query
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                // Bind the filtered data to the DataGridView
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void Button_SearchFilter_Click(object sender, EventArgs e)
+        {
+            PerformSearchFilter();
+        }
+
+
+        private void Button_Refresh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_ClearFilter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

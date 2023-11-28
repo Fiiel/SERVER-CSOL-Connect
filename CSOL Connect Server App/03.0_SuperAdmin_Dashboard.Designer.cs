@@ -374,6 +374,7 @@
             Button_Refresh.TabIndex = 58;
             Button_Refresh.Text = "Refresh";
             Button_Refresh.UseVisualStyleBackColor = false;
+            Button_Refresh.Click += Button_Refresh_Click;
             // 
             // label5
             // 
@@ -433,7 +434,7 @@
             DateTimePicker.Name = "DateTimePicker";
             DateTimePicker.Size = new Size(102, 23);
             DateTimePicker.TabIndex = 63;
-            DateTimePicker.Value = new DateTime(2023, 11, 28, 22, 15, 13, 0);
+            DateTimePicker.Value = new DateTime(2019, 11, 21, 0, 0, 0, 0);
             // 
             // label7
             // 
@@ -461,6 +462,7 @@
             Button_Search.TabIndex = 65;
             Button_Search.Text = "Search";
             Button_Search.UseVisualStyleBackColor = false;
+            Button_Search.Click += Button_SearchFilter_Click;
             // 
             // Time_Filter_TextBox
             // 
@@ -496,6 +498,7 @@
             Button_Clear.TabIndex = 69;
             Button_Clear.Text = "Clear";
             Button_Clear.UseVisualStyleBackColor = false;
+            Button_Clear.Click += Button_ClearFilter_Click;
             // 
             // label6
             // 
