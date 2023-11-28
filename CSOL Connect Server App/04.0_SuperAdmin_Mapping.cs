@@ -403,6 +403,13 @@ namespace CSOL_Connect_Server_App
                 // Either mouse or keyboard is disconnected
                 UpdateIcon(pcName, "img\\computer_red.png");
             }
+
+            SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
+            if (pcInfoForm != null)
+            {
+                pcInfoForm.UpdateMouseStatusImage(pcStates[pcName][0]);
+                pcInfoForm.UpdateKeyboardStatusImage(pcStates[pcName][1]);
+            }
         }
 
         private void UpdateIcon(string pcName, string imagePath)
