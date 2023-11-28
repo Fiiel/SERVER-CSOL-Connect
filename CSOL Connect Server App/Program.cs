@@ -31,7 +31,7 @@ namespace CSOL_Connect_Server_App
 
                     if (superAdminCount <= 0)
                     {
-                        Application.Run(new SuperAdmin_Dashboard());
+                        Application.Run(new SuperAdmin_AddUsers());
                     }
                     else
                     {
