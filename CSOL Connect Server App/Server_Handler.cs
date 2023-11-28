@@ -76,6 +76,45 @@ namespace CSOL_Connect_Server_App
                         // Now you have the PC name and the client's message
                         // Use the PC name to identify the target PC in your mapping panel and update it with the message.
                         mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
+
+                        SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
+
+                        if (pcInfoForm != null)
+                        {
+                            bool isMouseConnected = clientMessage.Contains("Mouse is connected");
+                            pcInfoForm.UpdateMouseStatusImage(isMouseConnected);
+                        }
+
+                        if (clientMessage.Contains("Mouse is disconnected"))
+                        {
+                            // Log the mouse disconnection in the HistoryLog table
+                            LogMouseDisconnection(pcName);
+
+                            if (pcInfoForm != null)
+                            {
+                                // Update the keyboard image status on the PC info form
+                                pcInfoForm.UpdateKeyboardStatusImage(true);
+                            }
+                        }
+
+                        if (clientMessage.Contains("Keyboard is connected"))
+                        {
+                            if (pcInfoForm != null)
+                            {
+                                // Update the keyboard image status on the PC info form
+                                pcInfoForm.UpdateKeyboardStatusImage(true);
+                            }
+                        }
+                        // Check if the message indicates keyboard disconnection
+                        else if (clientMessage.Contains("Keyboard is disconnected"))
+                        {
+                            LogKeyboardDisconnection(pcName);
+                            if (pcInfoForm != null)
+                            {
+                                // Update the keyboard image status on the PC info form
+                                pcInfoForm.UpdateKeyboardStatusImage(false);
+                            }
+                        }
                     }
                 }
 
