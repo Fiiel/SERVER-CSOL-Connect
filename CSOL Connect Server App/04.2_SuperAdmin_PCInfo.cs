@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace CSOL_Connect_Server_App
 {
@@ -45,6 +46,8 @@ namespace CSOL_Connect_Server_App
             // Update the PictureBox_MouseRead's image
             PictureBox_MouseRead.Image = Image.FromFile(mouseImagePath);
 
+            Debug.WriteLine($"Updating Mouse Image for PC: {this.PCName}, Image Path: {mouseImagePath}");
+
             // Update the database with the new image path for the mouse
             UpdateMouseImage(mouseImagePath);
         }
@@ -63,6 +66,9 @@ namespace CSOL_Connect_Server_App
 
             // Update the PictureBox_KeyboardRead's image
             PictureBox_KeyboardRead.Image = Image.FromFile(keyboardImagePath);
+
+            Debug.WriteLine($"Updating Keyboard Image for PC: {this.PCName}, Image Path: {keyboardImagePath}");
+
 
             // Update the database with the new image path for the keyboard
             UpdateKeyboardImage(keyboardImagePath);

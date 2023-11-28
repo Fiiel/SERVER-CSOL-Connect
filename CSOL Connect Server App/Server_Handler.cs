@@ -93,7 +93,7 @@ namespace CSOL_Connect_Server_App
                             if (pcInfoForm != null)
                             {
                                 // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(true);
+                                pcInfoForm.UpdateMouseStatusImage(false);
                             }
                         }
 
