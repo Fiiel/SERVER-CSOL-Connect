@@ -31,11 +31,11 @@ namespace CSOL_Connect_Server_App
 
                     if (superAdminCount <= 0)
                     {
-                        Application.Run(new SuperAdmin_AddUsers());
+                        Application.Run(new SuperAdmin_Dashboard());
                     }
                     else
                     {
-                        Application.Run(new LoginForm());
+                        Application.Run(new SuperAdmin_Dashboard());
                     }
                 }
             }

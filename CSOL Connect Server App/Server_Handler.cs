@@ -76,45 +76,6 @@ namespace CSOL_Connect_Server_App
                         // Now you have the PC name and the client's message
                         // Use the PC name to identify the target PC in your mapping panel and update it with the message.
                         mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
-
-                        SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
-
-                        if (pcInfoForm != null)
-                        {
-                            bool isMouseConnected = clientMessage.Contains("Mouse is connected");
-                            pcInfoForm.UpdateMouseStatusImage(isMouseConnected);
-                        }
-
-                        if (clientMessage.Contains("Mouse is disconnected"))
-                        {
-                            // Log the mouse disconnection in the HistoryLog table
-                            LogMouseDisconnection(pcName);
-
-                            if (pcInfoForm != null)
-                            {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(true);
-                            }
-                        }
-
-                        if (clientMessage.Contains("Keyboard is connected"))
-                        {
-                            if (pcInfoForm != null)
-                            {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(true);
-                            }
-                        }
-                        // Check if the message indicates keyboard disconnection
-                        else if (clientMessage.Contains("Keyboard is disconnected"))
-                        {
-                            LogKeyboardDisconnection(pcName);
-                            if (pcInfoForm != null)
-                            {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(false);
-                            }
-                        }
                     }
                 }
 
@@ -123,76 +84,6 @@ namespace CSOL_Connect_Server_App
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error: {ex.Message}");
-            }
-        }
-
-        private void LogMouseDisconnection(string pcName)
-        {
-            try
-            {
-                // Get the CLno from the database
-                int clno = GetCLnoFromDatabase(pcName);
-
-                if (clno != -1)
-                {
-                    string currentDateFormatted = DateTime.Now.ToString("MMM dd yyyy");
-                    string currentTimeFormatted = DateTime.Now.ToString("h:mm tt");
-
-                    // Create a SQL connection and insert a new row into the HistoryLog table
-                    using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
-                    {
-                        connection.Open();
-                        string query = "INSERT INTO HistoryLog (PCName, CLno, Issue_Desc, Date, Time) VALUES (@pcName, @clno, @issueDesc, @date, @time)";
-                        SqlCommand command = new SqlCommand(query, connection);
-
-                        command.Parameters.AddWithValue("@pcName", pcName);
-                        command.Parameters.AddWithValue("@clno", clno);
-                        command.Parameters.AddWithValue("@issueDesc", "Mouse is disconnected");
-                        command.Parameters.AddWithValue("@date", currentDateFormatted); // Use the formatted date string
-                        command.Parameters.AddWithValue("@time", currentTimeFormatted); // You can leave the time part empty
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error logging mouse disconnection: " + ex.Message);
-            }
-        }
-
-        private void LogKeyboardDisconnection(string pcName)
-        {
-            try
-            {
-                // Get the CLno from the database
-                int clno = GetCLnoFromDatabase(pcName);
-
-                if (clno != -1)
-                {
-                    string currentDateFormatted = DateTime.Now.ToString("MMM dd yyyy");
-                    string currentTimeFormatted = DateTime.Now.ToString("h:mm tt");
-
-                    // Create a SQL connection and insert a new row into the HistoryLog table
-                    using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
-                    {
-                        connection.Open();
-                        string query = "INSERT INTO HistoryLog (PCName, CLno, Issue_Desc, Date, Time) VALUES (@pcName, @clno, @issueDesc, @date, @time)";
-                        SqlCommand command = new SqlCommand(query, connection);
-
-                        command.Parameters.AddWithValue("@pcName", pcName);
-                        command.Parameters.AddWithValue("@clno", clno);
-                        command.Parameters.AddWithValue("@issueDesc", "Keyboard is disconnected");
-                        command.Parameters.AddWithValue("@date", currentDateFormatted);
-                        command.Parameters.AddWithValue("@time", currentTimeFormatted); // Use the formatted time
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error logging keyboard disconnection: " + ex.Message);
             }
         }
 
