@@ -1,6 +1,5 @@
 ﻿using System.Data.SqlClient;
 
-
 namespace CSOL_Connect_Server_App
 {
     public partial class SuperAdmin_PCInfo : Form
