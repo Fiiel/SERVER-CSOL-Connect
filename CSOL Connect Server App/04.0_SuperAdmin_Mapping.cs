@@ -362,23 +362,58 @@ namespace CSOL_Connect_Server_App
         //        Code for Updating Computer Icon          //
         //-------------------------------------------------//
 
+        // Assuming this is a class-level variable
+        Dictionary<string, bool[]> pcStates = new Dictionary<string, bool[]>();
+
         public void UpdatePCOnMappingPanel(string pcName, string message)
+        {
+            // Initialize the state if it doesn't exist
+            if (!pcStates.ContainsKey(pcName))
+            {
+                pcStates[pcName] = new bool[2]; // Assuming 2 elements for mouse and keyboard states
+            }
+
+            // Update the state based on the message
+            if (message.Contains("Mouse is connected"))
+            {
+                pcStates[pcName][0] = true; // Mouse connected
+            }
+            else if (message.Contains("Mouse is disconnected"))
+            {
+                pcStates[pcName][0] = false; // Mouse disconnected
+            }
+
+            if (message.Contains("Keyboard is connected"))
+            {
+                pcStates[pcName][1] = true; // Keyboard connected
+            }
+            else if (message.Contains("Keyboard is disconnected"))
+            {
+                pcStates[pcName][1] = false; // Keyboard disconnected
+            }
+
+            // Update the icon based on the overall state
+            if (pcStates[pcName][0] && pcStates[pcName][1])
+            {
+                // Both mouse and keyboard are connected
+                UpdateIcon(pcName, "img\\computer_green.png");
+            }
+            else
+            {
+                // Either mouse or keyboard is disconnected
+                UpdateIcon(pcName, "img\\computer_red.png");
+            }
+        }
+
+        private void UpdateIcon(string pcName, string imagePath)
         {
             // Search for the PC icon based on the provided PC name
             PictureBox pcIcon = pcIcons.FirstOrDefault(icon => pcLabels[pcIcons.IndexOf(icon)].Text == pcName);
 
             if (pcIcon != null)
             {
-                if (message.Contains("Mouse is connected") || message.Contains("Keyboard is connected"))
-                {
-                    pcIcon.Image = Image.FromFile("img\\computer_green.png");
-                    UpdateDatabaseIconStatus(pcName, @"img\\computer_green.png");
-                }
-                if (message.Contains("Mouse is disconnected") || message.Contains("Keyboard is disconnected"))
-                {
-                    pcIcon.Image = Image.FromFile("img\\computer_red.png");
-                    UpdateDatabaseIconStatus(pcName, @"img\\computer_red.png");
-                }
+                pcIcon.Image = Image.FromFile(imagePath);
+                UpdateDatabaseIconStatus(pcName, imagePath);
             }
         }
 
