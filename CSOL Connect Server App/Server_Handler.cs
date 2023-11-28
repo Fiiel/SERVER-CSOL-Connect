@@ -87,6 +87,76 @@ namespace CSOL_Connect_Server_App
             }
         }
 
+        private void LogMouseDisconnection(string pcName)
+        {
+            try
+            {
+                // Get the CLno from the database
+                int clno = GetCLnoFromDatabase(pcName);
+
+                if (clno != -1)
+                {
+                    string currentDateFormatted = DateTime.Now.ToString("MMM dd yyyy");
+                    string currentTimeFormatted = DateTime.Now.ToString("h:mm tt");
+
+                    // Create a SQL connection and insert a new row into the HistoryLog table
+                    using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                    {
+                        connection.Open();
+                        string query = "INSERT INTO HistoryLog (PCName, CLno, Issue_Desc, Date, Time) VALUES (@pcName, @clno, @issueDesc, @date, @time)";
+                        SqlCommand command = new SqlCommand(query, connection);
+
+                        command.Parameters.AddWithValue("@pcName", pcName);
+                        command.Parameters.AddWithValue("@clno", clno);
+                        command.Parameters.AddWithValue("@issueDesc", "Mouse is disconnected");
+                        command.Parameters.AddWithValue("@date", currentDateFormatted); // Use the formatted date string
+                        command.Parameters.AddWithValue("@time", currentTimeFormatted); // You can leave the time part empty
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error logging mouse disconnection: " + ex.Message);
+            }
+        }
+
+        private void LogKeyboardDisconnection(string pcName)
+        {
+            try
+            {
+                // Get the CLno from the database
+                int clno = GetCLnoFromDatabase(pcName);
+
+                if (clno != -1)
+                {
+                    string currentDateFormatted = DateTime.Now.ToString("MMM dd yyyy");
+                    string currentTimeFormatted = DateTime.Now.ToString("h:mm tt");
+
+                    // Create a SQL connection and insert a new row into the HistoryLog table
+                    using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                    {
+                        connection.Open();
+                        string query = "INSERT INTO HistoryLog (PCName, CLno, Issue_Desc, Date, Time) VALUES (@pcName, @clno, @issueDesc, @date, @time)";
+                        SqlCommand command = new SqlCommand(query, connection);
+
+                        command.Parameters.AddWithValue("@pcName", pcName);
+                        command.Parameters.AddWithValue("@clno", clno);
+                        command.Parameters.AddWithValue("@issueDesc", "Keyboard is disconnected");
+                        command.Parameters.AddWithValue("@date", currentDateFormatted);
+                        command.Parameters.AddWithValue("@time", currentTimeFormatted); // Use the formatted time
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error logging keyboard disconnection: " + ex.Message);
+            }
+        }
+
         private int GetCLnoFromDatabase(string pcName)
         {
             int clno = -1; // Default value in case of an error or not found
