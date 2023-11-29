@@ -10,7 +10,6 @@ namespace CSOL_Connect_Server_App
     {
         SQL_Connection sql_Connection = new SQL_Connection();
 
-        private LoadingScreenForm loadingScreenForm; // Reference to the mapping form
         private SuperAdmin_Mapping mappingForm; // Reference to the mapping form
         private Admin_Mapping admin_Mapping; // Reference to the mapping form
 
