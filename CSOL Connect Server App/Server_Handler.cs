@@ -83,7 +83,6 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("Mouse is connected"))
                             {
-                                LogMouseDisconnection(pcName);
                                 if (pcInfoForm != null)
                                 {
                                     // Update the keyboard image status on the PC info form
@@ -129,7 +128,6 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("Mouse is connected"))
                             {
-                                LogMouseDisconnection(pcName);
                                 if (adminPCInfoForm != null)
                                 {
                                     adminPCInfoForm.UpdateMouseStatusImage(true);
