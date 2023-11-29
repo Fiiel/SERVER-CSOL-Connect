@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace CSOL_Connect_Server_App
 {
@@ -66,6 +67,7 @@ namespace CSOL_Connect_Server_App
                 adapter.Fill(dataTable);
                 dataGridView.DataSource = dataTable;
                 //HIDE unecessary columns
+                dataGridView.Columns["UserID"].Visible = false;
                 dataGridView.Columns["Password"].Visible = false;
                 dataGridView.Columns["SQ1"].Visible = false;
                 dataGridView.Columns["SQ2"].Visible = false;
