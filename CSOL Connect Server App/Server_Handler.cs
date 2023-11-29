@@ -76,8 +76,10 @@ namespace CSOL_Connect_Server_App
                         // Now you have the PC name and the client's message
                         // Use the PC name to identify the target PC in your mapping panel and update it with the message.
                         mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
+                        admin_Mapping.UpdatePCOnMappingPanel(pcName, clientMessage);
 
                         SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
+                        Admin_PCInfo adminPCInfoForm = Application.OpenForms.OfType<Admin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
                         if (clientMessage.Contains("Mouse is connected"))
                         {
@@ -86,6 +88,11 @@ namespace CSOL_Connect_Server_App
                             {
                                 // Update the keyboard image status on the PC info form
                                 pcInfoForm.UpdateMouseStatusImage(true);
+                                
+                            }
+                            else if (adminPCInfoForm != null)
+                            {
+                                adminPCInfoForm.UpdateMouseStatusImage(true);
                             }
                         }
 
@@ -97,6 +104,10 @@ namespace CSOL_Connect_Server_App
                                 // Update the keyboard image status on the PC info form
                                 pcInfoForm.UpdateMouseStatusImage(false);
                             }
+                            else if (adminPCInfoForm != null)
+                            {
+                                adminPCInfoForm.UpdateMouseStatusImage(false);
+                            }
                         }
 
                         if (clientMessage.Contains("Keyboard is connected"))
@@ -105,6 +116,10 @@ namespace CSOL_Connect_Server_App
                             {
                                 // Update the keyboard image status on the PC info form
                                 pcInfoForm.UpdateKeyboardStatusImage(true);
+                            }
+                            else if (adminPCInfoForm != null)
+                            {
+                                adminPCInfoForm.UpdateKeyboardStatusImage(true);
                             }
                         }
 
@@ -115,6 +130,10 @@ namespace CSOL_Connect_Server_App
                             {
                                 // Update the keyboard image status on the PC info form
                                 pcInfoForm.UpdateKeyboardStatusImage(false);
+                            }
+                            else if (adminPCInfoForm != null)
+                            {
+                                adminPCInfoForm.UpdateKeyboardStatusImage(false);
                             }
                         }
                     }
