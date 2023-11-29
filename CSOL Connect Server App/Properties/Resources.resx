@@ -133,9 +133,6 @@
   <data name="eyeSymbol1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eyeSymbol1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="computer_grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\computer_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="search_icon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\net7.0-windows\img\search_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,8 +175,14 @@
   <data name="computer_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\computer_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="accounts_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\accounts_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="circle_grey3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\net7.0-windows\img\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="computer_grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\computer_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_csv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\net7.0-windows\img\icon_csv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pwSymbol2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pwSymbol21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,14 +196,11 @@
   <data name="icons8_keyboard_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\net7.0-windows\img\icons8_keyboard_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\net7.0-windows\img\search_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="eyeSymbol3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eyeSymbol3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_mouse_50px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_mouse_50px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\net7.0-windows\img\search_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="circle_grey2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\net7.0-windows\img\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,8 +226,8 @@
   <data name="circle_grey1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\net7.0-windows\img\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="circle_grey3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\net7.0-windows\img\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="accounts_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\accounts_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="circle_grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,6 +244,9 @@
   <data name="schedule_symbol" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\schedule_symbol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8_mouse_50px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_mouse_50px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="previous_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\previous_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -256,7 +259,7 @@
   <data name="computer_green1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\computer_green1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_csv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\net7.0-windows\img\icon_csv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="main_dasma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main_dasma.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
