@@ -75,65 +75,91 @@ namespace CSOL_Connect_Server_App
 
                         // Now you have the PC name and the client's message
                         // Use the PC name to identify the target PC in your mapping panel and update it with the message.
-                        mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
-                        admin_Mapping.UpdatePCOnMappingPanel(pcName, clientMessage);
 
-                        SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
-                        Admin_PCInfo adminPCInfoForm = Application.OpenForms.OfType<Admin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
-
-                        if (clientMessage.Contains("Mouse is connected"))
+                        if (mappingForm != null)
                         {
-                            LogMouseDisconnection(pcName);
-                            if (pcInfoForm != null)
+                            mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
+                            SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
+
+                            if (clientMessage.Contains("Mouse is connected"))
                             {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateMouseStatusImage(true);
-                                
+                                LogMouseDisconnection(pcName);
+                                if (pcInfoForm != null)
+                                {
+                                    // Update the keyboard image status on the PC info form
+                                    pcInfoForm.UpdateMouseStatusImage(true);
+
+                                }
                             }
-                            else if (adminPCInfoForm != null)
+
+                            if (clientMessage.Contains("Mouse is disconnected"))
                             {
-                                adminPCInfoForm.UpdateMouseStatusImage(true);
+                                LogMouseDisconnection(pcName);
+                                if (pcInfoForm != null)
+                                {
+                                    // Update the keyboard image status on the PC info form
+                                    pcInfoForm.UpdateMouseStatusImage(false);
+                                }
+                            }
+
+                            if (clientMessage.Contains("Keyboard is connected"))
+                            {
+                                if (pcInfoForm != null)
+                                {
+                                    // Update the keyboard image status on the PC info form
+                                    pcInfoForm.UpdateKeyboardStatusImage(true);
+                                }
+                            }
+
+                            else if (clientMessage.Contains("Keyboard is disconnected"))
+                            {
+                                LogKeyboardDisconnection(pcName);
+                                if (pcInfoForm != null)
+                                {
+                                    // Update the keyboard image status on the PC info form
+                                    pcInfoForm.UpdateKeyboardStatusImage(false);
+                                }
                             }
                         }
 
-                        if (clientMessage.Contains("Mouse is disconnected"))
+                        if (admin_Mapping != null)
                         {
-                            LogMouseDisconnection(pcName);
-                            if (pcInfoForm != null)
-                            {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateMouseStatusImage(false);
-                            }
-                            else if (adminPCInfoForm != null)
-                            {
-                                adminPCInfoForm.UpdateMouseStatusImage(false);
-                            }
-                        }
+                            admin_Mapping.UpdatePCOnMappingPanel(pcName, clientMessage);
+                            Admin_PCInfo adminPCInfoForm = Application.OpenForms.OfType<Admin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
-                        if (clientMessage.Contains("Keyboard is connected"))
-                        {
-                            if (pcInfoForm != null)
+                            if (clientMessage.Contains("Mouse is connected"))
                             {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(true);
+                                LogMouseDisconnection(pcName);
+                                if (adminPCInfoForm != null)
+                                {
+                                    adminPCInfoForm.UpdateMouseStatusImage(true);
+                                }
                             }
-                            else if (adminPCInfoForm != null)
-                            {
-                                adminPCInfoForm.UpdateKeyboardStatusImage(true);
-                            }
-                        }
 
-                        else if (clientMessage.Contains("Keyboard is disconnected"))
-                        {
-                            LogKeyboardDisconnection(pcName);
-                            if (pcInfoForm != null)
+                            if (clientMessage.Contains("Mouse is disconnected"))
                             {
-                                // Update the keyboard image status on the PC info form
-                                pcInfoForm.UpdateKeyboardStatusImage(false);
+                                LogMouseDisconnection(pcName);
+                                if (adminPCInfoForm != null)
+                                {
+                                    adminPCInfoForm.UpdateMouseStatusImage(false);
+                                }
                             }
-                            else if (adminPCInfoForm != null)
+
+                            if (clientMessage.Contains("Keyboard is connected"))
                             {
-                                adminPCInfoForm.UpdateKeyboardStatusImage(false);
+                                if (adminPCInfoForm != null)
+                                {
+                                    adminPCInfoForm.UpdateKeyboardStatusImage(true);
+                                }
+                            }
+
+                            else if (clientMessage.Contains("Keyboard is disconnected"))
+                            {
+                                LogKeyboardDisconnection(pcName);
+                                if (adminPCInfoForm != null)
+                                {
+                                    adminPCInfoForm.UpdateKeyboardStatusImage(false);
+                                }
                             }
                         }
                     }
