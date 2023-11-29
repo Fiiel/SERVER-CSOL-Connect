@@ -195,9 +195,12 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(273, 85);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.ShowEditingIcon = false;
             dataGridView1.Size = new Size(685, 580);
             dataGridView1.TabIndex = 1;
+            dataGridView1.VirtualMode = true;
             // 
             // PictureBox_Notification
             // 
@@ -416,11 +419,11 @@
             DateTimePicker.CustomFormat = "MMM dd yyyy";
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.Location = new Point(991, 273);
-            DateTimePicker.MinDate = new DateTime(2023, 9, 1, 0, 0, 0, 0);
+            DateTimePicker.MinDate = new DateTime(2023, 11, 29, 0, 0, 0, 0);
             DateTimePicker.Name = "DateTimePicker";
             DateTimePicker.Size = new Size(102, 23);
             DateTimePicker.TabIndex = 63;
-            DateTimePicker.Value = new DateTime(2023, 11, 28, 0, 0, 0, 0);
+            DateTimePicker.Value = new DateTime(2023, 11, 29, 0, 0, 0, 0);
             // 
             // label7
             // 

@@ -16,6 +16,9 @@ namespace CSOL_Connect_Server_App
             LoadOngoingLabsData();
 
             PopulatePCNamesComboBox();
+
+            dataGridView1.Refresh();
+
         }
 
         //SuperAdmin_Dashboard_Load
