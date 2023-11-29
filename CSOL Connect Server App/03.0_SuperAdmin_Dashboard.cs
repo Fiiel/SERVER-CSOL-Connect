@@ -6,8 +6,6 @@ namespace CSOL_Connect_Server_App
 {
     public partial class SuperAdmin_Dashboard : Form
     {
-
-
         SQL_Connection sql_Connection = new SQL_Connection();
 
         //SuperAdmin_Dashboard
@@ -95,7 +93,6 @@ namespace CSOL_Connect_Server_App
             SuperAdmin_Notifications page = new SuperAdmin_Notifications();
             page.Show();
         }
-
 
         private void LoadHistoryLogData()
         {
