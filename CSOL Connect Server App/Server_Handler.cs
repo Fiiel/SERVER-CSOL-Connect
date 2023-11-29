@@ -9,8 +9,15 @@ namespace CSOL_Connect_Server_App
     internal class Server_Handler
     {
         SQL_Connection sql_Connection = new SQL_Connection();
+
+        private LoadingScreenForm loadingScreenForm; // Reference to the mapping form
         private SuperAdmin_Mapping mappingForm; // Reference to the mapping form
         private Admin_Mapping admin_Mapping; // Reference to the mapping form
+
+        public Server_Handler(LoadingScreenForm loadingScreenForm)
+        {
+            this.loadingScreenForm = loadingScreenForm;
+        }
 
         public Server_Handler(SuperAdmin_Mapping mappingForm)
         {
@@ -269,6 +276,11 @@ namespace CSOL_Connect_Server_App
             }
 
             return clno;
+        }
+
+        internal void HandleClientAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
