@@ -105,7 +105,10 @@ namespace CSOL_Connect_Server_App
                 {
                     connection.Open();
 
-                    string query = "SELECT * FROM HistoryLog ORDER BY [Date] DESC, [Time] DESC";
+                    // Concatenate Date and Time into a single column for sorting
+                    string query = "SELECT *, CONVERT(datetime, [Date] + ' ' + [Time]) AS DateTimeCombined " +
+                                   "FROM HistoryLog " +
+                                   "ORDER BY DateTimeCombined DESC";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -117,6 +120,7 @@ namespace CSOL_Connect_Server_App
                         dataGridView1.DataSource = dataTable;
 
                         dataGridView1.Columns["IssueID"].Visible = false;
+                        dataGridView1.Columns["DateTimeCombined"].Visible = false;
                     }
 
                     connection.Close();

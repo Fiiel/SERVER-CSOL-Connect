@@ -90,16 +90,17 @@
             // Button_Logout
             // 
             Button_Logout.Cursor = Cursors.Hand;
+            Button_Logout.Dock = DockStyle.Bottom;
             Button_Logout.FlatAppearance.BorderSize = 0;
             Button_Logout.FlatStyle = FlatStyle.Flat;
             Button_Logout.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point);
             Button_Logout.ForeColor = Color.White;
             Button_Logout.Image = Properties.Resources.logout_symbol;
             Button_Logout.ImageAlign = ContentAlignment.MiddleLeft;
-            Button_Logout.Location = new Point(0, 592);
+            Button_Logout.Location = new Point(0, 608);
             Button_Logout.Name = "Button_Logout";
             Button_Logout.Padding = new Padding(12, 0, 0, 0);
-            Button_Logout.Size = new Size(251, 73);
+            Button_Logout.Size = new Size(249, 73);
             Button_Logout.TabIndex = 4;
             Button_Logout.Text = "Logout";
             Button_Logout.UseVisualStyleBackColor = true;
@@ -521,7 +522,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(Button_Refresh);
             Controls.Add(PictureBox_ExportCSV);
             Controls.Add(label6);
@@ -552,7 +552,6 @@
             Controls.Add(Panel_SideNav);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
             Name = "SuperAdmin_Dashboard";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
