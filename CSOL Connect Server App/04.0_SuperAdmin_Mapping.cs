@@ -1,5 +1,4 @@
 ﻿using System.Data.SqlClient;
-using static CSOL_Connect_Server_App.Server_Handler;
 
 namespace CSOL_Connect_Server_App
 {
