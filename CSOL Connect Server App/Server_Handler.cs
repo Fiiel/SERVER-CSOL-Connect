@@ -277,10 +277,5 @@ namespace CSOL_Connect_Server_App
 
             return clno;
         }
-
-        internal void HandleClientAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
