@@ -14,6 +14,11 @@ namespace CSOL_Connect_Server_App
         private SuperAdmin_Mapping mappingForm; // Reference to the mapping form
         private Admin_Mapping admin_Mapping; // Reference to the mapping form
 
+        public Server_Handler(LoadingScreenForm loadingScreenForm)
+        {
+            this.loadingScreenForm = loadingScreenForm;
+        }
+
         public Server_Handler(SuperAdmin_Mapping mappingForm)
         {
             this.mappingForm = mappingForm;
