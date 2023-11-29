@@ -17,6 +17,7 @@ namespace CSOL_Connect_Server_App
             LoadHistoryLogData();
             LoadOngoingLabsData();
 
+            PopulatePCNamesComboBox();
         }
 
         //SuperAdmin_Dashboard_Load
@@ -322,6 +323,41 @@ namespace CSOL_Connect_Server_App
         private void Button_Refresh_Click(object sender, EventArgs e)
         {
             LoadHistoryLogData();
+        }
+
+        private void PopulatePCNamesComboBox()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                {
+                    connection.Open();
+
+                    // Replace "YourTableName" with the actual table name
+                    string query = "SELECT PCName FROM PCMap";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Clear existing items in the ComboBox
+                            PCName_Filter_ComboBox.Items.Clear();
+
+                            // Populate ComboBox with PCNames
+                            while (reader.Read())
+                            {
+                                string pcName = reader["PCName"].ToString();
+                                PCName_Filter_ComboBox.Items.Add(pcName);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions appropriately (e.g., show an error message)
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
