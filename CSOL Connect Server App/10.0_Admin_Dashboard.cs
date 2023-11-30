@@ -22,6 +22,9 @@ namespace CSOL_Connect_Server_App
             LoadOngoingLabsData();
 
             PopulatePCNamesComboBox();
+
+            dataGridView1.Refresh();
+            DateTimePicker.Value = DateTime.Now;
         }
 
         private void Button_Dashboard_Click(object sender, EventArgs e)

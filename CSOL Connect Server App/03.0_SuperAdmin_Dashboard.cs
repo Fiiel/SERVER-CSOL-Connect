@@ -18,6 +18,7 @@ namespace CSOL_Connect_Server_App
             PopulatePCNamesComboBox();
 
             dataGridView1.Refresh();
+            DateTimePicker.Value = DateTime.Now;
 
         }
 
