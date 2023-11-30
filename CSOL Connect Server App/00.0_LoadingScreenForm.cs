@@ -6,12 +6,17 @@ namespace CSOL_Connect_Server_App
     public partial class LoadingScreenForm : Form
     {
         Server_Handler server_Handler;
+        SuperAdmin_Mapping superAdmin_MappingForm;
+        Admin_Mapping admin_MappingForm;
         Timer timer;
 
         public LoadingScreenForm()
         {
             InitializeComponent();
-            server_Handler = new Server_Handler(this);
+            superAdmin_MappingForm = new SuperAdmin_Mapping();
+            admin_MappingForm = new Admin_Mapping();
+            server_Handler = new Server_Handler(superAdmin_MappingForm);
+            server_Handler = new Server_Handler(admin_MappingForm);
             server_Handler.NetworkMain();
             StartLoading();
         }

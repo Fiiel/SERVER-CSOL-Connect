@@ -14,7 +14,6 @@ namespace CSOL_Connect_Server_App
             InitializeComponent();
             LoadPCIconsFromDatabase();
             server_Handler = new Server_Handler(this);
-            server_Handler.NetworkMain();
 
             PreSelectElementaryCL();
         }

@@ -10,18 +10,18 @@ namespace CSOL_Connect_Server_App
     {
         SQL_Connection sql_Connection = new SQL_Connection();
 
-        private SuperAdmin_Mapping mappingForm; // Reference to the mapping form
-        private Admin_Mapping admin_Mapping; // Reference to the mapping form
+        private SuperAdmin_Mapping superAdmin_MappingForm; // Reference to the mapping form
+        private Admin_Mapping admin_MappingForm; // Reference to the mapping form
         private LoadingScreenForm loadingScreenForm;
 
-        public Server_Handler(SuperAdmin_Mapping mappingForm)
+        public Server_Handler(SuperAdmin_Mapping superAdmin_MappingForm)
         {
-            this.mappingForm = mappingForm;
+            this.superAdmin_MappingForm = superAdmin_MappingForm;
         }
 
-        public Server_Handler(Admin_Mapping admin_Mapping)
+        public Server_Handler(Admin_Mapping admin_MappingForm)
         {
-            this.admin_Mapping = admin_Mapping;
+            this.admin_MappingForm = admin_MappingForm;
         }
 
         public Server_Handler(LoadingScreenForm loadingScreenForm)
@@ -82,10 +82,13 @@ namespace CSOL_Connect_Server_App
 
                         // Now you have the PC name and the client's message
                         // Use the PC name to identify the target PC in your mapping panel and update it with the message.
+                        Debug.WriteLine("1st stop");
 
-                        if (mappingForm != null)
+                        if (superAdmin_MappingForm != null)
                         {
-                            mappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
+                            Debug.WriteLine("2nd stop");
+
+                            superAdmin_MappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
                             SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
                             if (clientMessage.Contains("Mouse is connected"))
@@ -128,9 +131,9 @@ namespace CSOL_Connect_Server_App
                             }
                         }
 
-                        if (admin_Mapping != null)
+                        if (admin_MappingForm != null)
                         {
-                            admin_Mapping.UpdatePCOnMappingPanel(pcName, clientMessage);
+                            admin_MappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
                             Admin_PCInfo adminPCInfoForm = Application.OpenForms.OfType<Admin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
                             if (clientMessage.Contains("Mouse is connected"))

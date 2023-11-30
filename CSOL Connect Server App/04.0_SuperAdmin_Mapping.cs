@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace CSOL_Connect_Server_App
 {
@@ -12,7 +13,6 @@ namespace CSOL_Connect_Server_App
             InitializeComponent();
             LoadPCIconsFromDatabase();
             server_Handler = new Server_Handler(this);
-            server_Handler.NetworkMain();
 
             PreSelectElementaryCL();
         }
@@ -367,9 +367,11 @@ namespace CSOL_Connect_Server_App
 
         public void UpdatePCOnMappingPanel(string pcName, string message)
         {
+            Debug.WriteLine("3rd stop");
             // Initialize the state if it doesn't exist
             if (!pcStates.ContainsKey(pcName))
             {
+                Debug.WriteLine("4th stop");
                 pcStates[pcName] = new bool[2]; // Assuming 2 elements for mouse and keyboard states
             }
 
