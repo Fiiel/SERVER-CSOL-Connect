@@ -203,6 +203,7 @@
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            FormClosed += LoginForm_FormClosed;
             ((System.ComponentModel.ISupportInitialize)Login_UserIDPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)Login_PasswordPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)Login_EyeRevealPicBox).EndInit();

@@ -69,7 +69,8 @@ namespace CSOL_Connect_Server_App
                                 if (captchaResult == DialogResult.OK)
                                 {
 
-                                    if (pw!="CSOL-connect2023!") {
+                                    if (pw != "CSOL-connect2023!")
+                                    {
                                         // CAPTCHA verification succeeded, proceed with login
                                         MessageBox.Show("Login successful!");
 
@@ -130,11 +131,12 @@ namespace CSOL_Connect_Server_App
                                     }
                                 }
 
-                                else {                                
-                                // CAPTCHA verification failed, display an error message or take appropriate action
-                                MessageBox.Show("Captcha verification failed. Please try again.");
+                                else
+                                {
+                                    // CAPTCHA verification failed, display an error message or take appropriate action
+                                    MessageBox.Show("Captcha verification failed. Please try again.");
                                 }
-                                
+
                             }
                             else
                             {
@@ -255,6 +257,11 @@ namespace CSOL_Connect_Server_App
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
