@@ -33,6 +33,12 @@ namespace CSOL_Connect_Server_App
         {
             MessageBox.Show(
                 "Verify your identity by answering your security questions. " +
+                "Keep in mind that this is case sensitive. " +
+                "You will be able to reset/change your password once you answer all the security questions correctly.",
+                "Security Question Info",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+);
         }
 
         private void Cancel_btn_Click(object sender, EventArgs e)
