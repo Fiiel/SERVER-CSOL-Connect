@@ -43,7 +43,7 @@ namespace CSOL_Connect_Server_App
 
         private void Cancel_btn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             LoginForm page = new LoginForm();
             page.Show();
         }
@@ -147,7 +147,7 @@ namespace CSOL_Connect_Server_App
                                         MessageBox.Show("Failed to reset the password.");
                                     }
                                 }
-                            
+
                                 SqlConnection connection2 = new SqlConnection(sql_Connection.SQLConnection());
                                 connection2.Open();
                                 string userLevelQuery = "SELECT [User Level] FROM Users WHERE [User ID] = @UserID";
@@ -158,13 +158,13 @@ namespace CSOL_Connect_Server_App
 
                                     if (userLevel == "Admin")
                                     {
-                                        this.Hide();
+                                        this.Close();
                                         forAdmin_ChangePW_Required page = new forAdmin_ChangePW_Required(UserID);
                                         page.Show();
                                     }
                                     else if (userLevel == "Super Admin")
                                     {
-                                        this.Hide();
+                                        this.Close();
                                         ChangePW_Required page = new ChangePW_Required(UserID);
                                         page.Show();
                                     }
@@ -266,6 +266,12 @@ namespace CSOL_Connect_Server_App
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+        }
+        private void SecurityQuestions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Close();
+            LoginForm page = new LoginForm();
+            page.Show();
         }
     }
 }

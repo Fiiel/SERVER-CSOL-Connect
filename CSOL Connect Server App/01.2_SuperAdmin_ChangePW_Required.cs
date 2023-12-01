@@ -210,7 +210,7 @@ namespace CSOL_Connect_Server_App
                             if (rowsAffected > 0)
                             {
                                 MessageBox.Show("Password updated successfully.");
-                                this.Hide();
+                                this.Close();
                                 SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
                                 page.Show();
                             }
