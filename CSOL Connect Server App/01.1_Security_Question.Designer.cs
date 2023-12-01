@@ -257,7 +257,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(471, 536);
-            ControlBox = false;
             Controls.Add(Button_PWReset);
             Controls.Add(Submit_btn);
             Controls.Add(Cancel_btn);
@@ -282,6 +281,7 @@
             Name = "SecurityQuestions";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Reset Password - Security Questions";
+            FormClosing += SecurityQuestions_FormClosing;
             Load += SecurityQuestions_Load;
             ResumeLayout(false);
             PerformLayout();
