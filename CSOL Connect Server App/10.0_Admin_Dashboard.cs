@@ -64,7 +64,9 @@ namespace CSOL_Connect_Server_App
                 {
                     connection.Open();
 
-                    string query = "SELECT * FROM HistoryLog"; // Adjust the query as needed
+                    string query = "SELECT *, CONVERT(datetime, [Date] + ' ' + [Time]) AS DateTimeCombined " +
+                                   "FROM HistoryLog " +
+                                   "ORDER BY DateTimeCombined DESC";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
