@@ -50,6 +50,7 @@
             label3 = new Label();
             MainPanel_HighschoolCL = new Panel();
             MainPanel_SeniorhighCL = new Panel();
+            Button_Refresh = new Button();
             Panel_SideNav.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Button_AddPC).BeginInit();
@@ -336,6 +337,21 @@
             MainPanel_SeniorhighCL.Size = new Size(971, 513);
             MainPanel_SeniorhighCL.TabIndex = 13;
             // 
+            // Button_Refresh
+            // 
+            Button_Refresh.BackColor = Color.FromArgb(7, 25, 82);
+            Button_Refresh.Cursor = Cursors.Hand;
+            Button_Refresh.FlatStyle = FlatStyle.Popup;
+            Button_Refresh.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            Button_Refresh.ForeColor = SystemColors.Control;
+            Button_Refresh.Location = new Point(1165, 39);
+            Button_Refresh.Name = "Button_Refresh";
+            Button_Refresh.Size = new Size(75, 23);
+            Button_Refresh.TabIndex = 72;
+            Button_Refresh.Text = "Refresh";
+            Button_Refresh.UseVisualStyleBackColor = false;
+            Button_Refresh.Click += Button_Refresh_Click;
+            // 
             // SuperAdmin_Mapping
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -343,6 +359,7 @@
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
             ControlBox = false;
+            Controls.Add(Button_Refresh);
             Controls.Add(MainPanel_SeniorhighCL);
             Controls.Add(label3);
             Controls.Add(Panel_SeniorHighCL);
@@ -398,5 +415,6 @@
         private Panel Panel_ElementaryCL;
         private Panel MainPanel_HighschoolCL;
         private Panel MainPanel_SeniorhighCL;
+        private Button Button_Refresh;
     }
 }

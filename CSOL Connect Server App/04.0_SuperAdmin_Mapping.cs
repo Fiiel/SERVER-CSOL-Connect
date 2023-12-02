@@ -191,8 +191,8 @@ namespace CSOL_Connect_Server_App
         //-------------------------------------------------//
 
         //Variables for PC_Icon
-        private List<PictureBox> pcIcons = new List<PictureBox>();
-        private List<Label> pcLabels = new List<Label>();
+        public List<PictureBox> pcIcons = new List<PictureBox>();
+        public List<Label> pcLabels = new List<Label>();
 
         private void Button_AddPC_Click(object sender, EventArgs e)
         {
@@ -202,7 +202,7 @@ namespace CSOL_Connect_Server_App
             if (page.PCAddedSuccessfully)
             {
                 PictureBox PC_Icon = new PictureBox();
-                PC_Icon.Image = Image.FromFile("img\\computer_grey.png");
+                PC_Icon.Image = Image.FromFile("img\\computer_og.png");
                 PC_Icon.SizeMode = PictureBoxSizeMode.Normal;
 
                 PC_Icon.MouseDown += PC_Icon_MouseDown;
@@ -497,6 +497,15 @@ namespace CSOL_Connect_Server_App
             PictureBox_ElementaryCL.BackColor = Color.FromArgb(252, 207, 15);
             PictureBox_HighschoolCL.BackColor = SystemColors.Control;
             PictureBox_SeniorhighCL.BackColor = SystemColors.Control;
+        }
+
+        private void Button_Refresh_Click(object sender, EventArgs e)
+        {
+            SuperAdmin_Mapping page = new SuperAdmin_Mapping();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

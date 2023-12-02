@@ -88,7 +88,7 @@ namespace CSOL_Connect_Server_App
                         {
                             Debug.WriteLine("2nd stop");
 
-                            superAdmin_MappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
+                            UpdatePCOnMappingPanel(pcName, clientMessage);
                             SuperAdmin_PCInfo pcInfoForm = Application.OpenForms.OfType<SuperAdmin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
 
                             if (clientMessage.Contains("Mouse is connected"))
@@ -144,6 +144,86 @@ namespace CSOL_Connect_Server_App
                 Debug.WriteLine($"Error: {ex.Message}");
             }
         }
+
+        Dictionary<string, bool[]> pcStates = new Dictionary<string, bool[]>();
+
+        public void UpdatePCOnMappingPanel(string pcName, string clientMessage)
+        {
+            Debug.WriteLine("3rd stop");
+            // Initialize the state if it doesn't exist
+            if (!pcStates.ContainsKey(pcName))
+            {
+                Debug.WriteLine("4th stop");
+                pcStates[pcName] = new bool[2]; // Assuming 2 elements for mouse and keyboard states
+            }
+
+            // Update the state based on the message
+            if (clientMessage.Contains("Mouse is connected"))
+            {
+                pcStates[pcName][0] = true; // Mouse connected
+            }
+            else if (clientMessage.Contains("Mouse is disconnected"))
+            {
+                pcStates[pcName][0] = false; // Mouse disconnected
+            }
+
+            if (clientMessage.Contains("Keyboard is connected"))
+            {
+                pcStates[pcName][1] = true; // Keyboard connected
+            }
+            else if (clientMessage.Contains("Keyboard is disconnected"))
+            {
+                pcStates[pcName][1] = false; // Keyboard disconnected
+            }
+
+            // Update the icon based on the overall state
+            if (pcStates[pcName][0] && pcStates[pcName][1])
+            {
+                // Both mouse and keyboard are connected
+                UpdateIcon(pcName, "img\\computer_green.png");
+            }
+            else
+            {
+                // Either mouse or keyboard is disconnected
+                UpdateIcon(pcName, "img\\computer_red.png");
+            }
+        }
+
+        private void UpdateIcon(string pcName, string imagePath)
+        {
+            // Search for the PC icon based on the provided PC name
+            PictureBox pcIcon = superAdmin_MappingForm.pcIcons.FirstOrDefault(icon => superAdmin_MappingForm.pcLabels[superAdmin_MappingForm.pcIcons.IndexOf(icon)].Text == pcName);
+
+            if (pcIcon != null)
+            {
+                pcIcon.Image = Image.FromFile(imagePath);
+                UpdateDatabaseIconStatus(pcName, imagePath);
+            }
+        }
+
+        private void UpdateDatabaseIconStatus(string pcName, string iconPath)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                connection.Open();
+
+                string query = "UPDATE PCMap SET IconPath = @iconPath WHERE PCName = @name";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@iconPath", iconPath);
+                command.Parameters.AddWithValue("@name", pcName);
+
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while updating icon status: " + ex.Message);
+            }
+        }
+
 
         private void UpdateMouseIconInDatabase(string pcName, string clientMessage)
         {
