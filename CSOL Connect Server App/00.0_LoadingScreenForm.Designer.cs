@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingScreenForm));
             pictureBox1 = new PictureBox();
             Label_CSOLConnect = new Label();
             PictureBox_CSOLbldg = new PictureBox();
@@ -124,6 +125,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(textBox2);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "LoadingScreenForm";
             StartPosition = FormStartPosition.CenterScreen;

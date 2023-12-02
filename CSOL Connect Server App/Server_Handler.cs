@@ -61,6 +61,8 @@ namespace CSOL_Connect_Server_App
             }
         }
 
+        private Dictionary<string, bool> lanDisconnectedState = new Dictionary<string, bool>();
+
         private async Task HandleClientAsync(TcpClient client)
         {
             try
@@ -138,6 +140,9 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("LAN is connected"))
                             {
+                                // Reset LAN disconnected state when LAN is connected
+                                lanDisconnectedState[pcName] = false;
+
                                 UpdateEthernetIconInDatabase(pcName, clientMessage);
                                 if (pcInfoForm != null)
                                 {
@@ -146,17 +151,24 @@ namespace CSOL_Connect_Server_App
                             }
                             else if (clientMessage.Contains("LAN is disconnected"))
                             {
-                                UpdateEthernetIconInDatabase(pcName, clientMessage);
-                                LogEthernetDisconnection(pcName);
-                                if (pcInfoForm != null)
+                                if (!lanDisconnectedState.ContainsKey(pcName) || !lanDisconnectedState[pcName])
                                 {
-                                    pcInfoForm.UpdateEthernetStatusImage(false);
+                                    // Update the state to indicate that LAN is already disconnected
+                                    UpdateEthernetIconInDatabase(pcName, clientMessage);
+                                    lanDisconnectedState[pcName] = true;
+
+                                    // Log LAN disconnection
+                                    LogEthernetDisconnection(pcName);
+
+                                    if (pcInfoForm != null)
+                                    {
+                                        pcInfoForm.UpdateEthernetStatusImage(false);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
                 client.Close();
             }
             catch (Exception ex)
