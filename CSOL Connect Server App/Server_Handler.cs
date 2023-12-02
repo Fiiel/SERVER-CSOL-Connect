@@ -93,6 +93,7 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("Mouse is connected"))
                             {
+                                UpdateMouseIconInDatabase(pcName, clientMessage);
                                 if (pcInfoForm != null)
                                 {
                                     // Update the keyboard image status on the PC info form
@@ -103,6 +104,7 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("Mouse is disconnected"))
                             {
+                                UpdateMouseIconInDatabase(pcName, clientMessage);
                                 LogMouseDisconnection(pcName);
                                 if (pcInfoForm != null)
                                 {
@@ -113,6 +115,7 @@ namespace CSOL_Connect_Server_App
 
                             if (clientMessage.Contains("Keyboard is connected"))
                             {
+                                UpdateKeyboardIconInDatabase(pcName, clientMessage);
                                 if (pcInfoForm != null)
                                 {
                                     // Update the keyboard image status on the PC info form
@@ -122,51 +125,12 @@ namespace CSOL_Connect_Server_App
 
                             else if (clientMessage.Contains("Keyboard is disconnected"))
                             {
+                                UpdateKeyboardIconInDatabase(pcName, clientMessage);
                                 LogKeyboardDisconnection(pcName);
                                 if (pcInfoForm != null)
                                 {
                                     // Update the keyboard image status on the PC info form
                                     pcInfoForm.UpdateKeyboardStatusImage(false);
-                                }
-                            }
-                        }
-
-                        if (admin_MappingForm != null)
-                        {
-                            admin_MappingForm.UpdatePCOnMappingPanel(pcName, clientMessage);
-                            Admin_PCInfo adminPCInfoForm = Application.OpenForms.OfType<Admin_PCInfo>().FirstOrDefault(form => form.PCName == pcName);
-
-                            if (clientMessage.Contains("Mouse is connected"))
-                            {
-                                if (adminPCInfoForm != null)
-                                {
-                                    adminPCInfoForm.UpdateMouseStatusImage(true);
-                                }
-                            }
-
-                            if (clientMessage.Contains("Mouse is disconnected"))
-                            {
-                                LogMouseDisconnection(pcName);
-                                if (adminPCInfoForm != null)
-                                {
-                                    adminPCInfoForm.UpdateMouseStatusImage(false);
-                                }
-                            }
-
-                            if (clientMessage.Contains("Keyboard is connected"))
-                            {
-                                if (adminPCInfoForm != null)
-                                {
-                                    adminPCInfoForm.UpdateKeyboardStatusImage(true);
-                                }
-                            }
-
-                            else if (clientMessage.Contains("Keyboard is disconnected"))
-                            {
-                                LogKeyboardDisconnection(pcName);
-                                if (adminPCInfoForm != null)
-                                {
-                                    adminPCInfoForm.UpdateKeyboardStatusImage(false);
                                 }
                             }
                         }
@@ -178,6 +142,88 @@ namespace CSOL_Connect_Server_App
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void UpdateMouseIconInDatabase(string pcName, string clientMessage)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+
+                        // Determine the mouse icon path based on the clientMessage
+                        string mouseIconPath = "";
+
+                        if (clientMessage.Contains("Mouse is connected"))
+                        {
+                            mouseIconPath = "img\\circle_green.png";
+                        }
+                        else if (clientMessage.Contains("Mouse is disconnected"))
+                        {
+                            mouseIconPath = "img\\circle_red.png";
+                        }
+
+                        // Update the database with the new mouse icon path
+                        string updateQuery = "UPDATE PCMap SET MouseIconPath = @MouseIconPath WHERE PCName = @PCName";
+
+                        command.CommandText = updateQuery;
+                        command.Parameters.AddWithValue("@MouseIconPath", mouseIconPath);
+                        command.Parameters.AddWithValue("@PCName", pcName);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating mouse icon in the database: {ex.Message}");
+            }
+        }
+
+        private void UpdateKeyboardIconInDatabase(string pcName, string clientMessage)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+
+                        // Determine the keyboard icon path based on the clientMessage
+                        string keyboardIconPath = "";
+
+                        if (clientMessage.Contains("Keyboard is connected"))
+                        {
+                            keyboardIconPath = "img\\circle_green.png";
+                        }
+                        else if (clientMessage.Contains("Keyboard is disconnected"))
+                        {
+                            keyboardIconPath = "img\\circle_red.png";
+                        }
+
+                        // Update the database with the new keyboard icon path
+                        string updateQuery = "UPDATE PCMap SET KeyboardIconPath = @KeyboardIconPath WHERE PCName = @PCName";
+
+                        command.CommandText = updateQuery;
+                        command.Parameters.AddWithValue("@KeyboardIconPath", keyboardIconPath);
+                        command.Parameters.AddWithValue("@PCName", pcName);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating keyboard icon in the database: {ex.Message}");
             }
         }
 
