@@ -41,7 +41,7 @@
             Label_DeviceConnection = new Label();
             ((System.ComponentModel.ISupportInitialize)PictureBox_DeletePC).BeginInit();
             Panel_PCInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox_LANRead).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBox_EthernetRead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_KeyboardRead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_MouseRead).BeginInit();
             SuspendLayout();
@@ -78,7 +78,7 @@
             // 
             Panel_PCInfo.BackColor = Color.White;
             Panel_PCInfo.Controls.Add(Label_Keyboard);
-            Panel_PCInfo.Controls.Add(PictureBox_LANRead);
+            Panel_PCInfo.Controls.Add(PictureBox_EthernetRead);
             Panel_PCInfo.Controls.Add(PictureBox_KeyboardRead);
             Panel_PCInfo.Controls.Add(PictureBox_MouseRead);
             Panel_PCInfo.Controls.Add(Label_LAN);
@@ -102,16 +102,16 @@
             Label_Keyboard.TabIndex = 43;
             Label_Keyboard.Text = "       Keyboard";
             // 
-            // PictureBox_LANRead
+            // PictureBox_EthernetRead
             // 
-            PictureBox_LANRead.BackColor = Color.Transparent;
-            PictureBox_LANRead.Image = Properties.Resources.circle_grey3;
-            PictureBox_LANRead.Location = new Point(181, 98);
-            PictureBox_LANRead.Name = "PictureBox_LANRead";
-            PictureBox_LANRead.Size = new Size(42, 35);
-            PictureBox_LANRead.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBox_LANRead.TabIndex = 42;
-            PictureBox_LANRead.TabStop = false;
+            PictureBox_EthernetRead.BackColor = Color.Transparent;
+            PictureBox_EthernetRead.Image = Properties.Resources.circle_grey3;
+            PictureBox_EthernetRead.Location = new Point(181, 98);
+            PictureBox_EthernetRead.Name = "PictureBox_EthernetRead";
+            PictureBox_EthernetRead.Size = new Size(42, 35);
+            PictureBox_EthernetRead.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBox_EthernetRead.TabIndex = 42;
+            PictureBox_EthernetRead.TabStop = false;
             // 
             // PictureBox_KeyboardRead
             // 
@@ -196,7 +196,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBox_DeletePC).EndInit();
             Panel_PCInfo.ResumeLayout(false);
             Panel_PCInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox_LANRead).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBox_EthernetRead).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_KeyboardRead).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_MouseRead).EndInit();
             ResumeLayout(false);
@@ -209,7 +209,7 @@
         private PictureBox PictureBox_DeletePC;
         private Panel Panel_PCInfo;
         private Label Label_Keyboard;
-        private PictureBox PictureBox_LANRead;
+        private PictureBox PictureBox_EthernetRead;
         private PictureBox PictureBox_KeyboardRead;
         private PictureBox PictureBox_MouseRead;
         private Label Label_LAN;
