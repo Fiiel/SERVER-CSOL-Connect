@@ -143,7 +143,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(246, 233);
-            ControlBox = false;
             Controls.Add(Label_CLno);
             Controls.Add(clncbox);
             Controls.Add(Button_Back);
@@ -159,6 +158,7 @@
             Name = "SuperAdmin_AddPC";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add PC";
+            FormClosing += SuperAdmin_AddPC_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

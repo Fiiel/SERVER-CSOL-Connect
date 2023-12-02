@@ -35,7 +35,7 @@ namespace CSOL_Connect_Server_App
             email.Text = Email;
             userlevelComboBox.SelectedItem = UserLevel;
             //
-            Q1_txtbox.Text = sq1;   
+            Q1_txtbox.Text = sq1;
             Q2_txtbox.Text = sq2;
             Q3_txtbox.Text = sq3;
         }
@@ -57,7 +57,8 @@ namespace CSOL_Connect_Server_App
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            if(SQ_grpbox.Enabled == false){
+            if (SQ_grpbox.Enabled == false)
+            {
 
                 if (fn.Text.Length == 0 || ln.Text.Length == 0 || email.Text.Length == 0 || Pword.Text.Length == 0 || ConfirmPass.Text.Length == 0 || userlevelComboBox.SelectedIndex == -1)
                 {
@@ -107,7 +108,7 @@ namespace CSOL_Connect_Server_App
                     }
 
                     UserLevel = userlevelComboBox.Text;
-                   
+
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -491,6 +492,26 @@ namespace CSOL_Connect_Server_App
         private void pictureBox5_MouseUp(object sender, MouseEventArgs e)
         {
             Q3ans_txtbox.PasswordChar = '●';
+        }
+
+        private void SuperAdmin_EditUsers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to go back to the Accounts?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Code to navigate back to the login form
+                SuperAdmin_Accounts loginForm = new SuperAdmin_Accounts();
+                loginForm.Show();
+                this.Dispose();
+                GC.Collect();
+                this.Close();
+            }
+            else if (result == DialogResult.No)
+            {
+                // Cancel the form closing event
+                e.Cancel = true;
+            }
         }
     }
 }

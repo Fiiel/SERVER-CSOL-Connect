@@ -358,7 +358,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(Button_Refresh);
             Controls.Add(MainPanel_SeniorhighCL);
             Controls.Add(label3);
@@ -374,6 +373,7 @@
             Name = "SuperAdmin_Mapping";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Mapping";
+            FormClosing += SuperAdmin_Mapping_FormClosing;
             Panel_SideNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)Button_AddPC).EndInit();

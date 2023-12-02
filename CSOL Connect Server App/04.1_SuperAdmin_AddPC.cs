@@ -59,7 +59,7 @@ namespace CSOL_Connect_Server_App
                     {
                         MessageBox.Show("Computer Created Successfully!", "Computer Creation Result");
                         this.PCName = TextBox_PC.Text;
-                        
+
                         this.SelectedComputerLaboratory = clncbox.SelectedItem.ToString();
 
                         this.PCAddedSuccessfully = true;
@@ -86,6 +86,17 @@ namespace CSOL_Connect_Server_App
         private void Button_Back_Click(object sender, EventArgs e)
         {
             this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
+
+        private void SuperAdmin_AddPC_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

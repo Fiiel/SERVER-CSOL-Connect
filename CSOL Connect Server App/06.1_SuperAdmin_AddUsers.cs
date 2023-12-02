@@ -475,5 +475,25 @@ namespace CSOL_Connect_Server_App
         {
             Q3ans_txtbox.ResetText();
         }
+
+        private void SuperAdmin_AddUsers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to go back to the Accounts?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Code to navigate back to the login form
+                SuperAdmin_Accounts loginForm = new SuperAdmin_Accounts();
+                loginForm.Show();
+                this.Dispose();
+                GC.Collect();
+                this.Close();
+            }
+            else if (result == DialogResult.No)
+            {
+                // Cancel the form closing event
+                e.Cancel = true;
+            }
+        }
     }
 }

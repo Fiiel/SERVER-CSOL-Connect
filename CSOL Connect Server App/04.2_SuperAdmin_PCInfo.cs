@@ -326,6 +326,17 @@ namespace CSOL_Connect_Server_App
         private void Button_Back_Click(object sender, EventArgs e)
         {
             this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
+
+        private void SuperAdmin_PCInfo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

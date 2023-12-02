@@ -130,6 +130,7 @@
             Name = "Instructors";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Instructors";
+            FormClosing += Instructors_FormClosing;
             Load += Instructors_Load;
             ResumeLayout(false);
             PerformLayout();

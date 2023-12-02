@@ -252,9 +252,11 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "SuperAdmin_EditSchedule";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Edit Schedule";
+            FormClosing += SuperAdmin_EditSchedule_FormClosing;
             Load += SuperAdmin_EditSchedule_Load;
             ResumeLayout(false);
             PerformLayout();

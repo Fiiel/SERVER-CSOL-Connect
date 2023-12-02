@@ -129,6 +129,7 @@
             Name = "GradeAndSection";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Grade and Section";
+            FormClosing += GradeAndSection_FormClosing;
             Load += GradeAndSection_Load;
             ResumeLayout(false);
             PerformLayout();

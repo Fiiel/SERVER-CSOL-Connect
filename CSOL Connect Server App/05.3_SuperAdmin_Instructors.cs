@@ -188,6 +188,12 @@ namespace CSOL_Connect_Server_App
             }
         }
 
-
+        private void Instructors_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
     }
 }

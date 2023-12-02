@@ -135,7 +135,7 @@ namespace CSOL_Connect_Server_App
                         {
                             checkUsageCmd.Parameters.AddWithValue("@GraSec", selectedGraSec);
                             int usageCount = (int)checkUsageCmd.ExecuteScalar();
-                           
+
                             if (usageCount > 0)
                             {
                                 // The class is being used in schedules, so prevent deletion
@@ -180,6 +180,14 @@ namespace CSOL_Connect_Server_App
             {
                 MessageBox.Show("Please select an instructor to delete.");
             }
+        }
+
+        private void GradeAndSection_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

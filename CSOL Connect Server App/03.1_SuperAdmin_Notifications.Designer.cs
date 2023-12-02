@@ -87,16 +87,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(555, 378);
-            ControlBox = false;
             Controls.Add(Label_PasswordResetRequest);
             Controls.Add(DataGridView_PasswordRequest);
             Controls.Add(Button_GoBack);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "SuperAdmin_Notifications";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Notifications";
+            FormClosing += SuperAdmin_Notifications_FormClosing;
             Load += SuperAdmin_Notifications_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridView_PasswordRequest).EndInit();
             ResumeLayout(false);

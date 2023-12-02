@@ -283,7 +283,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(GraSec_button);
             Controls.Add(instructorbtn);
             Controls.Add(SearchBtn);
@@ -298,6 +297,7 @@
             Name = "SuperAdmin_Scheduler";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Scheduler";
+            FormClosing += SuperAdmin_Scheduler_FormClosing;
             Load += SuperAdmin_Scheduler_Load;
             Panel_SideNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();

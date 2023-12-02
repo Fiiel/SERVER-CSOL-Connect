@@ -181,7 +181,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(301, 277);
-            ControlBox = false;
             Controls.Add(Button_Back);
             Controls.Add(PictureBox_DeletePC);
             Controls.Add(Panel_PCInfo);
@@ -193,6 +192,7 @@
             Name = "SuperAdmin_PCInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Computer Information";
+            FormClosing += SuperAdmin_PCInfo_FormClosing;
             ((System.ComponentModel.ISupportInitialize)PictureBox_DeletePC).EndInit();
             Panel_PCInfo.ResumeLayout(false);
             Panel_PCInfo.PerformLayout();

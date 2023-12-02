@@ -552,10 +552,12 @@
             Controls.Add(Panel_SideNav);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "SuperAdmin_Dashboard";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Dashboard";
+            FormClosing += SuperAdmin_Dashboard_FormClosing;
             Load += SuperAdmin_Dashboard_Load;
             Panel_SideNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();

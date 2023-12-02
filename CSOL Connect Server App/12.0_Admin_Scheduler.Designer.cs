@@ -210,7 +210,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(SearchBtn);
             Controls.Add(Searchbar);
             Controls.Add(OngoingLabs);
@@ -219,10 +218,10 @@
             Controls.Add(Panel_SideNav);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "Admin_Scheduler";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin - Scheduler";
+            FormClosing += Admin_Scheduler_FormClosing;
             Load += Admin_Scheduler_Load;
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();

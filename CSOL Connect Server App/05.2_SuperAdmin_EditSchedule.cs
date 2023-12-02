@@ -309,5 +309,25 @@ namespace CSOL_Connect_Server_App
             GC.Collect();
             this.Close();
         }
+
+        private void SuperAdmin_EditSchedule_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to go back to the Scheduler", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Code to navigate back to the login form
+                SuperAdmin_Scheduler loginForm = new SuperAdmin_Scheduler();
+                loginForm.Show();
+                this.Dispose();
+                GC.Collect();
+                this.Close();
+            }
+            else if (result == DialogResult.No)
+            {
+                // Cancel the form closing event
+                e.Cancel = true;
+            }
+        }
     }
 }

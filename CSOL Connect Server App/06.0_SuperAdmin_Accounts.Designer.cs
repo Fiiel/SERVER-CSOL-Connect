@@ -249,7 +249,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(SearchBtn);
             Controls.Add(Searchbar);
             Controls.Add(OngoingLabs);
@@ -262,6 +261,7 @@
             Name = "SuperAdmin_Accounts";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Accounts";
+            FormClosing += SuperAdmin_Accounts_FormClosing;
             Load += SuperAdmin_Accounts_Load;
             Panel_SideNav.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();

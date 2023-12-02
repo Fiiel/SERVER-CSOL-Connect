@@ -335,10 +335,10 @@
             Controls.Add(Panel_SideNav);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "Admin_Mapping";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin - Mapping";
+            FormClosing += Admin_Mapping_FormClosing;
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();
             Panel_SideNav.ResumeLayout(false);
             Panel_SeniorHighCL.ResumeLayout(false);

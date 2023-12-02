@@ -283,6 +283,7 @@
             Name = "SuperAdmin_AddSchedule";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Add Schedule";
+            FormClosing += SuperAdmin_AddSchedule_FormClosing;
             Load += SuperAdmin_AddSchedule_Load;
             ResumeLayout(false);
             PerformLayout();

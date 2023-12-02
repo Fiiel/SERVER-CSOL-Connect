@@ -471,7 +471,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1264, 681);
-            ControlBox = false;
             Controls.Add(PictureBox_ExportCSV);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -500,10 +499,10 @@
             Controls.Add(Panel_SideNav);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MinimizeBox = false;
             Name = "Admin_Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin - Dashboard";
+            FormClosing += Admin_Dashboard_FormClosing;
             Load += Admin_Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)PicBox_SuperAdmin_CSOLLogo).EndInit();
             Panel_SideNav.ResumeLayout(false);

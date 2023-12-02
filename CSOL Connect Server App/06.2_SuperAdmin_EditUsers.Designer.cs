@@ -448,7 +448,10 @@
             Controls.Add(label2);
             Controls.Add(fn);
             Controls.Add(label1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "SuperAdmin_EditUsers";
+            FormClosing += SuperAdmin_EditUsers_FormClosing;
             Load += SuperAdmin_EditUsers_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
