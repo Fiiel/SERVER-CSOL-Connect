@@ -269,9 +269,11 @@ namespace CSOL_Connect_Server_App
         }
         private void SecurityQuestions_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Close();
             LoginForm page = new LoginForm();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

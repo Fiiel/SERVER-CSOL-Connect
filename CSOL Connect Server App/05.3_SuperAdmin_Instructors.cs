@@ -53,9 +53,11 @@ namespace CSOL_Connect_Server_App
                                 {
                                     MessageBox.Show("Instructor added successfully!");
                                     // Clear the textbox after successful insertion
-                                    this.Hide();
                                     Instructors page = new Instructors();
                                     page.Show();
+                                    this.Dispose();
+                                    GC.Collect();
+                                    this.Close();
                                 }
                                 else
                                 {
@@ -160,9 +162,11 @@ namespace CSOL_Connect_Server_App
                                         MessageBox.Show("Instructor deleted successfully!");
                                         Instructor_Combobox.Items.RemoveAt(Instructor_Combobox.SelectedIndex);
                                         // Clear the ComboBox selection
-                                        this.Hide();
                                         Instructors page = new Instructors();
                                         page.Show();
+                                        this.Dispose();
+                                        GC.Collect();
+                                        this.Close();
                                     }
                                     else
                                     {

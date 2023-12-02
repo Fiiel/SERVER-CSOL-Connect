@@ -196,9 +196,11 @@ namespace CSOL_Connect_Server_App
                             if (rowsAffected > 0)
                             {
                                 MessageBox.Show("Schedule Updated Successfully!");
-                                this.Close();
                                 SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
                                 page.Show();
+                                this.Dispose();
+                                GC.Collect();
+                                this.Close();
                             }
                             else
                             {
@@ -214,9 +216,11 @@ namespace CSOL_Connect_Server_App
 
                     else
                     {
-                        this.Close();
                         SuperAdmin_AddSchedule page = new SuperAdmin_AddSchedule();
                         page.Show();
+                        this.Dispose();
+                        GC.Collect();
+                        this.Close();
                     }
                 }
             }
@@ -299,9 +303,11 @@ namespace CSOL_Connect_Server_App
 
         private void Button_GoBack_Click(object sender, EventArgs e)
         {
-            this.Close();
             SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
     }
 }

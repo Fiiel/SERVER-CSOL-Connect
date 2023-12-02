@@ -24,16 +24,20 @@ namespace CSOL_Connect_Server_App
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
             page.ShowDialog();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_AddUsers page = new SuperAdmin_AddUsers();
             page.ShowDialog();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void pwReq1_Click(object sender, EventArgs e)
@@ -257,9 +261,11 @@ namespace CSOL_Connect_Server_App
                         {
                             MessageBox.Show("Account Created Successfully!");
 
-                            this.Hide();
                             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
                             page.ShowDialog();
+                            this.Dispose();
+                            GC.Collect();
+                            this.Close();
                         }
                         else
                         {
@@ -274,9 +280,11 @@ namespace CSOL_Connect_Server_App
                 }
                 else
                 {
-                    this.Hide();
                     SuperAdmin_AddUsers page = new SuperAdmin_AddUsers();
                     page.ShowDialog();
+                    this.Dispose();
+                    GC.Collect();
+                    this.Close();
                 }
             }
         }

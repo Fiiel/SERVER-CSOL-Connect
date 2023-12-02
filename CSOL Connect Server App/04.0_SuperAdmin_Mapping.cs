@@ -21,18 +21,13 @@ namespace CSOL_Connect_Server_App
         //              Code for SideNav                   //
         //-------------------------------------------------//
 
-        private void Button_Logout_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            LoginForm page = new LoginForm();
-            page.Show();
-        }
-
         private void Button_Dashboard_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Mapping_Click(object sender, EventArgs e)
@@ -42,17 +37,31 @@ namespace CSOL_Connect_Server_App
 
         private void Button_Scheduler_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Accounts_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
+
+        private void Button_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm page = new LoginForm();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
+
 
         //-------------------------------------------------//
         //           LoadPCIconsFromDatabase();            //

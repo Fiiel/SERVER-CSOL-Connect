@@ -43,16 +43,20 @@ namespace CSOL_Connect_Server_App
 
         private void Button_Dashboard_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Admin_Dashboard page = new Admin_Dashboard();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Mapping_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Admin_Mapping page = new Admin_Mapping();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Scheduler_Click(object sender, EventArgs e)
@@ -62,9 +66,11 @@ namespace CSOL_Connect_Server_App
 
         private void Button_Logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
             LoginForm page = new LoginForm();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Searchbar_KeyPress(object sender, KeyPressEventArgs e)

@@ -53,9 +53,11 @@ namespace CSOL_Connect_Server_App
                                 {
                                     MessageBox.Show("Class added successfully!");
                                     // Clear the textbox after successful insertion
-                                    this.Hide();
                                     GradeAndSection page = new GradeAndSection();
                                     page.Show();
+                                    this.Dispose();
+                                    GC.Collect();
+                                    this.Close();
                                 }
                                 else
                                 {
@@ -154,9 +156,11 @@ namespace CSOL_Connect_Server_App
                                         MessageBox.Show("Class deleted successfully!");
                                         Classes_Combobox.Items.RemoveAt(Classes_Combobox.SelectedIndex);
                                         // Clear the ComboBox selection
-                                        this.Hide();
                                         GradeAndSection page = new GradeAndSection();
                                         page.Show();
+                                        this.Dispose();
+                                        GC.Collect();
+                                        this.Close();
                                     }
                                     else
                                     {

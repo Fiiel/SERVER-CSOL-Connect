@@ -65,9 +65,11 @@ namespace CSOL_Connect_Server_App
 
         private void Button_GoBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void DataGridView_PasswordRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)

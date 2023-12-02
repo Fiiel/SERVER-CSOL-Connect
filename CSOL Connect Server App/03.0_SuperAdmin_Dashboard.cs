@@ -64,38 +64,47 @@ namespace CSOL_Connect_Server_App
 
         private void Button_Mapping_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Mapping page = new SuperAdmin_Mapping();
             page.PreSelectElementaryCL();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Scheduler_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Accounts_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
             LoginForm page = new LoginForm();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void PictureBox_Notification_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Notifications page = new SuperAdmin_Notifications();
             page.Show();
+            this.Dispose();
+            this.Close();
         }
 
         private void LoadHistoryLogData()

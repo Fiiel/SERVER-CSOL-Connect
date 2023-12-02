@@ -395,9 +395,11 @@ namespace CSOL_Connect_Server_App
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
             page.ShowDialog();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private bool IsLastSuperAdmin()

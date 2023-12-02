@@ -16,9 +16,11 @@ namespace CSOL_Connect_Server_App
 
         private void ClearButton_Click(object sender, MouseEventArgs e)
         {
-            this.Hide();
             LoginForm page = new LoginForm();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void LoginButton_Click(object sender, MouseEventArgs e)
@@ -82,15 +84,19 @@ namespace CSOL_Connect_Server_App
 
                                             if (userLevel == "Admin")
                                             {
-                                                this.Hide();
                                                 Admin_Dashboard page = new Admin_Dashboard();
                                                 page.Show();
+                                                this.Dispose();
+                                                GC.Collect();
+                                                this.Close();
                                             }
                                             else if (userLevel == "Super Admin")
                                             {
-                                                this.Hide();
                                                 SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
                                                 page.Show();
+                                                this.Dispose();
+                                                GC.Collect();
+                                                this.Close();
                                             }
                                             else
                                             {
@@ -112,16 +118,20 @@ namespace CSOL_Connect_Server_App
                                             if (userLevel == "Admin")
                                             {
                                                 int userId = int.Parse(uid);
-                                                this.Hide();
                                                 forAdmin_ChangePW_Required page = new forAdmin_ChangePW_Required(userId);
                                                 page.Show();
+                                                this.Dispose();
+                                                GC.Collect();
+                                                this.Close();
                                             }
                                             else if (userLevel == "Super Admin")
                                             {
                                                 int userId = int.Parse(uid);
-                                                this.Hide();
                                                 ChangePW_Required page = new ChangePW_Required(userId);
                                                 page.Show();
+                                                this.Dispose();
+                                                GC.Collect();
+                                                this.Close();
                                             }
                                             else
                                             {
@@ -150,9 +160,11 @@ namespace CSOL_Connect_Server_App
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred: " + ex);
-                    this.Hide();
                     LoginForm page = new LoginForm();
                     page.Show();
+                    this.Dispose();
+                    GC.Collect();
+                    this.Close();
                 }
             }
         }
@@ -213,8 +225,10 @@ namespace CSOL_Connect_Server_App
             {
                 int Userid = int.Parse(TextBox_UserID.Text);
                 SecurityQuestions page = new SecurityQuestions(Userid);
-                this.Hide();
                 page.Show();
+                this.Dispose();
+                GC.Collect();
+                this.Close();
             }
             else
             {

@@ -20,26 +20,23 @@ namespace CSOL_Connect_Server_App
             InitializeComponent();
         }
 
-        private void Button_Logout_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            LoginForm page = new LoginForm();
-            page.Show();
-        }
-
         private void Button_Dashboard_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Dashboard page = new SuperAdmin_Dashboard();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Mapping_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Mapping page = new SuperAdmin_Mapping();
             page.PreSelectElementaryCL();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_Scheduler_Click(object sender, EventArgs e)
@@ -49,16 +46,29 @@ namespace CSOL_Connect_Server_App
 
         private void Button_Accounts_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Accounts page = new SuperAdmin_Accounts();
             page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
+
+        private void Button_Logout_Click(object sender, EventArgs e)
+        {
+            LoginForm page = new LoginForm();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Button_NewSchedule_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_AddSchedule page = new SuperAdmin_AddSchedule();
-            page.ShowDialog();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void RefreshGrid()

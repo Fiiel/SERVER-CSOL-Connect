@@ -101,16 +101,20 @@ namespace CSOL_Connect_Server_App
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
-            page.ShowDialog();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            this.Hide();
             SuperAdmin_AddSchedule page = new SuperAdmin_AddSchedule();
-            page.ShowDialog();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
         }
 
         private void Submit_Click(object sender, EventArgs e)
@@ -160,9 +164,11 @@ namespace CSOL_Connect_Server_App
                             {
                                 MessageBox.Show("Schedule Created Successfully!");
 
-                                this.Hide();
                                 SuperAdmin_Scheduler page = new SuperAdmin_Scheduler();
                                 page.ShowDialog();
+                                this.Dispose();
+                                GC.Collect();
+                                this.Close();
                             }
                             else
                             {
@@ -177,9 +183,11 @@ namespace CSOL_Connect_Server_App
                     }
                     else
                     {
-                        this.Hide();
                         SuperAdmin_AddSchedule page = new SuperAdmin_AddSchedule();
                         page.ShowDialog();
+                        this.Dispose();
+                        GC.Collect();
+                        this.Close();
                     }
                 }
             }

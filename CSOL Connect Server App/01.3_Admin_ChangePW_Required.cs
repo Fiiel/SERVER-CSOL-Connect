@@ -128,9 +128,11 @@ namespace CSOL_Connect_Server_App
                             if (rowsAffected > 0)
                             {
                                 MessageBox.Show("Password updated successfully.");
-                                this.Hide();
                                 Admin_Dashboard page = new Admin_Dashboard();
                                 page.Show();
+                                this.Dispose();
+                                GC.Collect();
+                                this.Close();
                             }
                             else
                             {
