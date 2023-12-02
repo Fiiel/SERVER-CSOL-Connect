@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Data.SqlClient;
+using System.Media;
 
 namespace CSOL_Connect_Server_App
 {
@@ -164,6 +165,7 @@ namespace CSOL_Connect_Server_App
             }
             else if (clientMessage.Contains("Mouse is disconnected"))
             {
+                playDisconnectSFX();
                 pcStates[pcName][0] = false; // Mouse disconnected
             }
 
@@ -173,6 +175,7 @@ namespace CSOL_Connect_Server_App
             }
             else if (clientMessage.Contains("Keyboard is disconnected"))
             {
+                playDisconnectSFX();
                 pcStates[pcName][1] = false; // Keyboard disconnected
             }
 
@@ -405,6 +408,13 @@ namespace CSOL_Connect_Server_App
             }
 
             return clno;
+        }
+
+        private void playDisconnectSFX()
+        {
+            SoundPlayer disconnectSFX = new SoundPlayer();
+            disconnectSFX.SoundLocation = "sfx\\disconnect-sfx.wav";
+            disconnectSFX.Play();
         }
     }
 }
