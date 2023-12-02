@@ -33,7 +33,7 @@
             PictureBox_DeletePC = new PictureBox();
             Panel_PCInfo = new Panel();
             Label_Keyboard = new Label();
-            PictureBox_LANRead = new PictureBox();
+            PictureBox_EthernetRead = new PictureBox();
             PictureBox_KeyboardRead = new PictureBox();
             PictureBox_MouseRead = new PictureBox();
             Label_LAN = new Label();
