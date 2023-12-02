@@ -161,7 +161,7 @@ namespace CSOL_Connect_Server_App
                     string pcName = pcLabels[index].Text;
 
                     // Pass the PC name to the PC_Info form
-                    Admin_PCInfo pcInfoForm = new Admin_PCInfo(pcName);
+                    SuperAdmin_PCInfo pcInfoForm = new SuperAdmin_PCInfo(pcName);
                     pcInfoForm.ShowDialog();
 
                     // Check if the PC was successfully deleted in PC_Info form
