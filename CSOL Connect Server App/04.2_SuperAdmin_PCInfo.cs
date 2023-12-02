@@ -7,6 +7,7 @@ namespace CSOL_Connect_Server_App
         private string pcName;
         private string mouseIconPath; // Separate variables for mouse and keyboard images
         private string keyboardIconPath;
+        private string ethernetIconPath;
 
         public bool PCDeletedSuccessfully { get; private set; }
 
@@ -26,6 +27,7 @@ namespace CSOL_Connect_Server_App
 
             LoadLastKnownMouseImageFromDatabase();
             LoadLastKnownKeyboardImageFromDatabase(); // Load the keyboard image separately
+            LoadLastKnownEthernetImageFromDatabase();
         }
 
 
@@ -66,6 +68,25 @@ namespace CSOL_Connect_Server_App
 
             // Update the database with the new image path for the keyboard
             UpdateKeyboardImage(keyboardImagePath);
+        }
+
+        public void UpdateEthernetStatusImage(bool isEthernetConnected)
+        {
+            string ethernetImagePath;
+            if (isEthernetConnected)
+            {
+                ethernetImagePath = "img\\circle_green.png";
+            }
+            else
+            {
+                ethernetImagePath = "img\\circle_red.png";
+            }
+
+            // Update the PictureBox_KeyboardRead's image
+            PictureBox_EthernetRead.Image = Image.FromFile(ethernetImagePath);
+
+            // Update the database with the new image path for the keyboard
+            UpdateEthernetImage(ethernetImagePath);
         }
 
         private void UpdateMouseImage(string mouseIconPath)
@@ -137,6 +158,41 @@ namespace CSOL_Connect_Server_App
                 }
             }
         }
+
+        private void UpdateEthernetImage(string ethernetIconPath)
+        {
+            if (!string.IsNullOrWhiteSpace(this.PCName))
+            {
+                try
+                {
+                    // Update the PCMap table in your database with the new keyboard icon path
+                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                    connection.Open();
+
+                    string query = "UPDATE PCMap SET EthernetIconPath = @ethernetIconPath WHERE PCName = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    command.Parameters.AddWithValue("@ethernetIconPath", ethernetIconPath);
+                    command.Parameters.AddWithValue("@name", this.PCName);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                    }
+                    else
+                    {
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating keyboard icon path: " + ex.Message, "Update Error");
+                }
+            }
+        }
+
 
         private void PictureBox_DeletePC_Click(object sender, EventArgs e)
         {
@@ -225,6 +281,37 @@ namespace CSOL_Connect_Server_App
                     {
                         // Set the PictureBox_KeyboardRead's image to the last known image path
                         PictureBox_KeyboardRead.Image = Image.FromFile(keyboardIconPath);
+                    }
+
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while loading last known keyboard image: " + ex.Message, "Load Error");
+                }
+            }
+        }
+
+        private void LoadLastKnownEthernetImageFromDatabase()
+        {
+            if (!string.IsNullOrWhiteSpace(this.PCName))
+            {
+                try
+                {
+                    // Retrieve the last known image path for the keyboard from the database
+                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                    connection.Open();
+
+                    string query = "SELECT EthernetIconPath FROM PCMap WHERE PCName = @name";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", this.PCName);
+
+                    ethernetIconPath = command.ExecuteScalar() as string; // Store in keyboardIconPath
+
+                    if (!string.IsNullOrEmpty(ethernetIconPath))
+                    {
+                        // Set the PictureBox_KeyboardRead's image to the last known image path
+                        PictureBox_EthernetRead.Image = Image.FromFile(ethernetIconPath);
                     }
 
                     connection.Close();

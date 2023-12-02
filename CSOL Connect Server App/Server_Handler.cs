@@ -4,6 +4,7 @@ using System.Net;
 using System.Text;
 using System.Data.SqlClient;
 using System.Media;
+using System.Collections.Concurrent;
 
 namespace CSOL_Connect_Server_App
 {
@@ -134,6 +135,24 @@ namespace CSOL_Connect_Server_App
                                     pcInfoForm.UpdateKeyboardStatusImage(false);
                                 }
                             }
+
+                            if (clientMessage.Contains("LAN is connected"))
+                            {
+                                UpdateEthernetIconInDatabase(pcName, clientMessage);
+                                if (pcInfoForm != null)
+                                {
+                                    pcInfoForm.UpdateEthernetStatusImage(true);
+                                }
+                            }
+                            else if (clientMessage.Contains("LAN is disconnected"))
+                            {
+                                UpdateEthernetIconInDatabase(pcName, clientMessage);
+                                LogEthernetDisconnection(pcName);
+                                if (pcInfoForm != null)
+                                {
+                                    pcInfoForm.UpdateEthernetStatusImage(false);
+                                }
+                            }
                         }
                     }
                 }
@@ -155,7 +174,7 @@ namespace CSOL_Connect_Server_App
             if (!pcStates.ContainsKey(pcName))
             {
                 Debug.WriteLine("4th stop");
-                pcStates[pcName] = new bool[2]; // Assuming 2 elements for mouse and keyboard states
+                pcStates[pcName] = new bool[3]; // Assuming 2 elements for mouse and keyboard states
             }
 
             // Update the state based on the message
@@ -179,8 +198,18 @@ namespace CSOL_Connect_Server_App
                 pcStates[pcName][1] = false; // Keyboard disconnected
             }
 
+            if (clientMessage.Contains("LAN is connected"))
+            {
+                pcStates[pcName][2] = true; // LAN connected
+            }
+            else if (clientMessage.Contains("LAN is disconnected"))
+            {
+                playDisconnectSFX();
+                pcStates[pcName][2] = false; // LAN disconnected
+            }
+
             // Update the icon based on the overall state
-            if (pcStates[pcName][0] && pcStates[pcName][1])
+            if (pcStates[pcName][0] && pcStates[pcName][1] && pcStates[pcName][2])
             {
                 // Both mouse and keyboard are connected
                 UpdateIcon(pcName, "img\\computer_green.png");
@@ -310,6 +339,47 @@ namespace CSOL_Connect_Server_App
             }
         }
 
+        private void UpdateEthernetIconInDatabase(string pcName, string clientMessage)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+
+                        // Determine the keyboard icon path based on the clientMessage
+                        string ethernetIconPath = "";
+
+                        if (clientMessage.Contains("LAN is connected"))
+                        {
+                            ethernetIconPath = "img\\circle_green.png";
+                        }
+                        else if (clientMessage.Contains("LAN is disconnected"))
+                        {
+                            ethernetIconPath = "img\\circle_red.png";
+                        }
+
+                        // Update the database with the new keyboard icon path
+                        string updateQuery = "UPDATE PCMap SET EthernetIconPath = @EthernetIconPath WHERE PCName = @PCName";
+
+                        command.CommandText = updateQuery;
+                        command.Parameters.AddWithValue("@EthernetIconPath", ethernetIconPath);
+                        command.Parameters.AddWithValue("@PCName", pcName);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating ethernet icon in the database: {ex.Message}");
+            }
+        }
+
         private void LogMouseDisconnection(string pcName)
         {
             try
@@ -377,6 +447,41 @@ namespace CSOL_Connect_Server_App
             catch (Exception ex)
             {
                 Debug.WriteLine("Error logging keyboard disconnection: " + ex.Message);
+            }
+        }
+
+        private void LogEthernetDisconnection(string pcName)
+        {
+            try
+            {
+                // Get the CLno from the database
+                int clno = GetCLnoFromDatabase(pcName);
+
+                if (clno != -1)
+                {
+                    string currentDateFormatted = DateTime.Now.ToString("MMM dd yyyy");
+                    string currentTimeFormatted = DateTime.Now.ToString("h:mm tt");
+
+                    // Create a SQL connection and insert a new row into the HistoryLog table
+                    using (SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection()))
+                    {
+                        connection.Open();
+                        string query = "INSERT INTO HistoryLog (PCName, CLno, Issue_Desc, Date, Time) VALUES (@pcName, @clno, @issueDesc, @date, @time)";
+                        SqlCommand command = new SqlCommand(query, connection);
+
+                        command.Parameters.AddWithValue("@pcName", pcName);
+                        command.Parameters.AddWithValue("@clno", clno);
+                        command.Parameters.AddWithValue("@issueDesc", "Ethernet Cable is disconnected");
+                        command.Parameters.AddWithValue("@date", currentDateFormatted);
+                        command.Parameters.AddWithValue("@time", currentTimeFormatted); // Use the formatted time
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error logging ethernet disconnection: " + ex.Message);
             }
         }
 
