@@ -413,5 +413,14 @@ namespace CSOL_Connect_Server_App
             PictureBox_HighschoolCL.BackColor = SystemColors.Control;
             PictureBox_SeniorhighCL.BackColor = SystemColors.Control;
         }
+
+        private void Button_Refresh_Click(object sender, EventArgs e)
+        {
+            Admin_Mapping page = new Admin_Mapping();
+            page.Show();
+            this.Dispose();
+            GC.Collect();
+            this.Close();
+        }
     }
 }
