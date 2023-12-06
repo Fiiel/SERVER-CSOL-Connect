@@ -33,15 +33,12 @@
             PictureBox_DeletePC = new PictureBox();
             Panel_PCInfo = new Panel();
             Label_Keyboard = new Label();
-            PictureBox_EthernetRead = new PictureBox();
             PictureBox_KeyboardRead = new PictureBox();
             PictureBox_MouseRead = new PictureBox();
-            Label_LAN = new Label();
             Label_Mouse = new Label();
             Label_DeviceConnection = new Label();
             ((System.ComponentModel.ISupportInitialize)PictureBox_DeletePC).BeginInit();
             Panel_PCInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox_EthernetRead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_KeyboardRead).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_MouseRead).BeginInit();
             SuspendLayout();
@@ -53,7 +50,7 @@
             Button_Back.FlatStyle = FlatStyle.Popup;
             Button_Back.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             Button_Back.ForeColor = SystemColors.Control;
-            Button_Back.Location = new Point(30, 231);
+            Button_Back.Location = new Point(30, 185);
             Button_Back.Name = "Button_Back";
             Button_Back.Size = new Size(56, 23);
             Button_Back.TabIndex = 55;
@@ -66,7 +63,7 @@
             PictureBox_DeletePC.BackColor = Color.Transparent;
             PictureBox_DeletePC.Cursor = Cursors.Hand;
             PictureBox_DeletePC.Image = Properties.Resources.icons8_remove_66px_1;
-            PictureBox_DeletePC.Location = new Point(236, 224);
+            PictureBox_DeletePC.Location = new Point(236, 178);
             PictureBox_DeletePC.Name = "PictureBox_DeletePC";
             PictureBox_DeletePC.Size = new Size(33, 37);
             PictureBox_DeletePC.SizeMode = PictureBoxSizeMode.Zoom;
@@ -78,14 +75,12 @@
             // 
             Panel_PCInfo.BackColor = Color.White;
             Panel_PCInfo.Controls.Add(Label_Keyboard);
-            Panel_PCInfo.Controls.Add(PictureBox_EthernetRead);
             Panel_PCInfo.Controls.Add(PictureBox_KeyboardRead);
             Panel_PCInfo.Controls.Add(PictureBox_MouseRead);
-            Panel_PCInfo.Controls.Add(Label_LAN);
             Panel_PCInfo.Controls.Add(Label_Mouse);
             Panel_PCInfo.Location = new Point(30, 72);
             Panel_PCInfo.Name = "Panel_PCInfo";
-            Panel_PCInfo.Size = new Size(239, 144);
+            Panel_PCInfo.Size = new Size(239, 100);
             Panel_PCInfo.TabIndex = 51;
             // 
             // Label_Keyboard
@@ -101,17 +96,6 @@
             Label_Keyboard.Size = new Size(172, 35);
             Label_Keyboard.TabIndex = 43;
             Label_Keyboard.Text = "       Keyboard";
-            // 
-            // PictureBox_EthernetRead
-            // 
-            PictureBox_EthernetRead.BackColor = Color.Transparent;
-            PictureBox_EthernetRead.Image = Properties.Resources.circle_grey3;
-            PictureBox_EthernetRead.Location = new Point(181, 98);
-            PictureBox_EthernetRead.Name = "PictureBox_EthernetRead";
-            PictureBox_EthernetRead.Size = new Size(42, 35);
-            PictureBox_EthernetRead.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBox_EthernetRead.TabIndex = 42;
-            PictureBox_EthernetRead.TabStop = false;
             // 
             // PictureBox_KeyboardRead
             // 
@@ -134,20 +118,6 @@
             PictureBox_MouseRead.SizeMode = PictureBoxSizeMode.Zoom;
             PictureBox_MouseRead.TabIndex = 40;
             PictureBox_MouseRead.TabStop = false;
-            // 
-            // Label_LAN
-            // 
-            Label_LAN.AutoSize = true;
-            Label_LAN.BackColor = Color.Transparent;
-            Label_LAN.Font = new Font("Segoe UI Semibold", 18.25F, FontStyle.Bold, GraphicsUnit.Point);
-            Label_LAN.ForeColor = Color.Black;
-            Label_LAN.Image = Properties.Resources.icons8_ethernet_on_50px1;
-            Label_LAN.ImageAlign = ContentAlignment.MiddleLeft;
-            Label_LAN.Location = new Point(4, 98);
-            Label_LAN.Name = "Label_LAN";
-            Label_LAN.Size = new Size(113, 35);
-            Label_LAN.TabIndex = 40;
-            Label_LAN.Text = "       LAN";
             // 
             // Label_Mouse
             // 
@@ -180,7 +150,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
-            ClientSize = new Size(301, 277);
+            ClientSize = new Size(301, 231);
             ControlBox = false;
             Controls.Add(Button_Back);
             Controls.Add(PictureBox_DeletePC);
@@ -196,7 +166,6 @@
             ((System.ComponentModel.ISupportInitialize)PictureBox_DeletePC).EndInit();
             Panel_PCInfo.ResumeLayout(false);
             Panel_PCInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBox_EthernetRead).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_KeyboardRead).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBox_MouseRead).EndInit();
             ResumeLayout(false);
@@ -209,10 +178,8 @@
         private PictureBox PictureBox_DeletePC;
         private Panel Panel_PCInfo;
         private Label Label_Keyboard;
-        private PictureBox PictureBox_EthernetRead;
         private PictureBox PictureBox_KeyboardRead;
         private PictureBox PictureBox_MouseRead;
-        private Label Label_LAN;
         private Label Label_Mouse;
         private Label Label_DeviceConnection;
     }
