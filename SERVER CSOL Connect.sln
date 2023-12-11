@@ -5,31 +5,25 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SERVER CSOL Connect", "CSOL Connect Server App\SERVER CSOL Connect.csproj", "{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CSOLConnectServerSetup", "CSOLConnectServerSetup\CSOLConnectServerSetup.vdproj", "{F4E56B2A-98D2-4713-83B2-E33F7F72A73B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|Default = Debug|Default
 		Release|Any CPU = Release|Any CPU
-		Release|Default = Release|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Debug|Default.ActiveCfg = Debug|Any CPU
-		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Debug|Default.Build.0 = Debug|Any CPU
 		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Release|Default.ActiveCfg = Release|Any CPU
-		{DDBE3AB9-2AEF-4AAE-9274-4D1C0D69D56A}.Release|Default.Build.0 = Release|Any CPU
+		{F4E56B2A-98D2-4713-83B2-E33F7F72A73B}.Debug|Any CPU.ActiveCfg = Debug
+		{F4E56B2A-98D2-4713-83B2-E33F7F72A73B}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EBD2E54-C3DC-4B9C-9D74-50FF0EF5D2EA}
-	EndGlobalSection
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 EndGlobal
