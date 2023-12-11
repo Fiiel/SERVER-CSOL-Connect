@@ -74,7 +74,9 @@ namespace CSOL_Connect_Server_App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error with connecting to the database: " + ex.Message);
+                MessageBox.Show("SQL Server Management Studio is not opened. " +  Environment.NewLine +
+                "- Please quit this application, then open the SQL Server Management first" + Environment.NewLine +
+                "- Then, connect to the local database, before starting the CSOL Connect Server application");
             }
         }
     }
