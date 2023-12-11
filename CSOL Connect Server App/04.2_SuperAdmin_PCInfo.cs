@@ -27,7 +27,7 @@ namespace CSOL_Connect_Server_App
 
             LoadLastKnownMouseImageFromDatabase();
             LoadLastKnownKeyboardImageFromDatabase(); // Load the keyboard image separately
-            LoadLastKnownEthernetImageFromDatabase();
+            //LoadLastKnownEthernetImageFromDatabase();
         }
 
 
@@ -70,24 +70,24 @@ namespace CSOL_Connect_Server_App
             UpdateKeyboardImage(keyboardImagePath);
         }
 
-        public void UpdateEthernetStatusImage(bool isEthernetConnected)
-        {
-            string ethernetImagePath;
-            if (isEthernetConnected)
-            {
-                ethernetImagePath = "img\\circle_green.png";
-            }
-            else
-            {
-                ethernetImagePath = "img\\circle_red.png";
-            }
+        //public void UpdateEthernetStatusImage(bool isEthernetConnected)
+        //{
+        //    string ethernetImagePath;
+        //    if (isEthernetConnected)
+        //    {
+        //        ethernetImagePath = "img\\circle_green.png";
+        //    }
+        //    else
+        //    {
+        //        ethernetImagePath = "img\\circle_red.png";
+        //    }
 
-            // Update the PictureBox_KeyboardRead's image
-            PictureBox_EthernetRead.Image = Image.FromFile(ethernetImagePath);
+        //    // Update the PictureBox_KeyboardRead's image
+        //    PictureBox_EthernetRead.Image = Image.FromFile(ethernetImagePath);
 
-            // Update the database with the new image path for the keyboard
-            UpdateEthernetImage(ethernetImagePath);
-        }
+        //    // Update the database with the new image path for the keyboard
+        //    UpdateEthernetImage(ethernetImagePath);
+        //}
 
         private void UpdateMouseImage(string mouseIconPath)
         {
@@ -292,36 +292,36 @@ namespace CSOL_Connect_Server_App
             }
         }
 
-        private void LoadLastKnownEthernetImageFromDatabase()
-        {
-            if (!string.IsNullOrWhiteSpace(this.PCName))
-            {
-                try
-                {
-                    // Retrieve the last known image path for the keyboard from the database
-                    SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
-                    connection.Open();
+        //private void LoadLastKnownEthernetImageFromDatabase()
+        //{
+        //    if (!string.IsNullOrWhiteSpace(this.PCName))
+        //    {
+        //        try
+        //        {
+        //            // Retrieve the last known image path for the keyboard from the database
+        //            SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+        //            connection.Open();
 
-                    string query = "SELECT EthernetIconPath FROM PCMap WHERE PCName = @name";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@name", this.PCName);
+        //            string query = "SELECT EthernetIconPath FROM PCMap WHERE PCName = @name";
+        //            SqlCommand command = new SqlCommand(query, connection);
+        //            command.Parameters.AddWithValue("@name", this.PCName);
 
-                    ethernetIconPath = command.ExecuteScalar() as string; // Store in keyboardIconPath
+        //            ethernetIconPath = command.ExecuteScalar() as string; // Store in keyboardIconPath
 
-                    if (!string.IsNullOrEmpty(ethernetIconPath))
-                    {
-                        // Set the PictureBox_KeyboardRead's image to the last known image path
-                        PictureBox_EthernetRead.Image = Image.FromFile(ethernetIconPath);
-                    }
+        //            if (!string.IsNullOrEmpty(ethernetIconPath))
+        //            {
+        //                // Set the PictureBox_KeyboardRead's image to the last known image path
+        //                PictureBox_EthernetRead.Image = Image.FromFile(ethernetIconPath);
+        //            }
 
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while loading last known keyboard image: " + ex.Message, "Load Error");
-                }
-            }
-        }
+        //            connection.Close();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("An error occurred while loading last known keyboard image: " + ex.Message, "Load Error");
+        //        }
+        //    }
+        //}
 
         private void Button_Back_Click(object sender, EventArgs e)
         {
