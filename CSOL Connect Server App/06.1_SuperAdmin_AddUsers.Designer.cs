@@ -617,7 +617,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(1062, 630);
-            ControlBox = false;
             Controls.Add(groupBox1);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox4);
@@ -649,6 +648,7 @@
             Name = "SuperAdmin_AddUsers";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Admin - Add Account";
+            FormClosing += SuperAdmin_AddUsers_FormClosing;
             Load += addUsers_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

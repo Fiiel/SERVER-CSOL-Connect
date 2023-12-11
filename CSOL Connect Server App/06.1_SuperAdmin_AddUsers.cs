@@ -475,5 +475,14 @@ namespace CSOL_Connect_Server_App
         {
             Q3ans_txtbox.ResetText();
         }
+
+        private void SuperAdmin_AddUsers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Handle user closing the form
+                Application.Exit();
+            }
+        }
     }
 }

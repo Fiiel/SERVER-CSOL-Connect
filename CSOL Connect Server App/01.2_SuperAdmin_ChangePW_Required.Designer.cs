@@ -240,6 +240,7 @@
             Name = "ChangePW_Required";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Change Password";
+            FormClosing += ChangePW_Required_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);

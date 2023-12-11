@@ -236,6 +236,13 @@ namespace CSOL_Connect_Server_App
             }
         }
 
-
+        private void ChangePW_Required_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Handle user closing the form
+                Application.Exit();
+            }
+        }
     }
 }
