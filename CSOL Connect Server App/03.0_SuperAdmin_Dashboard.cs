@@ -232,7 +232,10 @@ namespace CSOL_Connect_Server_App
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
-                    saveFileDialog.FileName = "ExportedData.csv";
+
+                    // Set the file name to include the current date and time
+                    string currentDateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    saveFileDialog.FileName = $"HistoryLog_{currentDateTime}.csv";
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -281,6 +284,7 @@ namespace CSOL_Connect_Server_App
                 MessageBox.Show("An error occurred while exporting to CSV: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void PerformSearchFilter()
         {
