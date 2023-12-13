@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_69E4A22411D840C0B2F81586105C33C3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_739A13A32F384BB3BB7891F9BDB867E1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -328,6 +334,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -666,6 +680,26 @@
             "TargetName" = "8:csol_logo.ico"
             "Tag" = "8:"
             "Folder" = "8:_6A47732FBFA048E2BB70637CBDC3D713"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69E4A22411D840C0B2F81586105C33C3"
+            {
+            "SourcePath" = "8:..\\..\\README2.txt"
+            "TargetName" = "8:README2.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_A5FF7CE791474E2DB6F865B0970124DB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1279,7 +1313,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CSOL Connect Server"
         "ProductCode" = "8:{F4E63AA4-9A3C-4FF4-92E1-AF4E767F9D11}"
-        "PackageCode" = "8:{DE86C9AD-F11D-414F-AC9F-D5B39A1AAA80}"
+        "PackageCode" = "8:{0138B403-B312-4B30-A140-9F5CE32F8A63}"
         "UpgradeCode" = "8:{DF64E53C-B4EB-4BB0-A435-D38F76CD040A}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
