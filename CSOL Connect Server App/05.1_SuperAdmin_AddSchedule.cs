@@ -134,6 +134,15 @@ namespace CSOL_Connect_Server_App
                 {
                     MessageBox.Show("The new schedule overlaps with an existing schedule. Please choose a different time.");
                 }
+                else if (IsInstructorScheduleOverlapping(Instructor_Combobox.Text, newScheduleStart, newScheduleEnd))
+                {
+                    MessageBox.Show("The instructor has an overlapping schedule. Please choose a different time or instructor.");
+                }
+                else if (IsGradeSectionScheduleOverlapping(GraSec_Combobox.Text, newScheduleStart, newScheduleEnd))
+                {
+                    MessageBox.Show("The grade and section have an overlapping schedule. Please choose a different time or grade/section.");
+                }
+
                 else
                 {
                     // Insert the new schedule into the database
@@ -226,6 +235,64 @@ namespace CSOL_Connect_Server_App
                 return false;
             }
         }
+
+        private bool IsInstructorScheduleOverlapping(string instructor, TimeSpan newStart, TimeSpan newEnd)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Schedules WHERE [Instructor] = @instructor " +
+                               "AND (([Sched Start] <= @newEnd AND [Sched End] >= @newStart) " +
+                               "OR ([Sched Start] >= @newStart AND [Sched End] <= @newEnd))";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@instructor", instructor);
+                command.Parameters.AddWithValue("@newStart", newStart);
+                command.Parameters.AddWithValue("@newEnd", newEnd);
+
+                int overlappingSchedulesCount = (int)command.ExecuteScalar();
+                connection.Close();
+
+                return overlappingSchedulesCount > 0;
+            }
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true; // Assuming an error means overlap to avoid allowing the insertion
+            }
+        }
+        private bool IsGradeSectionScheduleOverlapping(string gradeSection, TimeSpan newStart, TimeSpan newEnd)
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(sql_Connection.SQLConnection());
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Schedules WHERE [Grade and Section] = @gradeSection " +
+                               "AND (([Sched Start] <= @newEnd AND [Sched End] >= @newStart) " +
+                               "OR ([Sched Start] >= @newStart AND [Sched End] <= @newEnd))";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@gradeSection", gradeSection);
+                command.Parameters.AddWithValue("@newStart", newStart);
+                command.Parameters.AddWithValue("@newEnd", newEnd);
+
+                int overlappingSchedulesCount = (int)command.ExecuteScalar();
+                connection.Close();
+
+                return overlappingSchedulesCount > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true; // Assuming an error means overlap to avoid allowing the insertion
+            }
+        }
+
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
